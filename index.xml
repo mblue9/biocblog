@@ -23,7 +23,7 @@
 
 <p><em>This blog post was co-written by the Bioconductor Community Manager, Maria Doyle, and the lead developer of CuratedAtlasQueryR, Stefano Mangiola.</em></p>
 <p>We are excited to announce the launch of the <a href="https://github.com/stemangiola/CuratedAtlasQueryR">CuratedAtlasQueryR</a> package! Millions of cells are now at your fingertips as the harmonized and reannotated CELLxGENE single-cell human atlas can be explored and retrieved in Bioconductor SingleCellExperiment format.</p>
-<p><img src="https://bioconductor.github.io/biocblog/posts/2023-02-21-CuratedAtlasQueryR/overview.png" class="img-fluid"></p>
+<p><img src="https://bioconductor.github.io/biocblog/posts/2023-02-21-CuratedAtlasQueryR/overview.png" class="img-fluid" alt="A diagram showing the tools underlying the CuratedAtlasQueryR package and the workflow."></p>
 <section id="why-this-package-was-created" class="level2">
 <h2 class="anchored" data-anchor-id="why-this-package-was-created">Why this package was created</h2>
 <p>The <a href="https://www.humancellatlas.org/">Human Cell Atlas</a> is a large-scale single-cell sequencing initiative that aims to map every cell type in the human body. It has the potential to revolutionise our understanding of human cellular biology and the immune system. Data harmonisation, curation and effective data query are essential to extract knowledge from these complex atlases. The <a href="https://cellxgene.cziscience.com/">CELLxGENE human cell atlas</a> provides an explorable and searchable human atlas. However, <a href="https://cellxgene.cziscience.com/">CELLxGENE</a> is not harmonised across datasets.</p>
@@ -108,7 +108,7 @@
 <span id="cb4-14">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>( disease, <span class="st" style="color: #20794D;">`</span><span class="at" style="color: #657422;">HLA.A</span><span class="st" style="color: #20794D;">`</span>,<span class="at" style="color: #657422;">color =</span> file_id)) <span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb4-15">  <span class="fu" style="color: #4758AB;">geom_jitter</span>(<span class="at" style="color: #657422;">shape=</span><span class="st" style="color: #20794D;">"."</span>) </span></code></pre></div>
 </div>
-<p><img src="https://bioconductor.github.io/biocblog/posts/2023-02-21-CuratedAtlasQueryR/hlaplot1.png" class="img-fluid"></p>
+<p><img src="https://bioconductor.github.io/biocblog/posts/2023-02-21-CuratedAtlasQueryR/hlaplot1.png" class="img-fluid" alt="A jitter plot of HLA-A expression in CD14 monocytes from different diseases."></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">metadata <span class="sc" style="color: #5E5E5E;">|&gt;</span> </span>
 <span id="cb5-2">    </span>
@@ -123,7 +123,7 @@
 <span id="cb5-11">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>( tissue_harmonised, NCAM1,<span class="at" style="color: #657422;">color =</span> file_id)) <span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb5-12">  <span class="fu" style="color: #4758AB;">geom_jitter</span>(<span class="at" style="color: #657422;">shape=</span><span class="st" style="color: #20794D;">"."</span>) </span></code></pre></div>
 </div>
-<p><img src="https://bioconductor.github.io/biocblog/posts/2023-02-21-CuratedAtlasQueryR/hlaplot2.png" class="img-fluid"></p>
+<p><img src="https://bioconductor.github.io/biocblog/posts/2023-02-21-CuratedAtlasQueryR/hlaplot2.png" class="img-fluid" alt="A jitter plot of HLA-A expression in CD14 monocytes from different tissues."></p>
 </section>
 <section id="acknowledgements" class="level2">
 <h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
