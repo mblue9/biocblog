@@ -257,16 +257,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="how-it-differs-from-existing-packages" class="level2">
 <h2 class="anchored" data-anchor-id="how-it-differs-from-existing-packages">How it differs from existing packages</h2>
 <p>We use the existing Bioconductor package, <a href="https://bioconductor.org/packages/release/bioc/html/cellxgenedp.html">cellxgenedp</a> as the download source for datasets included in <a href="https://cellxgene.cziscience.com/">CELLxGENE</a>.</p>
-<p>We then harmonised, curated and reannotated the data (immune cell labels).</p>
+<p>We then harmonised, curated and reannotated the data (immune cell labels):</p>
 <ul>
-<li>The column classes so they can be represented as unique table.</li>
+<li>The column classes so they can be represented as a unique table.</li>
 <li>We subset the columns that were most common across the atlas (the complete columns for a specific dataset can be retrieved through the <a href="https://bioconductor.org/packages/release/bioc/html/cellxgenedp.html">cellxgenedp</a> package).</li>
 <li>We consolidated sample identifiers.</li>
 <li>We harmonised tissue labels</li>
 <li>We harmonised cell-type labels under a common ontology</li>
 <li>We provide a consensus-based immune cell label, and a confidence label. Consensus was established among the original annotation and three independent references (<a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE107011">Monaco</a>, <a href="https://rdrr.io/github/LTLA/celldex/man/BlueprintEncodeData.html">BLUEPRINT</a>, and <a href="https://azimuth.hubmapconsortium.org/references/human_pbmc/">Azimuth PBMC</a>)</li>
 </ul>
-<p>We introduced custom columns, not present in the original CELLxGENE metadata</p>
+<p>We introduced custom columns, not present in the original CELLxGENE metadata:</p>
 <ul>
 <li><code>tissue_harmonised</code>: a coarser tissue name for better filtering</li>
 <li><code>age_days</code>: the number of days corresponding to the age</li>
