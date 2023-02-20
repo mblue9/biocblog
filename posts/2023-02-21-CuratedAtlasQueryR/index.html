@@ -6,8 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Stefano Mangiola">
 <meta name="author" content="Maria Doyle">
+<meta name="author" content="Stefano Mangiola">
 <meta name="dcterms.date" content="2023-02-21">
 <meta name="description" content="CuratedAtlasQueryR is a new package that enables easy programmatic exploration of CELLxGENE single-cell human cell atlas data.">
 
@@ -24,6 +24,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -157,8 +220,8 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Authors</div>
       <div class="quarto-title-meta-contents">
-               <p>Stefano Mangiola </p>
                <p>Maria Doyle </p>
+               <p>Stefano Mangiola </p>
             </div>
     </div>
       
@@ -183,34 +246,114 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p><em>This blog post was co-written by the lead developer of CuratedCellAtlasR, Stefano Mangiola, and the Bioconductor Community Manager, Maria Doyle.</em></p>
-<p>We are excited to announce the launch of the CuratedCellAtlasR package! Millions of cells are now at your fingertips as the harmonized and reannotated CELLxGENE single-cell human atlas can be explored and retrieved as a Bioconductor SingleCellExperiment object.</p>
+<p><em>This blog post was co-written by the Bioconductor Community Manager, Maria Doyle, and the lead developer of CuratedAtlasQueryR, Stefano Mangiola.</em></p>
+<p>We are excited to announce the launch of the <a href="https://github.com/stemangiola/CuratedAtlasQueryR">CuratedAtlasQueryR</a> package! Millions of cells are now at your fingertips as the harmonized and reannotated CELLxGENE single-cell human atlas can be explored and retrieved in Bioconductor SingleCellExperiment format.</p>
 <p><img src="overview.png" class="img-fluid"></p>
 <section id="why-this-package-was-created" class="level2">
 <h2 class="anchored" data-anchor-id="why-this-package-was-created">Why this package was created</h2>
-<p>The <a href="https://www.humancellatlas.org/">Human Cell Atlas</a> is a large-scale single-cell sequencing initiative that aims to map every cell type in the human body. It has the potential to revolutionise our understanding of human cellular biology and the immune system. Data harmonisation, curation and effective data query are essential to extract knowledge from these complex atlases. The <a href="https://cellxgene.cziscience.com/">CELLxGENE human cell atlas</a> provides a curated, searchable version of the Human Cell Atlas data. To facilitate programmatic access to this atlas through R, we have developed <a href="https://stemangiola.github.io/CuratedAtlasQueryR/">CuratedAtlasQueryR</a>, a cell-resolved query system that allows researchers to select cells based on their type, tissue of origin, and demographics.</p>
-<p>The rationale for our package is that, while CELLxGENE is not harmonised across dataset, we made it so, so you can do cross-dataset analyses.</p>
+<p>The <a href="https://www.humancellatlas.org/">Human Cell Atlas</a> is a large-scale single-cell sequencing initiative that aims to map every cell type in the human body. It has the potential to revolutionise our understanding of human cellular biology and the immune system. Data harmonisation, curation and effective data query are essential to extract knowledge from these complex atlases. The <a href="https://cellxgene.cziscience.com/">CELLxGENE human cell atlas</a> provides an explorable and searchable human atlas. However, <a href="https://cellxgene.cziscience.com/">CELLxGENE</a> is not harmonised across datasets.</p>
+<p>To allow exploration and analyses across datasets, tissues and diseases through R, we have developed <a href="https://stemangiola.github.io/CuratedAtlasQueryR/">CuratedAtlasQueryR</a>, a cell-resolved query system that allows researchers to select cells based on their type, tissue of origin, and demographics.</p>
 </section>
 <section id="how-it-differs-from-existing-packages" class="level2">
 <h2 class="anchored" data-anchor-id="how-it-differs-from-existing-packages">How it differs from existing packages</h2>
-<p>We use the existing Bioconductor package, <a href="https://bioconductor.org/packages/release/bioc/html/cellxgenedp.html">cellxgenedp</a> as download source, and harmonise the data. Differently from cellxgenedp, we can query specific cells across datasets based on annotation, all this without loading into memory. So our query resolution is at the cell level rather than dataset.</p>
-<p>The harmonized and reannotated CELLxGENE singlecell human atlas can be explored and retrieved as a Bioconductor <a href="https://bioconductor.org/packages/release/bioc/html/SingleCellExperiment.html">SingleCellExperiment</a> object.</p>
-<p>We use <a href="https://duckdb.org/">DuckDB</a> in the package due to it’s fast speed, and low disk imprint in handling large amounts of data.</p>
+<p>We use the existing Bioconductor package, <a href="https://bioconductor.org/packages/release/bioc/html/cellxgenedp.html">cellxgenedp</a> as the download source for datasets included in <a href="https://cellxgene.cziscience.com/">CELLxGENE</a>.</p>
+<p>We then harmonised, curated and reannotated the data (immune cell labels).</p>
+<ul>
+<li>The column classes so they can be represented as unique table.</li>
+<li>We subset the columns that were most common across the atlas (the complete columns for a specific dataset can be retrieved through the <a href="https://bioconductor.org/packages/release/bioc/html/cellxgenedp.html">cellxgenedp</a> package).</li>
+<li>We consolidated sample identifiers.</li>
+<li>We harmonised tissue labels</li>
+<li>We harmonised cell-type labels under a common ontology</li>
+<li>We provide a consensus-based immune cell label, and a confidence label. Consensus was established among the original annotation and three independent references (<a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE107011">Monaco</a>, <a href="https://rdrr.io/github/LTLA/celldex/man/BlueprintEncodeData.html">BLUEPRINT</a>, and <a href="https://azimuth.hubmapconsortium.org/references/human_pbmc/">Azimuth PBMC</a>)</li>
+</ul>
+<p>We introduced custom columns, not present in the original CELLxGENE metadata</p>
+<ul>
+<li><code>tissue_harmonised</code>: a coarser tissue name for better filtering</li>
+<li><code>age_days</code>: the number of days corresponding to the age</li>
+<li><code>cell_type_harmonised</code>: the consensus call identity (for immune cells) using the original and three novel annotations using Seurat Azimuth and SingleR</li>
+<li><code>confidence_class</code>: an ordinal class of how confident <code>cell_type_harmonised</code> is. 1 is complete consensus, 2 is 3 out of four and so on.</li>
+<li><code>cell_annotation_azimuth_l2</code>: Azimuth cell annotation</li>
+<li><code>cell_annotation_blueprint_singler</code>: SingleR cell annotation using Blueprint reference</li>
+<li><code>cell_annotation_blueprint_monaco</code>: SingleR cell annotation using Monaco reference</li>
+<li><code>sample_id_db</code>: Sample subdivision for internal use</li>
+<li><code>file_id_db</code>: File subdivision for internal use</li>
+<li><code>.sample</code>: Sample ID</li>
+<li><code>.sample_name</code>: How samples were defined</li>
+</ul>
+<p>Differently from <a href="https://bioconductor.org/packages/release/bioc/html/cellxgenedp.html">cellxgenedp</a>, we can query specific cells across datasets based on annotation, the metadata exploration and data download is done on-disk without loading into memory.</p>
+<p>The harmonized and reannotated <a href="https://cellxgene.cziscience.com/">CELLxGENE</a> single cell human atlas can be explored and retrieved in Bioconductor <a href="https://bioconductor.org/packages/release/bioc/html/SingleCellExperiment.html">SingleCellExperiment</a> format.</p>
+<p>We use <a href="https://duckdb.org/">DuckDB</a> in the package due to it’s speed, and low disk imprint in handling large amounts of data.</p>
 </section>
 <section id="how-you-can-use-it" class="level2">
 <h2 class="anchored" data-anchor-id="how-you-can-use-it">How you can use it</h2>
-<p>Step 1: Get started with CuratedCellAtlasR by exploring the integrated metadata of 28 million cells (on-disk) using <a href="https://www.tidyverse.org/">tidyverse</a>. The atlas includes 344 studies across 40 tissues, providing raw abundances and counts-per-million. 📊</p>
-<p><img src="get_metadata.png" class="img-fluid"></p>
-<p>Step 2: Filter cells of interest using tidyverse, whether it’s a specific dataset or a cell type across tissues and diseases. CuratedAtlasQueryR makes it easy to find what you’re looking for! 🔍</p>
-<p><img src="filter.png" class="img-fluid"></p>
-<p>Step 3: Collect the SingleCellExperiment for the cells of interest. Our object uses <a href="https://en.wikipedia.org/wiki/Hierarchical_Data_Format">HDF5 format</a> to keep the R session light, making it easier to work with larger datasets. 💻</p>
-<p><img src="get_SingleCellExperiment.png" class="img-fluid"></p>
-<p>Step 4: With CuratedAtlasQueryR and <a href="https://stemangiola.github.io/tidySingleCellExperiment/articles/introduction.html">tidySingleCellExperiment</a>, checking the transcription abundance of your favourite gene and cell type across diseases, tissues and hundreds of datasets is just a few lines of code! 🎉</p>
-<p><img src="hlaplot1.png" class="img-fluid"> <img src="hlaplot2.png" class="img-fluid"></p>
+<p><strong>Step 1</strong>: Get started with <a href="https://github.com/stemangiola/CuratedAtlasQueryR">CuratedAtlasQueryR</a> by exploring the integrated metadata of 28 million cells (on-disk) using <a href="https://www.tidyverse.org/">tidyverse</a>. The atlas includes 344 studies across 40 tissues, providing raw abundances and counts-per-million. 📊</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(CuratedAtlasQueryR)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>metadata <span class="ot">&lt;-</span> <span class="fu">get_metadata</span>()</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>metadata</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Step 2</strong>: Filter cells of interest using tidyverse, whether it’s a specific dataset or a cell type across tissues and diseases. <a href="https://github.com/stemangiola/CuratedAtlasQueryR">CuratedAtlasQueryR</a> makes it easy to find what you’re looking for! 🔍</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>metadata <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>      ethnicity <span class="sc">==</span> <span class="st">"African"</span> <span class="sc">&amp;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>      stringr<span class="sc">::</span><span class="fu">str_like</span>(assay, <span class="st">"%10x%"</span>) <span class="sc">&amp;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>      tissue <span class="sc">==</span> <span class="st">"lung parenchyma"</span> <span class="sc">&amp;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>      stringr<span class="sc">::</span><span class="fu">str_like</span>(cell_type, <span class="st">"%CD4%"</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Step 3</strong>: Collect the <a href="https://bioconductor.org/packages/release/bioc/html/SingleCellExperiment.html">SingleCellExperiment</a> for the cells of interest. Our object uses <a href="https://en.wikipedia.org/wiki/Hierarchical_Data_Format">HDF5 format</a> to keep the R session light, making it easier to work with larger datasets. 💻</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>metadata <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>      ethnicity <span class="sc">==</span> <span class="st">"African"</span> <span class="sc">&amp;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>      stringr<span class="sc">::</span><span class="fu">str_like</span>(assay, <span class="st">"%10x%"</span>) <span class="sc">&amp;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>      tissue <span class="sc">==</span> <span class="st">"lung parenchyma"</span> <span class="sc">&amp;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>      stringr<span class="sc">::</span><span class="fu">str_like</span>(cell_type, <span class="st">"%CD4%"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_SingleCellExperiment</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Step 4</strong>: With <a href="https://github.com/stemangiola/CuratedAtlasQueryR">CuratedAtlasQueryR</a> and <a href="https://stemangiola.github.io/tidySingleCellExperiment/articles/introduction.html">tidySingleCellExperiment</a>, checking the transcription abundance of your favourite gene and cell type across diseases, tissues and hundreds of datasets is just a few lines of code! 🎉</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidySingleCellExperiment)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>metadata <span class="sc">|&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Filter and subset</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(cell_type_harmonised<span class="sc">==</span><span class="st">"cd14 mono"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get counts per million for NCAM1 gene</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_SingleCellExperiment</span>(<span class="at">assays =</span> <span class="st">"cpm"</span>, <span class="at">features =</span> <span class="st">"HLA-A"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Plot</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">join_features</span>(<span class="st">"HLA-A"</span>, <span class="at">shape =</span> <span class="st">"wide"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>( disease, <span class="st">`</span><span class="at">HLA.A</span><span class="st">`</span>,<span class="at">color =</span> file_id)) <span class="sc">+</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">shape=</span><span class="st">"."</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img src="hlaplot1.png" class="img-fluid"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>metadata <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Filter and subset</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(cell_type_harmonised<span class="sc">==</span><span class="st">"nk"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get counts per million for NCAM1 gene </span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_SingleCellExperiment</span>(<span class="at">assays =</span> <span class="st">"cpm"</span>, <span class="at">features =</span> <span class="st">"NCAM1"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">join_features</span>(<span class="st">"NCAM1"</span>, <span class="at">shape =</span> <span class="st">"wide"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>( tissue_harmonised, NCAM1,<span class="at">color =</span> file_id)) <span class="sc">+</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">shape=</span><span class="st">"."</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img src="hlaplot2.png" class="img-fluid"></p>
 </section>
 <section id="acknowledgements" class="level2">
 <h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
 <p>Thanks and congratulations to Michael Milton <a href="https://github.com/multimeric"><span class="citation" data-cites="multimeric">@multimeric</span></a> (main developer), <a href="https://www.roswellpark.org/martin-morgan">Martin Morgan</a>, <a href="https://www.wehi.edu.au/people/tony-papenfuss">Tony Papenfuss</a>, <a href="https://vjcitn.github.io/">Vince Carey</a>, <a href="https://www.bioconductor.org/">Bioconductor</a>, <a href="https://github.com/jIskCoder">Julie Iskander</a>, <a href="https://www.wehi.edu.au/">WEHI</a>.</p>
+<p>Thanks to funders Silicon Valley Foundation (CZF2019-002443), NIH NHGRI (5U24HG004059-18), Victoria Cancer Agency (ECRF21036), NHMRC (1116955).</p>
 
 
 </section>
