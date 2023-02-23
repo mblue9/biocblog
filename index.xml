@@ -10,12 +10,12 @@
 <atom:link href="https://bioconductor.github.io/biocblog/index.xml" rel="self" type="application/rss+xml"/>
 <description>A blog for the Bioconductor community!</description>
 <generator>quarto-1.2.335</generator>
-<lastBuildDate>Tue, 21 Feb 2023 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 23 Feb 2023 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Introducing CuratedAtlasQueryR package</title>
   <dc:creator>Maria Doyle</dc:creator>
   <dc:creator>Stefano Mangiola</dc:creator>
-  <link>https://bioconductor.github.io/biocblog/posts/2023-02-21-CuratedAtlasQueryR/index.html</link>
+  <link>https://bioconductor.github.io/biocblog/posts/2023-02-23-CuratedAtlasQueryR/index.html</link>
   <description><![CDATA[ 
 
 
@@ -23,7 +23,7 @@
 
 <p><em>This blog post was co-written by the Bioconductor Community Manager, Maria Doyle, and the lead developer of CuratedAtlasQueryR, Stefano Mangiola.</em></p>
 <p>We are excited to announce the launch of the <a href="https://github.com/stemangiola/CuratedAtlasQueryR">CuratedAtlasQueryR</a> package! Millions of cells are now at your fingertips as the harmonized and reannotated CELLxGENE single-cell human atlas can be explored and retrieved in Bioconductor SingleCellExperiment format.</p>
-<p><img src="https://bioconductor.github.io/biocblog/posts/2023-02-21-CuratedAtlasQueryR/overview.png" class="img-fluid" alt="A diagram showing the tools underlying the CuratedAtlasQueryR package and the workflow."></p>
+<p><img src="https://bioconductor.github.io/biocblog/posts/2023-02-23-CuratedAtlasQueryR/overview.png" class="img-fluid" alt="A diagram showing the tools underlying the CuratedAtlasQueryR package and the workflow."></p>
 <section id="why-this-package-was-created" class="level2">
 <h2 class="anchored" data-anchor-id="why-this-package-was-created">Why this package was created</h2>
 <p>The <a href="https://www.humancellatlas.org/">Human Cell Atlas</a> is a large-scale single-cell sequencing initiative that aims to map every cell type in the human body. It has the potential to revolutionise our understanding of human cellular biology and the immune system. Data harmonisation, curation and effective data query are essential to extract knowledge from these complex atlases. The <a href="https://cellxgene.cziscience.com/">CELLxGENE human cell atlas</a> provides an explorable and searchable human atlas. However, <a href="https://cellxgene.cziscience.com/">CELLxGENE</a> is not harmonised across datasets.</p>
@@ -65,65 +65,36 @@
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;">library</span>(CuratedAtlasQueryR)</span>
 <span id="cb1-2"></span>
-<span id="cb1-3">metadata <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">get_metadata</span>()</span>
+<span id="cb1-3">cache_dir <span class="ot" style="color: #003B4F;">=</span> <span class="st" style="color: #20794D;">"~/tmp"</span> <span class="co" style="color: #5E5E5E;"># set the cache directory if you don't want to use default</span></span>
 <span id="cb1-4"></span>
-<span id="cb1-5">metadata</span>
+<span id="cb1-5">metadata <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">get_metadata</span>(<span class="at" style="color: #657422;">cache_directory =</span> cache_dir)</span>
 <span id="cb1-6"></span>
-<span id="cb1-7"><span class="co" style="color: #5E5E5E;">#&gt; # Source:   SQL [?? x 56]</span></span>
-<span id="cb1-8"><span class="co" style="color: #5E5E5E;">#&gt; # Database: DuckDB 0.7.0 [unknown@Linux 3.10.0-1160.81.1.el7.x86_64:R 4.2.0/:memory:]</span></span>
-<span id="cb1-9"><span class="co" style="color: #5E5E5E;">#&gt;    `_cell`       _samp…¹ cell_…² cell_…³ confi…⁴ cell_…⁵ cell_…⁶ cell_…⁷ sampl…⁸</span></span>
-<span id="cb1-10"><span class="co" style="color: #5E5E5E;">#&gt;    &lt;chr&gt;         &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  </span></span>
-<span id="cb1-11"><span class="co" style="color: #5E5E5E;">#&gt;  1 Arunachalam-… 36bb04… classi… cd14 m…       1 cd14 m… monocy… interm… 80ab02…</span></span>
-<span id="cb1-12"><span class="co" style="color: #5E5E5E;">#&gt;  2 Arunachalam-… 36bb04… classi… cd14 m…       1 cd14 m… monocy… classi… 80ab02…</span></span>
-<span id="cb1-13"><span class="co" style="color: #5E5E5E;">#&gt;  3 Arunachalam-… 36bb04… classi… cd14 m…       1 cd14 m… monocy… classi… 80ab02…</span></span>
-<span id="cb1-14"><span class="co" style="color: #5E5E5E;">#&gt;  4 Arunachalam-… 36bb04… classi… cd14 m…       1 cd14 m… monocy… classi… 80ab02…</span></span>
-<span id="cb1-15"><span class="co" style="color: #5E5E5E;">#&gt;  5 Arunachalam-… 36bb04… classi… cdc           1 cdc2    monocy… myeloi… 80ab02…</span></span>
-<span id="cb1-16"><span class="co" style="color: #5E5E5E;">#&gt;  6 Arunachalam-… 36bb04… classi… cd14 m…       1 cd14 m… monocy… classi… 80ab02…</span></span>
-<span id="cb1-17"><span class="co" style="color: #5E5E5E;">#&gt;  7 Arunachalam-… 36bb04… classi… cd14 m…       1 cd14 m… monocy… classi… 80ab02…</span></span>
-<span id="cb1-18"><span class="co" style="color: #5E5E5E;">#&gt;  8 Arunachalam-… 36bb04… classi… cd14 m…       1 cd14 m… monocy… myeloi… 80ab02…</span></span>
-<span id="cb1-19"><span class="co" style="color: #5E5E5E;">#&gt;  9 Arunachalam-… 36bb04… classi… cd14 m…       1 cd14 m… monocy… classi… 80ab02…</span></span>
-<span id="cb1-20"><span class="co" style="color: #5E5E5E;">#&gt; 10 Arunachalam-… 36bb04… classi… cd14 m…       1 cd14 m… monocy… interm… 80ab02…</span></span>
-<span id="cb1-21"><span class="co" style="color: #5E5E5E;">#&gt; # … with more rows, 47 more variables: `_sample_name` &lt;chr&gt;, assay &lt;chr&gt;,</span></span>
-<span id="cb1-22"><span class="co" style="color: #5E5E5E;">#&gt; #   assay_ontology_term_id &lt;chr&gt;, file_id_db &lt;chr&gt;,</span></span>
-<span id="cb1-23"><span class="co" style="color: #5E5E5E;">#&gt; #   cell_type_ontology_term_id &lt;chr&gt;, development_stage &lt;chr&gt;,</span></span>
-<span id="cb1-24"><span class="co" style="color: #5E5E5E;">#&gt; #   development_stage_ontology_term_id &lt;chr&gt;, disease &lt;chr&gt;,</span></span>
-<span id="cb1-25"><span class="co" style="color: #5E5E5E;">#&gt; #   disease_ontology_term_id &lt;chr&gt;, ethnicity &lt;chr&gt;,</span></span>
-<span id="cb1-26"><span class="co" style="color: #5E5E5E;">#&gt; #   ethnicity_ontology_term_id &lt;chr&gt;, experiment___ &lt;chr&gt;, file_id &lt;chr&gt;,</span></span>
-<span id="cb1-27"><span class="co" style="color: #5E5E5E;">#&gt; #   is_primary_data_x &lt;chr&gt;, organism &lt;chr&gt;, organism_ontology_term_id &lt;chr&gt;, …</span></span></code></pre></div>
+<span id="cb1-7">metadata</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Source:   table&lt;~/tmp/metadata.0.2.3.parquet&gt; [?? x 56]
+# Database: DuckDB 0.7.0 [root@Darwin 21.6.0:R 4.2.2/:memory:]
+   cell_ sample_ cell_…¹ cell_…² confi…³ cell_…⁴ cell_…⁵ cell_…⁶ sampl…⁷ _samp…⁸
+   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
+ 1 AAAC… 689e2f… basal … basal_…       1 &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    f297c7… D17PrP…
+ 2 AAAC… 689e2f… basal … basal_…       1 &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    f297c7… D17PrP…
+ 3 AAAC… 689e2f… lumina… lumina…       1 &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    930938… D17PrP…
+ 4 AAAC… 689e2f… lumina… lumina…       1 &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    930938… D17PrP…
+ 5 AAAC… 689e2f… basal … basal_…       1 &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    f297c7… D17PrP…
+ 6 AAAC… 689e2f… basal … basal_…       1 &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    f297c7… D17PrP…
+ 7 AAAC… 689e2f… basal … basal_…       1 &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    f297c7… D17PrP…
+ 8 AAAC… 689e2f… basal … basal_…       1 &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    f297c7… D17PrP…
+ 9 AAAC… 689e2f… lumina… lumina…       1 &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    930938… D17PrP…
+10 AAAC… 689e2f… basal … basal_…       1 &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;    f297c7… D17PrP…
+# … with more rows, 46 more variables: assay &lt;chr&gt;,
+#   assay_ontology_term_id &lt;chr&gt;, file_id_db &lt;chr&gt;,
+#   cell_type_ontology_term_id &lt;chr&gt;, development_stage &lt;chr&gt;,
+#   development_stage_ontology_term_id &lt;chr&gt;, disease &lt;chr&gt;,
+#   disease_ontology_term_id &lt;chr&gt;, ethnicity &lt;chr&gt;,
+#   ethnicity_ontology_term_id &lt;chr&gt;, experiment___ &lt;chr&gt;, file_id &lt;chr&gt;,
+#   is_primary_data_x &lt;chr&gt;, organism &lt;chr&gt;, organism_ontology_term_id &lt;chr&gt;, …</code></pre>
+</div>
 </div>
 <p><strong>Step 2</strong>: Filter cells of interest using tidyverse, whether it’s a specific dataset or a cell type across tissues and diseases. <a href="https://github.com/stemangiola/CuratedAtlasQueryR">CuratedAtlasQueryR</a> makes it easy to find what you’re looking for! 🔍</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">metadata <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
-<span id="cb2-2">  dplyr<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">filter</span>(</span>
-<span id="cb2-3">      ethnicity <span class="sc" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"African"</span> <span class="sc" style="color: #5E5E5E;">&amp;</span></span>
-<span id="cb2-4">      stringr<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">str_like</span>(assay, <span class="st" style="color: #20794D;">"%10x%"</span>) <span class="sc" style="color: #5E5E5E;">&amp;</span></span>
-<span id="cb2-5">      tissue <span class="sc" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"lung parenchyma"</span> <span class="sc" style="color: #5E5E5E;">&amp;</span></span>
-<span id="cb2-6">      stringr<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">str_like</span>(cell_type, <span class="st" style="color: #20794D;">"%CD4%"</span>)</span>
-<span id="cb2-7">  ) </span>
-<span id="cb2-8"></span>
-<span id="cb2-9"><span class="co" style="color: #5E5E5E;">#&gt; # Source:   SQL [?? x 56]</span></span>
-<span id="cb2-10"><span class="co" style="color: #5E5E5E;">#&gt; # Database: DuckDB 0.7.0 [unknown@Linux 3.10.0-1160.81.1.el7.x86_64:R 4.2.0/:memory:]</span></span>
-<span id="cb2-11"><span class="co" style="color: #5E5E5E;">#&gt;    `_cell`       _samp…¹ cell_…² cell_…³ confi…⁴ cell_…⁵ cell_…⁶ cell_…⁷ sampl…⁸</span></span>
-<span id="cb2-12"><span class="co" style="color: #5E5E5E;">#&gt;    &lt;chr&gt;         &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  </span></span>
-<span id="cb2-13"><span class="co" style="color: #5E5E5E;">#&gt;  1 ACAGCCGGTCCG… dc583c… CD4-po… mait          5 mait    cd8 tem mait    b41104…</span></span>
-<span id="cb2-14"><span class="co" style="color: #5E5E5E;">#&gt;  2 GGGAATGAGCCC… dc583c… CD4-po… treg          3 cd4 tcm cd4 t   t regu… b41104…</span></span>
-<span id="cb2-15"><span class="co" style="color: #5E5E5E;">#&gt;  3 TCTTCGGAGTAG… dc583c… CD4-po… cd4 th…       3 cd4 tcm cd4 t   th1/th… b41104…</span></span>
-<span id="cb2-16"><span class="co" style="color: #5E5E5E;">#&gt;  4 CCTTACGAGAGC… dc583c… CD4-po… cd4 th…       3 cd4 tem cd8 tem th1/th… b41104…</span></span>
-<span id="cb2-17"><span class="co" style="color: #5E5E5E;">#&gt;  5 ATCTACTCAATG… dc583c… CD4-po… cd4 th…       3 cd4 tcm clp     th17    b41104…</span></span>
-<span id="cb2-18"><span class="co" style="color: #5E5E5E;">#&gt;  6 CATCAGACACCG… 39915d… CD4-po… immune…       5 cd8 tem cd8 tem mait    200214…</span></span>
-<span id="cb2-19"><span class="co" style="color: #5E5E5E;">#&gt;  7 AGTCTTTGTTAG… 39915d… CD4-po… immune…       1 cd4 tem cd4 tem mait    200214…</span></span>
-<span id="cb2-20"><span class="co" style="color: #5E5E5E;">#&gt;  8 CGCGTTTGTAAG… dc583c… CD4-po… immune…       5 cd4 tem clp     th1/th… b41104…</span></span>
-<span id="cb2-21"><span class="co" style="color: #5E5E5E;">#&gt;  9 TGGCTGGCAACG… 39915d… CD4-po… immune…       5 cd8 tem cd8 tem effect… 200214…</span></span>
-<span id="cb2-22"><span class="co" style="color: #5E5E5E;">#&gt; 10 TTCCCAGAGCAG… dc583c… CD4-po… cd4 th…       3 cd4 tcm cd8 tem th1/th… b41104…</span></span>
-<span id="cb2-23"><span class="co" style="color: #5E5E5E;">#&gt; # … with more rows, 47 more variables: `_sample_name` &lt;chr&gt;, assay &lt;chr&gt;,</span></span>
-<span id="cb2-24"><span class="co" style="color: #5E5E5E;">#&gt; #   assay_ontology_term_id &lt;chr&gt;, file_id_db &lt;chr&gt;,</span></span>
-<span id="cb2-25"><span class="co" style="color: #5E5E5E;">#&gt; #   cell_type_ontology_term_id &lt;chr&gt;, development_stage &lt;chr&gt;,</span></span>
-<span id="cb2-26"><span class="co" style="color: #5E5E5E;">#&gt; #   development_stage_ontology_term_id &lt;chr&gt;, disease &lt;chr&gt;,</span></span>
-<span id="cb2-27"><span class="co" style="color: #5E5E5E;">#&gt; #   disease_ontology_term_id &lt;chr&gt;, ethnicity &lt;chr&gt;,</span></span>
-<span id="cb2-28"><span class="co" style="color: #5E5E5E;">#&gt; #   ethnicity_ontology_term_id &lt;chr&gt;, experiment___ &lt;chr&gt;, file_id &lt;chr&gt;,</span></span>
-<span id="cb2-29"><span class="co" style="color: #5E5E5E;">#&gt; #   is_primary_data_x &lt;chr&gt;, organism &lt;chr&gt;, organism_ontology_term_id &lt;chr&gt;, …</span></span></code></pre></div>
-</div>
-<p><strong>Step 3</strong>: Collect the <a href="https://bioconductor.org/packages/release/bioc/html/SingleCellExperiment.html">SingleCellExperiment</a> for the cells of interest. Our object uses <a href="https://en.wikipedia.org/wiki/Hierarchical_Data_Format">HDF5 format</a> to keep the R session light, making it easier to work with larger datasets. 💻</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">metadata <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
 <span id="cb3-2">  dplyr<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">filter</span>(</span>
@@ -131,70 +102,104 @@
 <span id="cb3-4">      stringr<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">str_like</span>(assay, <span class="st" style="color: #20794D;">"%10x%"</span>) <span class="sc" style="color: #5E5E5E;">&amp;</span></span>
 <span id="cb3-5">      tissue <span class="sc" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"lung parenchyma"</span> <span class="sc" style="color: #5E5E5E;">&amp;</span></span>
 <span id="cb3-6">      stringr<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">str_like</span>(cell_type, <span class="st" style="color: #20794D;">"%CD4%"</span>)</span>
-<span id="cb3-7">  ) <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
-<span id="cb3-8">  <span class="fu" style="color: #4758AB;">get_SingleCellExperiment</span>()</span>
-<span id="cb3-9"></span>
-<span id="cb3-10"><span class="co" style="color: #5E5E5E;">#&gt; class: SingleCellExperiment </span></span>
-<span id="cb3-11"><span class="co" style="color: #5E5E5E;">#&gt; dim: 35615 1571 </span></span>
-<span id="cb3-12"><span class="co" style="color: #5E5E5E;">#&gt; metadata(0):</span></span>
-<span id="cb3-13"><span class="co" style="color: #5E5E5E;">#&gt; assays(2): counts cpm</span></span>
-<span id="cb3-14"><span class="co" style="color: #5E5E5E;">#&gt; rownames(35615): TSPAN6 TNMD ... LNCDAT HRURF</span></span>
-<span id="cb3-15"><span class="co" style="color: #5E5E5E;">#&gt; rowData names(0):</span></span>
-<span id="cb3-16"><span class="co" style="color: #5E5E5E;">#&gt; colnames(1571): ACAGCCGGTCCGTTAA_F02526_1 GGGAATGAGCCCAGCT_F02526_1 ...</span></span>
-<span id="cb3-17"><span class="co" style="color: #5E5E5E;">#&gt;   TACAACGTCAGCATTG_SC84_1 CATTCGCTCAATACCG_F02526_1</span></span>
-<span id="cb3-18"><span class="co" style="color: #5E5E5E;">#&gt; colData names(56): _sample cell_type ... updated_at_y original_cell_id</span></span>
-<span id="cb3-19"><span class="co" style="color: #5E5E5E;">#&gt; reducedDimNames(0):</span></span>
-<span id="cb3-20"><span class="co" style="color: #5E5E5E;">#&gt; mainExpName: NULL</span></span>
-<span id="cb3-21"><span class="co" style="color: #5E5E5E;">#&gt; altExpNames(0):</span></span></code></pre></div>
+<span id="cb3-7">  ) </span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Source:   SQL [?? x 56]
+# Database: DuckDB 0.7.0 [root@Darwin 21.6.0:R 4.2.2/:memory:]
+   cell_ sample_ cell_…¹ cell_…² confi…³ cell_…⁴ cell_…⁵ cell_…⁶ sampl…⁷ _samp…⁸
+   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
+ 1 ACAG… dc583c… CD4-po… mait          5 mait    cd8 tem mait    b41104… VUHD92…
+ 2 GGGA… dc583c… CD4-po… treg          3 cd4 tcm cd4 t   t regu… b41104… VUHD92…
+ 3 TCTT… dc583c… CD4-po… cd4 th…       3 cd4 tcm cd4 t   th1/th… b41104… VUHD92…
+ 4 CCTT… dc583c… CD4-po… cd4 th…       3 cd4 tem cd8 tem th1/th… b41104… VUHD92…
+ 5 ATCT… dc583c… CD4-po… cd4 th…       3 cd4 tcm clp     th17    b41104… VUHD92…
+ 6 CATC… 39915d… CD4-po… immune…       5 cd8 tem cd8 tem mait    200214… VUHD69…
+ 7 AGTC… 39915d… CD4-po… immune…       1 cd4 tem cd4 tem mait    200214… VUHD69…
+ 8 CGCG… dc583c… CD4-po… immune…       5 cd4 tem clp     th1/th… b41104… VUHD92…
+ 9 TGGC… 39915d… CD4-po… immune…       5 cd8 tem cd8 tem effect… 200214… VUHD69…
+10 TTCC… dc583c… CD4-po… cd4 th…       3 cd4 tcm cd8 tem th1/th… b41104… VUHD92…
+# … with more rows, 46 more variables: assay &lt;chr&gt;,
+#   assay_ontology_term_id &lt;chr&gt;, file_id_db &lt;chr&gt;,
+#   cell_type_ontology_term_id &lt;chr&gt;, development_stage &lt;chr&gt;,
+#   development_stage_ontology_term_id &lt;chr&gt;, disease &lt;chr&gt;,
+#   disease_ontology_term_id &lt;chr&gt;, ethnicity &lt;chr&gt;,
+#   ethnicity_ontology_term_id &lt;chr&gt;, experiment___ &lt;chr&gt;, file_id &lt;chr&gt;,
+#   is_primary_data_x &lt;chr&gt;, organism &lt;chr&gt;, organism_ontology_term_id &lt;chr&gt;, …</code></pre>
+</div>
+</div>
+<p><strong>Step 3</strong>: Collect the <a href="https://bioconductor.org/packages/release/bioc/html/SingleCellExperiment.html">SingleCellExperiment</a> for the cells of interest. Our object uses <a href="https://en.wikipedia.org/wiki/Hierarchical_Data_Format">HDF5 format</a> to keep the R session light, making it easier to work with larger datasets. 💻</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">metadata <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
+<span id="cb5-2">  dplyr<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">filter</span>(</span>
+<span id="cb5-3">      ethnicity <span class="sc" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"African"</span> <span class="sc" style="color: #5E5E5E;">&amp;</span></span>
+<span id="cb5-4">      stringr<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">str_like</span>(assay, <span class="st" style="color: #20794D;">"%10x%"</span>) <span class="sc" style="color: #5E5E5E;">&amp;</span></span>
+<span id="cb5-5">      tissue <span class="sc" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"lung parenchyma"</span> <span class="sc" style="color: #5E5E5E;">&amp;</span></span>
+<span id="cb5-6">      stringr<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">str_like</span>(cell_type, <span class="st" style="color: #20794D;">"%CD4%"</span>)</span>
+<span id="cb5-7">  ) <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
+<span id="cb5-8">  <span class="fu" style="color: #4758AB;">get_SingleCellExperiment</span>(<span class="at" style="color: #657422;">cache_directory =</span> cache_dir)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class: SingleCellExperiment 
+dim: 36229 1571 
+metadata(0):
+assays(2): counts cpm
+rownames(36229): A1BG A1BG-AS1 ... ZZEF1 ZZZ3
+rowData names(0):
+colnames(1571): ACAGCCGGTCCGTTAA_F02526_1 GGGAATGAGCCCAGCT_F02526_1 ...
+  TACAACGTCAGCATTG_SC84_1 CATTCGCTCAATACCG_F02526_1
+colData names(56): sample_ cell_type ... updated_at_y original_cell_id
+reducedDimNames(0):
+mainExpName: NULL
+altExpNames(0):</code></pre>
+</div>
 </div>
 <p><strong>Step 4</strong>: With <a href="https://github.com/stemangiola/CuratedAtlasQueryR">CuratedAtlasQueryR</a> and <a href="https://stemangiola.github.io/tidySingleCellExperiment/articles/introduction.html">tidySingleCellExperiment</a>, checking the transcription abundance of your favourite gene and cell type across diseases, tissues and hundreds of datasets is just a few lines of code! 🎉</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;">library</span>(tidySingleCellExperiment)</span>
-<span id="cb4-2"><span class="fu" style="color: #4758AB;">library</span>(ggplot2)</span>
-<span id="cb4-3"></span>
-<span id="cb4-4">metadata <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
-<span id="cb4-5">  </span>
-<span id="cb4-6">  <span class="co" style="color: #5E5E5E;"># Filter and subset</span></span>
-<span id="cb4-7">  <span class="fu" style="color: #4758AB;">filter</span>(cell_type_harmonised<span class="sc" style="color: #5E5E5E;">==</span><span class="st" style="color: #20794D;">"cd14 mono"</span>) <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
-<span id="cb4-8"></span>
-<span id="cb4-9">  <span class="co" style="color: #5E5E5E;"># Get counts per million for NCAM1 gene</span></span>
-<span id="cb4-10">  <span class="fu" style="color: #4758AB;">get_SingleCellExperiment</span>(<span class="at" style="color: #657422;">assays =</span> <span class="st" style="color: #20794D;">"cpm"</span>, <span class="at" style="color: #657422;">features =</span> <span class="st" style="color: #20794D;">"HLA-A"</span>) <span class="sc" style="color: #5E5E5E;">|&gt;</span> </span>
-<span id="cb4-11">  </span>
-<span id="cb4-12">  <span class="co" style="color: #5E5E5E;"># Plot (styling code is omitted)</span></span>
-<span id="cb4-13">  <span class="fu" style="color: #4758AB;">join_features</span>(<span class="st" style="color: #20794D;">"HLA-A"</span>, <span class="at" style="color: #657422;">shape =</span> <span class="st" style="color: #20794D;">"wide"</span>) <span class="sc" style="color: #5E5E5E;">|&gt;</span> </span>
-<span id="cb4-14">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>( disease, <span class="st" style="color: #20794D;">`</span><span class="at" style="color: #657422;">HLA.A</span><span class="st" style="color: #20794D;">`</span>,<span class="at" style="color: #657422;">color =</span> file_id)) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb4-15">  <span class="fu" style="color: #4758AB;">geom_jitter</span>(<span class="at" style="color: #657422;">shape=</span><span class="st" style="color: #20794D;">"."</span>) </span></code></pre></div>
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="fu" style="color: #4758AB;">library</span>(tidySingleCellExperiment)</span>
+<span id="cb7-2"><span class="fu" style="color: #4758AB;">library</span>(ggplot2)</span>
+<span id="cb7-3"></span>
+<span id="cb7-4">metadata <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
+<span id="cb7-5">  </span>
+<span id="cb7-6">  <span class="co" style="color: #5E5E5E;"># Filter and subset</span></span>
+<span id="cb7-7">  <span class="fu" style="color: #4758AB;">filter</span>(cell_type_harmonised<span class="sc" style="color: #5E5E5E;">==</span><span class="st" style="color: #20794D;">"cd14 mono"</span>) <span class="sc" style="color: #5E5E5E;">|&gt;</span></span>
+<span id="cb7-8"></span>
+<span id="cb7-9">  <span class="co" style="color: #5E5E5E;"># Get counts per million for NCAM1 gene</span></span>
+<span id="cb7-10">  <span class="fu" style="color: #4758AB;">get_SingleCellExperiment</span>(<span class="at" style="color: #657422;">assays =</span> <span class="st" style="color: #20794D;">"cpm"</span>, <span class="at" style="color: #657422;">features =</span> <span class="st" style="color: #20794D;">"HLA-A"</span>, <span class="at" style="color: #657422;">cache_directory =</span> cache_dir) <span class="sc" style="color: #5E5E5E;">|&gt;</span> </span>
+<span id="cb7-11">  </span>
+<span id="cb7-12">  <span class="co" style="color: #5E5E5E;"># Plot (styling code is omitted)</span></span>
+<span id="cb7-13">  <span class="fu" style="color: #4758AB;">join_features</span>(<span class="st" style="color: #20794D;">"HLA-A"</span>, <span class="at" style="color: #657422;">shape =</span> <span class="st" style="color: #20794D;">"wide"</span>) <span class="sc" style="color: #5E5E5E;">|&gt;</span> </span>
+<span id="cb7-14">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>( disease, <span class="st" style="color: #20794D;">`</span><span class="at" style="color: #657422;">HLA.A</span><span class="st" style="color: #20794D;">`</span>,<span class="at" style="color: #657422;">color =</span> file_id)) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb7-15">  <span class="fu" style="color: #4758AB;">geom_jitter</span>(<span class="at" style="color: #657422;">shape=</span><span class="st" style="color: #20794D;">"."</span>) </span></code></pre></div>
 </div>
-<p><img src="https://bioconductor.github.io/biocblog/posts/2023-02-21-CuratedAtlasQueryR/hlaplot1.png" class="img-fluid" alt="A jitter plot of HLA-A expression in CD14 monocytes from different diseases."></p>
+<p><img src="https://bioconductor.github.io/biocblog/posts/2023-02-23-CuratedAtlasQueryR/hlaplot1.png" class="img-fluid" alt="A jitter plot of HLA-A expression in CD14 monocytes from different diseases."></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">metadata <span class="sc" style="color: #5E5E5E;">|&gt;</span> </span>
-<span id="cb5-2">    </span>
-<span id="cb5-3">  <span class="co" style="color: #5E5E5E;"># Filter and subset</span></span>
-<span id="cb5-4">  <span class="fu" style="color: #4758AB;">filter</span>(cell_type_harmonised<span class="sc" style="color: #5E5E5E;">==</span><span class="st" style="color: #20794D;">"nk"</span>) <span class="sc" style="color: #5E5E5E;">|&gt;</span> </span>
-<span id="cb5-5"></span>
-<span id="cb5-6">  <span class="co" style="color: #5E5E5E;"># Get counts per million for NCAM1 gene </span></span>
-<span id="cb5-7">  <span class="fu" style="color: #4758AB;">get_SingleCellExperiment</span>(<span class="at" style="color: #657422;">assays =</span> <span class="st" style="color: #20794D;">"cpm"</span>, <span class="at" style="color: #657422;">features =</span> <span class="st" style="color: #20794D;">"NCAM1"</span>) <span class="sc" style="color: #5E5E5E;">|&gt;</span> </span>
-<span id="cb5-8"></span>
-<span id="cb5-9">    <span class="co" style="color: #5E5E5E;"># Plot (styling code is omitted)</span></span>
-<span id="cb5-10">  <span class="fu" style="color: #4758AB;">join_features</span>(<span class="st" style="color: #20794D;">"NCAM1"</span>, <span class="at" style="color: #657422;">shape =</span> <span class="st" style="color: #20794D;">"wide"</span>) <span class="sc" style="color: #5E5E5E;">|&gt;</span> </span>
-<span id="cb5-11">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>( tissue_harmonised, NCAM1,<span class="at" style="color: #657422;">color =</span> file_id)) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb5-12">  <span class="fu" style="color: #4758AB;">geom_jitter</span>(<span class="at" style="color: #657422;">shape=</span><span class="st" style="color: #20794D;">"."</span>) </span></code></pre></div>
+<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">metadata <span class="sc" style="color: #5E5E5E;">|&gt;</span> </span>
+<span id="cb8-2">    </span>
+<span id="cb8-3">  <span class="co" style="color: #5E5E5E;"># Filter and subset</span></span>
+<span id="cb8-4">  <span class="fu" style="color: #4758AB;">filter</span>(cell_type_harmonised<span class="sc" style="color: #5E5E5E;">==</span><span class="st" style="color: #20794D;">"nk"</span>) <span class="sc" style="color: #5E5E5E;">|&gt;</span> </span>
+<span id="cb8-5"></span>
+<span id="cb8-6">  <span class="co" style="color: #5E5E5E;"># Get counts per million for NCAM1 gene </span></span>
+<span id="cb8-7">  <span class="fu" style="color: #4758AB;">get_SingleCellExperiment</span>(<span class="at" style="color: #657422;">assays =</span> <span class="st" style="color: #20794D;">"cpm"</span>, <span class="at" style="color: #657422;">features =</span> <span class="st" style="color: #20794D;">"NCAM1"</span>, <span class="at" style="color: #657422;">cache_directory =</span> cache_dir) <span class="sc" style="color: #5E5E5E;">|&gt;</span> </span>
+<span id="cb8-8"></span>
+<span id="cb8-9">    <span class="co" style="color: #5E5E5E;"># Plot (styling code is omitted)</span></span>
+<span id="cb8-10">  <span class="fu" style="color: #4758AB;">join_features</span>(<span class="st" style="color: #20794D;">"NCAM1"</span>, <span class="at" style="color: #657422;">shape =</span> <span class="st" style="color: #20794D;">"wide"</span>) <span class="sc" style="color: #5E5E5E;">|&gt;</span> </span>
+<span id="cb8-11">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>( tissue_harmonised, NCAM1,<span class="at" style="color: #657422;">color =</span> file_id)) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb8-12">  <span class="fu" style="color: #4758AB;">geom_jitter</span>(<span class="at" style="color: #657422;">shape=</span><span class="st" style="color: #20794D;">"."</span>) </span></code></pre></div>
 </div>
-<p><img src="https://bioconductor.github.io/biocblog/posts/2023-02-21-CuratedAtlasQueryR/hlaplot2.png" class="img-fluid" alt="A jitter plot of HLA-A expression in CD14 monocytes from different tissues."></p>
+<p><img src="https://bioconductor.github.io/biocblog/posts/2023-02-23-CuratedAtlasQueryR/hlaplot2.png" class="img-fluid" alt="A jitter plot of HLA-A expression in CD14 monocytes from different tissues."></p>
 </section>
 <section id="acknowledgements" class="level2">
 <h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
-<p>Thanks and congratulations to Michael Milton <a href="https://github.com/multimeric"><span class="citation" data-cites="multimeric">@multimeric</span></a> (main developer), <a href="https://www.roswellpark.org/martin-morgan">Martin Morgan</a>, <a href="https://www.wehi.edu.au/people/tony-papenfuss">Tony Papenfuss</a>, <a href="https://vjcitn.github.io/">Vince Carey</a>, <a href="https://www.bioconductor.org/">Bioconductor</a>, <a href="https://github.com/jIskCoder">Julie Iskander</a>, and Stefano Mangiola <a href="https://twitter.com/steman_research"><span class="citation" data-cites="steman_research">@steman_research</span></a> <a href="https://github.com/stemangiola">GitHub page</a> (lead), <a href="https://www.wehi.edu.au/">WEHI</a>.</p>
-<p>Thanks to funders Silicon Valley Foundation (CZF2019-002443), NIH NHGRI (5U24HG004059-18), Victoria Cancer Agency (ECRF21036), NHMRC (1116955).</p>
+<p>Thanks and congratulations to <a href="https://github.com/multimeric">Michael Milton</a> <a href="https://twitter.com/multimeric"><span class="citation" data-cites="multimeric">@multimeric</span></a> (main developer), <a href="https://www.roswellpark.org/martin-morgan">Martin Morgan</a>, <a href="https://www.wehi.edu.au/people/tony-papenfuss">Tony Papenfuss</a>, <a href="https://vjcitn.github.io/">Vince Carey</a>, <a href="https://github.com/jIskCoder">Julie Iskander</a>, and <a href="https://github.com/stemangiola">Stefano Mangiola</a> <a href="https://twitter.com/steman_research"><span class="citation" data-cites="steman_research">@steman_research</span></a> (lead), <a href="https://www.bioconductor.org/">Bioconductor</a>, <a href="https://www.wehi.edu.au/">WEHI</a>.</p>
+<p>Thanks to funders CZI Silicon Valley Foundation (CZF2019-002443), NIH NHGRI (5U24HG004059-18), Victoria Cancer Agency (ECRF21036), NHMRC (1116955).</p>
 
 
 </section>
 
  ]]></description>
   <category>Package</category>
-  <guid>https://bioconductor.github.io/biocblog/posts/2023-02-21-CuratedAtlasQueryR/index.html</guid>
-  <pubDate>Tue, 21 Feb 2023 00:00:00 GMT</pubDate>
-  <media:content url="https://bioconductor.github.io/biocblog/posts/2023-02-21-CuratedAtlasQueryR/overview.png" medium="image" type="image/png" height="154" width="144"/>
+  <guid>https://bioconductor.github.io/biocblog/posts/2023-02-23-CuratedAtlasQueryR/index.html</guid>
+  <pubDate>Thu, 23 Feb 2023 00:00:00 GMT</pubDate>
+  <media:content url="https://bioconductor.github.io/biocblog/posts/2023-02-23-CuratedAtlasQueryR/overview.png" medium="image" type="image/png" height="154" width="144"/>
 </item>
 <item>
   <title>Our experience as Outreachy interns with Bioconductor</title>
