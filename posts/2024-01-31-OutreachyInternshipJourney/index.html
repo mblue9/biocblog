@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.550">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Chioma Onyido">
+<meta name="author" content="Afuape Esther">
+<meta name="author" content="Peace Sandy">
+<meta name="dcterms.date" content="2024-01-31">
+<meta name="description" content="Bioconductor participated in the Outreachy Internship program for the December 2023 cohort. Our interns share their experience working on their various projects and Bioconductor in general.">
+
+<title>Bioconductor community blog - Journey of Growth: Our Internship experience with Bioconductor</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script defer="" data-domain="bioconductor.github.io/biocblog" src="https://plausible.io/js/script.js"></script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Bioconductor community blog - Journey of Growth: Our Internship experience with Bioconductor">
+<meta property="og:description" content="Bioconductor participated in the Outreachy Internship program for the December 2023 cohort. Our interns share their experience working on their various projects and Bioconductor in general.">
+<meta property="og:site_name" content="Bioconductor community blog">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Bioconductor community blog</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../contributing.html"> 
+<span class="menu-text">Contributing</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/bioconductor/biocblog"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://genomic.social/@bioconductor"> <i class="bi bi-mastodon" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/company/bioconductor/"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/user/bioconductor"> <i class="bi bi-youtube" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://slack.bioconductor.org/"> <i class="bi bi-slack" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../index.xml"> <i class="bi bi-rss" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Journey of Growth: Our Internship experience with Bioconductor</h1>
+                  <div>
+        <div class="description">
+          <p>Bioconductor participated in the Outreachy Internship program for the December 2023 cohort. Our interns share their experience working on their various projects and Bioconductor in general.</p>
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">open science</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Authors</div>
+      <div class="quarto-title-meta-contents">
+               <p><a href="https://github.com/Omabekee">Chioma Onyido</a> </p>
+               <p><a href="https://github.com/Folakunmi21">Afuape Esther</a> </p>
+               <p><a href="https://github.com/Peacesandy">Peace Sandy</a> </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">January 31, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Open source is more than just a buzzword, it plays a crucial role in the tech ecosystem, fostering growth, collaboration, effective communication, and innovation. Participating in open source projects provides real-world experience, allowing contributors to make impactful contributions, learn best practices, and receive valuable feedback.</p>
+<p>Outreachy offers internship opportunities in open source and open science, specifically for individuals underrepresented in the technological industry.</p>
+<p>Through Outreachy, we were able to work as interns at Bioconductor, where we are currently contributing to the Microbiome Study Curation project. Whether you’re a first time contributor, an Outreachy applicant, or you are interested in contributing to the Bioconductor project, this blog post will provide detailed explanations and insights to guide you on how to make meaningful contributions.</p>
+</section>
+<section id="outreachy" class="level2">
+<h2 class="anchored" data-anchor-id="outreachy">Outreachy</h2>
+<p>Outreachy is a paid remote internship program that aims to support underrepresented groups who face systemic bias or discrimination in the technology industry of their country. Outreachy interns work remotely with mentors from Free and Open Source Software (FOSS) communities on several projects including programming, user experience, documentation, illustration and graphical design, or data science. Read more about Outreachy <a href="https://www.outreachy.org/docs/applicant/#what-is-outreachy">here</a>.</p>
+</section>
+<section id="outreachy-application-process" class="level2">
+<h2 class="anchored" data-anchor-id="outreachy-application-process">Outreachy application process</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="outreachylogo.png" class="img-fluid figure-img"></p>
+<figcaption>Outreachy</figcaption>
+</figure>
+</div>
+<p>The application process for Outreachy consists of three steps:</p>
+<section id="initial-application-period" class="level4">
+<h4 class="anchored" data-anchor-id="initial-application-period">1. Initial application period:</h4>
+<p>After making sure that you’re <a href="https://www.outreachy.org/apply/eligibility/">eligible to apply</a> for Outreachy, applicants proceed to fill out the initial application form, which consists of some Yes/ No answers and about four essays in which you share your personal stories of being underrepresented. After Outreachy organizers review the initial applications and essays, accepted applicants are notified via email. Read more about the application period <a href="https://www.outreachy.org/docs/applicant/#application-period">here</a>.</p>
+</section>
+<section id="contribution-period" class="level4">
+<h4 class="anchored" data-anchor-id="contribution-period">2. Contribution period:</h4>
+<p>The contribution period will open as soon as the initial application is accepted. ‘Open source contributors’ is the term used to describe those who regularly work on open source projects. When you contribute to an Outreachy project, you become an open source contributor. To have a successful contribution phase, the first step is to <a href="https://www.outreachy.org/apply/project-selection/">choose one or two projects</a> that pique your interest. Secondly, you must <a href="https://www.outreachy.org/docs/applicant/#find-mentor">get in touch with the project mentor</a> for further information on how to start contributing. Lastly, start contributing and record your contributions. Only applicants who contribute to a project, record their contributions, and submit a final application on the Outreachy website are considered for internship.</p>
+</section>
+<section id="intern-selection-period" class="level4">
+<h4 class="anchored" data-anchor-id="intern-selection-period">3. Intern selection period:</h4>
+<p>After the final applications are evaluated, selected interns are announced shortly after. Applicants are advised to read the <a href="https://www.outreachy.org/docs/internship/">internship guide</a> to learn more about time commitment and more details about what Outreachy expects from interns.</p>
+</section>
+</section>
+<section id="why-join-outreachy" class="level2">
+<h2 class="anchored" data-anchor-id="why-join-outreachy">Why join Outreachy?</h2>
+<p>The core values of Outreachy include diversity, inclusivity, and providing a platform for underrepresented groups to grow and excel in the open source community. Participating in the Outreachy internship means more than just skill development, it means joining a movement that promotes diversity and inclusivity. Some features that make the program unique include: remote mentoring with experienced FOSS contributors, meaningful mentorships, financial support, diversity and positive global impact.</p>
+</section>
+<section id="microbiome-study-curation" class="level2">
+<h2 class="anchored" data-anchor-id="microbiome-study-curation">Microbiome Study Curation</h2>
+<p>The Microbiome Study Curation project is a Bioconductor project that uses <a href="https://bugsigdb.org/Main_Page">BugSigDB</a>, a database of manually curated microbial signatures obtained from the results of published microbiome differential abundance studies. Differential abundance studies are studies that compare the relative abundance of different microbial species in different samples in hosts of interest (humans, animals, and environmental conditions). In humans, they help to understand how different geographical and environmental factors can lead to changes in the microbiome, thereby increasing the likelihood of developing conditions such as diabetes, obesity, cardiovascular and neurological diseases, allergies, and inflammatory bowel disease. This information helps to give insights into the role of specific microbes in different biological processes or diseases. The Microbiome Study Curation project entails curating new studies on BugSigDB, reviewing studies that have already been curated, and analyzing BugSigDB data using R. To learn more about the project and how to contribute to it, check <a href="https://kunmiwrites.wordpress.com/2024/01/22/bugsigdb-101-a-beginners-guide-to-exploring-microbial-signatures/">Esther’s blog post</a>.</p>
+<section id="esthers-experience" class="level3">
+<h3 class="anchored" data-anchor-id="esthers-experience">Esther’s experience</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Esther.png" height="300" class="figure-img"></p>
+<figcaption>Afuape Esther</figcaption>
+</figure>
+</div>
+<p>Hello there! I’m Esther Afuape, a graduate of microbiology from University of Lagos, Nigeria. I love reading crime/mystery fiction, cooking, and spending time at the beach.</p>
+<p>I got to know about Outreachy through an acquaintance who was an intern in the program. I’m currently partaking in the December 2023 cohort and wrote about my experience during the contribution phase in my <a href="https://kunmiwrites.wordpress.com/2023/12/10/outreachy-week-1-introducing-me/">blog</a>. It’s been an awesome 8 whole weeks interning at Bioconductor! I wish I could slow down time because this means that the end of my internship is drawing closer. Before I applied for Outreachy and eventually came across Bioconductor on the Projects list, I was at a loss as to what to do with my microbiology degree in Nigeria, where a definitive niche for microbiologists is lacking. I had applied to the program with the hopes of doing a project in a different tech field. Coming across the Microbiome Curation Project was so exciting as it was related to my microbiology background. I found the project fascinating and immediately joined the project’s community Slack channel. What stood out for me was the support in the community. I found it easier to get a hang of things because there was always a mentor or other community members ready to help!</p>
+<p>As an intern, I’ve worked on the project by carrying out reviews of curated studies. I’ve absolutely enjoyed doing this and I find it interesting to see how volatile the microbiome is and how subtle lifestyle choices can cause changes in it. My literature review skills have greatly improved and I have a better understanding of the scientific methods used in research. I also look forward to developing basic data analysis during the rest of my internship.</p>
+<p>I’m so grateful for my mentor, Svetlana Perovic, for her invaluable guidance and support so far. Her mentorship has instilled in me the value of stepping out of my comfort zone. I’d also like to express my gratitude to other community members for always helping me out when I’m stuck, and the other mentors – Levi Waldron and Chloe Mirzayi, for entrusting me with this incredible opportunity. If you’d like to read more on my experience as a Bioconductor intern, I invite you to visit my blog <a href="https://kunmiwrites.wordpress.com/2023/12/10/outreachy-week-1-introducing-me/">here</a>.</p>
+</section>
+<section id="peace-sandys-experience" class="level3">
+<h3 class="anchored" data-anchor-id="peace-sandys-experience">Peace Sandy’s Experience</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Peace.png" height="300" class="figure-img"></p>
+<figcaption>Peace Sandy</figcaption>
+</figure>
+</div>
+<p>Hi! My name is Peace Sandy, and I’m from Nigeria. I hold a Bachelor’s degree in Microbiology and am both a Software Developer and a Technical Writer. Research is my passion, and I’m very interested in Bioinformatics. My hobbies are reading, coding, and baking.</p>
+<p>During the Outreachy contribution period, I specifically sought projects that aligned with my skill set. Finding the Microbiome Study Curation project was thrilling, as it combined my research interests with microbiome studies.</p>
+<p>My long standing fascination with Bioinformatics, microbiome studies, open science, and research made the Microbiome Study Curation project highly appealing. Participating as an Outreachy intern in Bioconductor has been an incredibly educational and rewarding experience. I’ve had the privilege of learning from experienced mentors and open-source contributors. The Bioconductor community is extremely welcoming and collaborative.</p>
+<p>I am confident that the exposure and knowledge I am gaining from the Bioconductor community will significantly contribute to my career advancement. Having interned for over a month, the experience has been truly amazing. My mentor, Levi Waldron, has been incredibly supportive, patient, and welcoming, as have the other mentors, Chloe Mirzayi and Svetlana Perovic.</p>
+<p>So far, I’ve learned a tremendous amount, and my knowledge of microbiome studies, R programming, and research skills has significantly improved. I now have a better understanding of ontology terms.</p>
+<p>If you’re interested in reading more about my experience as an Outreachy intern with Bioconductor and my journey with the Microbiome Study Curation project, you can check out my <a href="https://peacesandy.hashnode.dev/">blog</a>.</p>
+</section>
+<section id="chiomas-experience" class="level3">
+<h3 class="anchored" data-anchor-id="chiomas-experience">Chioma’s Experience</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Chioma.png" height="300" class="figure-img"></p>
+<figcaption>Chioma Onyido</figcaption>
+</figure>
+</div>
+<p>Everyday of the past few months with Outreachy has been an opportunity to learn something new, I consider myself lucky to be part of the selected interns.</p>
+<p>Hello, I’m Chioma Onyido, I’ve a BSc. and MSc. in Biochemistry/ Molecular Biology from Covenant University, Nigeria.</p>
+<p>I had my first encounter with Bioinformatics in my undergraduate third year (2015) and have been interested in it since then. Driven by my love for data and combining the best of both worlds (biology and data science), in 2022, I took a bold step to transition. I started learning how to code, picking up Bioinformatics projects and practicing with them.</p>
+<section id="here-is-why-i-chose-bioconductor" class="level4">
+<h4 class="anchored" data-anchor-id="here-is-why-i-chose-bioconductor">Here is why I chose Bioconductor</h4>
+<p>I learned about Outreachy from a buddy during one of our chats, so I decided to look into it further while doing my research. After my initial application was approved, I knew that I was going to apply for a Bioinformatics/ biology-related project, because I am really curious and passionate about exploring and becoming a voice in this field. I initially began contributing to three projects on the Outreachy website during the contribution phase, but I decided to stick with the Bioconductor Microbiome Study Curation project for many reasons:</p>
+<p>Passion: “Microbiome knowledge” and “literature review” were listed as the required skills that resonated well with my professional strengths and passion.</p>
+<p>Supportive community: I chose Bioconductor because of how interactive and supportive the community is. Before applying for Outreachy, I did well to read blogs by alums on the best way to go about applying for the internship, looking out more specifically for the do’s and dont’s, and one consistent advice I saw was- “applying for more than 1 project increases one’s chances”. I tried to do this, but it didn’t take me too long to realize that I’d rather focus my energy and time on one thing, put my best into it and DO IT VERY WELL.</p>
+<p>It’s the ‘BugSigDB vibe’ for me: One thing that intrigued me about the BugSigDB project is the fact that we share similar values- I love to help and see people win, and I saw a similar energy in the BugSigDB community. Even with the influx of comments, observations and/or questions from contributors during the Outreachy contribution phase, the BugSigDB community was active, and so were the mentors. The mentors were (still are) attentive, patient, thorough and present.</p>
+<p>Premium learning experience: In terms of my professional growth, BugSigDB has significantly contributed to this area by providing valuable courses for my continuous development. Thanks to the BugSigDB community- Professor Levi, I was given access to a paid DataCamp classroom, where I’ve had the opportunity to enhance my skills and boost my confidence in R programming.</p>
+<p>I am grateful to my mentor Chloe Mirzayi for her time and efforts in my growth and progress. I am also grateful to Svetlana Perovic for her guidance, and for being there to cross my T’s and dot my I’s whenever I reach out. I consider it a privilege and a blessing to be in the best community, contributing to such a big project.</p>
+</section>
+</section>
+</section>
+<section id="upcoming-opportunities-at-outreachy-and-bioconductor" class="level2">
+<h2 class="anchored" data-anchor-id="upcoming-opportunities-at-outreachy-and-bioconductor">Upcoming opportunities at Outreachy and Bioconductor</h2>
+<p>One of the things that make open source beautiful is its collaborative nature, where different ideas come together to shape the future of technology.</p>
+<p>Bioconductor is participating in the Outreachy May 2024 to August 2024 internship round. Mentors interested in offering guidance and knowledge can sign up and submit a project proposal for the <a href="https://www.outreachy.org/communities/cfp/bioconductor/">next outreachy cohort</a>. The deadline to submit projects is Feb.&nbsp;23, 2024 4 pm UTC. Aspiring interns eager to partake in this rewarding experience can apply in late August 2024 for the <a href="https://www.outreachy.org/apply/eligibility/">December 2024 to March 2025 cohort</a>.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
