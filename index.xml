@@ -10,13 +10,13 @@
 <atom:link href="https://bioconductor.github.io/biocblog/index.xml" rel="self" type="application/rss+xml"/>
 <description>A blog for the Bioconductor community!</description>
 <generator>quarto-1.5.55</generator>
-<lastBuildDate>Thu, 25 Jul 2024 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 29 Jul 2024 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Beatriz Calvo-Serra: inaugural Bioconductor Athena Award winner</title>
   <dc:creator>Robert Castelo</dc:creator>
   <dc:creator>Maria Doyle</dc:creator>
   <dc:creator>Aedin Culhane</dc:creator>
-  <link>https://bioconductor.github.io/biocblog/posts/2024-07-25-athena-award/</link>
+  <link>https://bioconductor.github.io/biocblog/posts/2024-07-29-athena-award/</link>
   <description><![CDATA[ 
 
 
@@ -54,7 +54,7 @@ Figure&nbsp;1: Bea presenting her short talk at the virtual BioC2021 conference
 <div id="fig-eccb2022" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-eccb2022-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://bioconductor.github.io/biocblog/posts/2024-07-25-athena-award/BeaECCB2022.jpg" height="500" class="figure-img">
+<img src="https://bioconductor.github.io/biocblog/posts/2024-07-29-athena-award/BeaECCB2022.jpg" height="500" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eccb2022-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2: Bea presenting a poster on her atena Bioconductor package at ECCB 2022 in Sitges, Spain.
@@ -64,7 +64,7 @@ Figure&nbsp;2: Bea presenting a poster on her atena Bioconductor package at ECCB
 <div id="fig-bioc2022" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bioc2022-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://bioconductor.github.io/biocblog/posts/2024-07-25-athena-award/BeaEuroBioC2022.jpg" height="500" class="figure-img">
+<img src="https://bioconductor.github.io/biocblog/posts/2024-07-29-athena-award/BeaEuroBioC2022.jpg" height="500" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bioc2022-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3: Bea giving a virtual presentation at EuroBioc 2022 in Heidelberg, Germany.
@@ -76,9 +76,9 @@ Figure&nbsp;3: Bea giving a virtual presentation at EuroBioc 2022 in Heidelberg,
 
  ]]></description>
   <category>Bioconductor</category>
-  <guid>https://bioconductor.github.io/biocblog/posts/2024-07-25-athena-award/</guid>
-  <pubDate>Thu, 25 Jul 2024 00:00:00 GMT</pubDate>
-  <media:content url="https://bioconductor.github.io/biocblog/posts/2024-07-25-athena-award/BeaECCB2022.jpg" medium="image" type="image/jpeg"/>
+  <guid>https://bioconductor.github.io/biocblog/posts/2024-07-29-athena-award/</guid>
+  <pubDate>Mon, 29 Jul 2024 00:00:00 GMT</pubDate>
+  <media:content url="https://bioconductor.github.io/biocblog/posts/2024-07-29-athena-award/BeaECCB2022.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Bioconductor highlights from the CZI Open Science Meeting</title>
