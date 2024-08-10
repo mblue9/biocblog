@@ -35,11 +35,11 @@
 <p>Before the main conference kicked off, BioC2024 offered a 2-day Carpentries workshop on RNA-seq, attended by 14 participants. The workshop was led by Jenny Drnevich, along with Tim Triche and Charlotte Hutchings, who are both instructors from our Bioconductor Carpentries training program. This hands-on workshop provided in-depth training in RNA-seq data analysis, equipping attendees with valuable skills. The workshop laid a strong foundation for those who continued into the main conference, helping to prepare them for the in-depth discussions and learning that followed.</p>
 <div id="gallery-carp" class="columns">
 <div class="column" style="width:33%;">
-<p><a href="images/carpentries-jenny.jpg" class="lightbox" data-gallery="gallery-carp"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/carpentries-jenny.jpg" style="padding-right: 1px;" alt="Jenny Drnevich teaching at the Carpentries workshop" width="246" height="160"></a></p>
+<p><a href="images/carpentries-jenny.jpg" class="lightbox" data-gallery="gallery-carp"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/carpentries-jenny.jpg" class="img-fluid" style="padding-right: 1px;" alt="Jenny Drnevich teaching at the Carpentries workshop"></a></p>
 </div><div class="column" style="width:33%;">
-<p><a href="images/carpentries-tim.jpg" class="lightbox" data-gallery="gallery-carp"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/carpentries-tim.jpg" style="padding-right: 1px;" alt="Tim Triche teaching at the Carpentries workshop" width="246" height="160"></a></p>
+<p><a href="images/carpentries-tim.jpg" class="lightbox" data-gallery="gallery-carp"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/carpentries-tim.jpg" class="img-fluid" style="padding-right: 1px;" alt="Tim Triche teaching at the Carpentries workshop"></a></p>
 </div><div class="column" style="width:33%;">
-<p><a href="images/carpentries-charlotte.jpg" class="lightbox" data-gallery="gallery-carp"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/carpentries-charlotte.jpg" alt="Charlotte Hutchings teaching at the Carpentries workshop" width="246" height="160"></a></p>
+<p><a href="images/carpentries-charlotte.jpg" class="lightbox" data-gallery="gallery-carp"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/carpentries-charlotte.jpg" class="img-fluid" style="padding-right: 1px;" alt="Charlotte Hutchings teaching at the Carpentries workshop"></a></p>
 </div>
 </div>
 <div style="text-align: center;">
