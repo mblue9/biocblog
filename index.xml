@@ -23,23 +23,23 @@
 
 <div id="gallery-intro" class="columns">
 <div class="column" style="width:100%;">
-<p><a href="images/group-photo.webp" class="lightbox" data-gallery="gallery-intro"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/group-photo.webp" class="img-fluid"></a></p>
+<p><a href="images/group-photo.webp" class="lightbox" data-gallery="gallery-intro"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/group-photo.webp" class="img-fluid" alt="Group photo of Bioconductor attendees at BioC2024"></a></p>
 </div><div class="column" style="width:100%;">
-<p><a href="images/bioc2024-numbers.png" class="lightbox" data-gallery="gallery-intro"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/bioc2024-numbers.png" class="img-fluid"></a></p>
+<p><a href="images/bioc2024-numbers.png" class="lightbox" data-gallery="gallery-intro"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/bioc2024-numbers.png" class="img-fluid" alt="Infographic summarizing BioC2024 conference statistics"></a></p>
 </div>
 </div>
 <p>BioC2024 brought the Bioconductor community together at the Van Andel Institute in Grand Rapids, Michigan, where we celebrated our shared work and explored the latest advancements in bioinformatics. Over 350 participants took part, with 116 attending in person and 240 joining virtually, allowing participants from regions as far away as Latin America, Africa, and Asia to be part of the event. This year’s conference also marked our first time in the Mid-West US, highlighting the expanding reach and diversity of our community.</p>
-<p><a href="images/maps-attendees.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/maps-attendees.png" class="img-fluid"></a></p>
+<p><a href="images/maps-attendees.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/maps-attendees.png" class="img-fluid" alt="Map showing the geographic distribution of BioC2024 attendees"></a></p>
 <section id="pre-conference-activities" class="level2">
 <h2 class="anchored" data-anchor-id="pre-conference-activities">Pre-Conference Activities</h2>
 <p>Before the main conference kicked off, BioC2024 offered a 2-day Carpentries workshop on RNA-seq, attended by 14 participants. The workshop was led by Jenny Drnevich, along with Tim Triche and Charlotte Hutchings, who are both instructors from our Bioconductor Carpentries training program. This hands-on workshop provided in-depth training in RNA-seq data analysis, equipping attendees with valuable skills. The workshop laid a strong foundation for those who continued into the main conference, helping to prepare them for the in-depth discussions and learning that followed.</p>
 <div id="gallery-carp" class="columns">
 <div class="column" style="width:33%;">
-<p><a href="images/carpentries-jenny.jpg" class="lightbox" data-gallery="gallery-carp"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/carpentries-jenny.jpg" style="padding-right: 1px;" width="246" height="160"></a></p>
+<p><a href="images/carpentries-jenny.jpg" class="lightbox" data-gallery="gallery-carp"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/carpentries-jenny.jpg" style="padding-right: 1px;" alt="Jenny Drnevich teaching at the Carpentries workshop" width="246" height="160"></a></p>
 </div><div class="column" style="width:33%;">
-<p><a href="images/carpentries-tim.jpg" class="lightbox" data-gallery="gallery-carp"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/carpentries-tim.jpg" style="padding-right: 1px;" width="246" height="160"></a></p>
+<p><a href="images/carpentries-tim.jpg" class="lightbox" data-gallery="gallery-carp"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/carpentries-tim.jpg" style="padding-right: 1px;" alt="Tim Triche teaching at the Carpentries workshop" width="246" height="160"></a></p>
 </div><div class="column" style="width:33%;">
-<p><a href="images/carpentries-charlotte.jpg" class="lightbox" data-gallery="gallery-carp"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/carpentries-charlotte.jpg" width="246" height="160"></a></p>
+<p><a href="images/carpentries-charlotte.jpg" class="lightbox" data-gallery="gallery-carp"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/carpentries-charlotte.jpg" alt="Charlotte Hutchings teaching at the Carpentries workshop" width="246" height="160"></a></p>
 </div>
 </div>
 <div style="text-align: center;">
@@ -54,7 +54,7 @@
 <div style="text-align: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="images/opening.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Technical Core Overview"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/opening.jpg" class="img-fluid figure-img" style="width:70.0%" alt="Technical Core Overview"></a></p>
+<p><a href="images/opening.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Technical Core Overview"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/opening.jpg" class="img-fluid figure-img" style="width:70.0%" alt="Hand-drawn diagram showing the technical core infrastructure of Bioconductor"></a></p>
 <figcaption>Technical Core Overview</figcaption>
 </figure>
 </div>
@@ -89,7 +89,7 @@
 <p><strong>Workshop Infrastructure</strong></p>
 <p>One of the key components of BioC2024 was the hands-on workshops. To ensure these sessions ran smoothly, we leveraged the Bioconductor Galaxy cloud platform, skillfully set up by Alex Mahmoud from the Bioconductor Core Team. This platform allowed participants to interactively run workshops from anywhere, making it easier for both in-person and virtual attendees to follow along.</p>
 <p>Alex also created a quick <a href="https://video.recordonce.com/share/aGLVhlIjQhl">2-minute video tutorial</a> on how to use the platform, making sure everyone could jump in without a hitch. If you missed the live workshops, don’t worry—they’ll be available under the “Archived” section at workshop.bioconductor.org, alongside workshops from previous BioC, EuroBioC, and BioC Asia events.</p>
-<p><a href="images/workshops.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/workshops.png" class="img-fluid" style="width:70.0%"></a></p>
+<p><a href="images/workshops.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/workshops.png" class="img-fluid" style="width:70.0%" alt="Graphical representation of the number of workshops at BioC2024"></a></p>
 <div style="text-align: center;">
 <p><em>Workshops by the numbers</em></p>
 </div>
@@ -108,15 +108,15 @@ Recognizing community contributions is a key part of Bioconductor, and this year
 <p>You can learn more about the Bioconductor awards and the stories behind the winners on the <a href="https://bioconductor.org/about/awards/">Bioconductor website awards page</a>. Below, you’ll find a gallery of the award certificates.</p>
 <div id="awards-gallery" class="columns">
 <div class="column" style="width:18.5%;">
-<p><a href="images/awards-Freytag.png" class="lightbox" data-gallery="awards-gallery"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/awards-Freytag.png" class="img-fluid" style="border: 1px solid #ccc; padding: 5px;"></a></p>
+<p><a href="images/awards-Freytag.png" class="lightbox" data-gallery="awards-gallery"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/awards-Freytag.png" class="img-fluid" style="border: 1px solid #ccc; padding: 5px;" alt="Award certificate for Saskia Freytag"></a></p>
 </div><div class="column" style="width:18.5%;">
-<p><a href="images/awards-Moses.png" class="lightbox" data-gallery="awards-gallery"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/awards-Moses.png" class="img-fluid" style="border: 1px solid #ccc; padding: 5px;"></a></p>
+<p><a href="images/awards-Moses.png" class="lightbox" data-gallery="awards-gallery"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/awards-Moses.png" class="img-fluid" style="border: 1px solid #ccc; padding: 5px;" alt="Award certificate for Lambda Moses"></a></p>
 </div><div class="column" style="width:18.5%;">
-<p><a href="images/awards-Drnevich.png" class="lightbox" data-gallery="awards-gallery"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/awards-Drnevich.png" class="img-fluid" style="border: 1px solid #ccc; padding: 5px;"></a></p>
+<p><a href="images/awards-Drnevich.png" class="lightbox" data-gallery="awards-gallery"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/awards-Drnevich.png" class="img-fluid" style="border: 1px solid #ccc; padding: 5px;" alt="Award certificate for Jenny Drnevich"></a></p>
 </div><div class="column" style="width:18.5%;">
-<p><a href="images/awards-Morgan.png" class="lightbox" data-gallery="awards-gallery"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/awards-Morgan.png" class="img-fluid" style="border: 1px solid #ccc; padding: 5px;"></a></p>
+<p><a href="images/awards-Morgan.png" class="lightbox" data-gallery="awards-gallery"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/awards-Morgan.png" class="img-fluid" style="border: 1px solid #ccc; padding: 5px;" alt="Award certificate for Martin Morgan"></a></p>
 </div><div class="column" style="width:18.5%;">
-<p><a href="images/awards-Calvo-Serra.png" class="lightbox" data-gallery="awards-gallery"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/awards-Calvo-Serra.png" class="img-fluid" style="border: 1px solid #ccc; padding: 5px;"></a></p>
+<p><a href="images/awards-Calvo-Serra.png" class="lightbox" data-gallery="awards-gallery"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/awards-Calvo-Serra.png" class="img-fluid" style="border: 1px solid #ccc; padding: 5px;" alt="Award certificate for Beatriz Calvo-Serra"></a></p>
 </div>
 </div>
 <div style="text-align: center;">
@@ -144,18 +144,18 @@ Breakfasts and lunches at the conference venue provided more chances to connect.
 Throughout the conference, attendees consistently remarked on the friendly and welcoming atmosphere. These social events and informal meetups not only made it easy to meet new people and reconnect with old friends, but also laid the groundwork for future collaborations. We’re excited to see what comes from the connections made at BioC2024.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="images/walking-tour.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/walking-tour.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></a></p>
+<p><a href="images/walking-tour.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/walking-tour.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Participants on a walking tour of Grand Rapids during BioC2024"></a></p>
 </figure>
 </div>
 <p><strong>Memorable Moments</strong></p>
 <p>One of the standout moments of the conference was Wes Wilson’s lightning talk titled <em>“Like &amp; Subscribe: what streaming bioinformatics taught me about academia,”</em> delivered just before lunch on the final day. Wes had everyone laughing with his humorous take on the parallels between bioinformatics and the world of streaming. It was a perfect way to energize attendees before the final stretch of the event.</p>
 <div style="width: 70%; margin: 0 auto;">
-<p><a href="images/wes-vince.jpg" class="lightbox" data-gallery="gallery-wes"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/wes-vince.jpg" class="img-fluid" style="width:100.0%"></a></p>
+<p><a href="images/wes-vince.jpg" class="lightbox" data-gallery="gallery-wes"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/wes-vince.jpg" class="img-fluid" style="width:100.0%" alt="Wes Wilson delivering a talk with satirical slide featuring Vince Carey"></a></p>
 <div id="gallery-wes" class="columns">
 <div class="column" style="width:50%;">
-<p><a href="images/wes-tim.jpg" class="lightbox" data-gallery="gallery-wes"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/wes-tim.jpg" class="img-fluid"></a></p>
+<p><a href="images/wes-tim.jpg" class="lightbox" data-gallery="gallery-wes"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/wes-tim.jpg" class="img-fluid" alt="Wes Wilson delivering a talk with satirical slide featuring Tim Triche"></a></p>
 </div><div class="column" style="width:50%;">
-<p><a href="images/wes-erica.jpg" class="lightbox" data-gallery="gallery-wes"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/wes-erica.jpg" class="img-fluid"></a></p>
+<p><a href="images/wes-erica.jpg" class="lightbox" data-gallery="gallery-wes"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/wes-erica.jpg" class="img-fluid" alt="Wes Wilson delivering a talk with satirical slide featuring Erica Feick"></a></p>
 </div>
 </div>
 </div>
@@ -196,7 +196,7 @@ June 23-26 in New York, USA. Stay tuned for more details!</li>
 <h2 class="anchored" data-anchor-id="acknowledgments">Acknowledgments</h2>
 <p><strong>Sponsors</strong><br>
 BioC2024 are extremely grateful to those that sponsored BioC2024. BioC2024’s gold sponsors were <a href="[https://www.microsoft.com/en-us/genomics/">Microsoft Genomics</a> and <a href="https://www.modernatx.com/">Moderna</a>, silver sponsors were <a href="https://www.r-consortium.org/">R Consortium</a>, <a href="https://www.novartis.com">Novartis</a>, <a href="https://www.denalitherapeutics.com/">Denali Therapeutics</a>, <a href="https://www.gene.com/">Genentech</a>, <a href="https://www.bms.com/">Bristol Myers Squibb</a> and other sponsors were <a href="https://www.bluebirdbio.com/">Bluebird Bio</a>. Their support along with BioC2024’s other sponsors was greatly appreciated by the Bioconductor community.</p>
-<p><a href="images/sponsors.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/sponsors.png" class="img-fluid"></a></p>
+<p><a href="images/sponsors.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/sponsors.png" class="img-fluid" alt="Logos of sponsors for BioC2024"></a></p>
 <p><strong>Hosts</strong></p>
 <p>Van Andel Institute</p>
 <p><strong>Organizing Committee</strong></p>
