@@ -23,7 +23,7 @@
 
 <div id="gallery-intro" class="columns">
 <div class="column" style="width:100%;">
-<p><a href="images/group-photo.jpg" class="lightbox" data-gallery="gallery-intro"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/group-photo.jpg" class="img-fluid"></a></p>
+<p><a href="images/group-photo.webp" class="lightbox" data-gallery="gallery-intro"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/group-photo.webp" class="img-fluid"></a></p>
 </div><div class="column" style="width:100%;">
 <p><a href="images/bioc2024-numbers.png" class="lightbox" data-gallery="gallery-intro"><img src="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/bioc2024-numbers.png" class="img-fluid"></a></p>
 </div>
@@ -228,7 +228,7 @@ Amaka Joyce</p>
   <category>Bioconductor</category>
   <guid>https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/</guid>
   <pubDate>Mon, 12 Aug 2024 00:00:00 GMT</pubDate>
-  <media:content url="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/group-photo.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://bioconductor.github.io/biocblog/posts/2024-08-12-bioc2024-recap/images/group-photo.webp" medium="image" type="image/webp"/>
 </item>
 <item>
   <title>Beatriz Calvo-Serra: inaugural Bioconductor Athena Award winner</title>
