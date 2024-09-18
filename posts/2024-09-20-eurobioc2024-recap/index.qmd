@@ -127,7 +127,7 @@ The EuroBioC2024 conference delivered a diverse program, with presentations, wor
 
 Attendees also had the opportunity to apply for 5-minute flash talks, giving them a platform to quickly present their research to the wider community, fostering engagement and new collaborations.
 
-Additionally, a special demo session by our sponsor, 10X Genomics, was held over lunch. This demo provided an engaging showcase of cutting-edge technology in genomics, such as their Xenium single cell spatial imaging platform, allowing attendees to learn about the latest innovations.
+Additionally, a special demo session by our sponsor, 10x Genomics, was held over lunch. This demo provided an engaging showcase of cutting-edge technology in genomics, such as their Xenium single cell spatial imaging platform, allowing attendees to learn about the latest innovations.
 
 Below is an interactive map showing where our presenters are from. Hover over the points to see details about each presenter, including their name, affiliation, and talk title.
 
