@@ -42,6 +42,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-5e113afdac1e418f162bce274ee92ddb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
 <script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -115,12 +117,16 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://genomic.social/@bioconductor"> <i class="bi bi-mastodon" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/company/bioconductor/"> <i class="bi bi-linkedin" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://bsky.app/profile/bioconductor.bsky.social"> 
+<span class="menu-text"><i class="fa-brands fa-bluesky" aria-label="bluesky"></i></span></a>
+  </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/company/bioconductor/"> <i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://genomic.social/@bioconductor"> <i class="bi bi-mastodon" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -192,10 +198,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#who-even-am-i" id="toc-who-even-am-i" class="nav-link active" data-scroll-target="#who-even-am-i">Who Even Am I?</a></li>
+  <li><a href="#who-even-am-i" id="toc-who-even-am-i" class="nav-link active" data-scroll-target="#who-even-am-i">Who Even Am I?</a>
+  <ul class="collapse">
+  <li><a href="#biocasia" id="toc-biocasia" class="nav-link" data-scroll-target="#biocasia">BiocAsia</a></li>
+  </ul></li>
   <li><a href="#the-community-advisory-board" id="toc-the-community-advisory-board" class="nav-link" data-scroll-target="#the-community-advisory-board">The Community Advisory Board</a>
   <ul class="collapse">
-  <li><a href="#joining-the-cab" id="toc-joining-the-cab" class="nav-link" data-scroll-target="#joining-the-cab">Joining the CAB</a></li>
+  <li><a href="#get-involved" id="toc-get-involved" class="nav-link" data-scroll-target="#get-involved">Get Involved</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -211,38 +220,35 @@ ul.task-list li input[type="checkbox"] {
 <p>I’m Stevie Pederson (they/them) &amp; I’ve recently joined Janani Ravi (she/her) as co-chair of the Bioconductor <a href="https://bioconductor.org/about/community-advisory-board/">Community Advisory Board</a> (CAB), and thought I’d take a moment to introduce myself and the CAB. We also figured that many members of the Bioconductor community may not know that we exist, or what we get up to.</p>
 <section id="who-even-am-i" class="level2">
 <h2 class="anchored" data-anchor-id="who-even-am-i">Who Even Am I?</h2>
-<p>I grew up in, studied in and am (still) based in Adelaide, Australia, first coming across Bioconductor in late 2002, as part of an undergraduate student project. I was asked to analyse a two-colour microarray dataset, so found my way with <em>limma</em> fairly clumsily, and realised that I loved exploring data and making figures with R, setting me on my eventual path to becoming a bioinformatician. Things have certainly grown since those early days, both for me and the Bioconductor community!</p>
+<p>I grew up in, studied in and am (still) based in Adelaide, Australia, first coming across Bioconductor in late 2002, as part of an undergraduate student project. I was asked to analyse a two-colour microarray dataset, so found my way with <em>limma</em> fairly clumsily, and realised that I loved exploring data and making figures with R, which set me on my eventual path to becoming a bioinformatician. Things have certainly grown since those early days, both for me and the Bioconductor community!</p>
 <p>I eventually became more of a regular Bioconductor user whilst running a core facility at the University of Adelaide (2014-2020), during which time I was also trying to finish my PhD, finally managing the difficult juggle between the two roles, and graduating in 2018. As part of our work in the facility, we developed the package <a href="https://bioconductor.org/packages/release/bioc/html/ngsReports.html">ngsReports</a> to help as we built our own data QC workflows. There were no other Bioconductor developers in Adelaide at the time, so submitting that first Bioconductor package felt like a hugely intimidating step into a more public space. <em>What on earth was I doing out there with all the real developers who actually know what they’re doing?</em> <em>Are people going to read my code &amp; laugh?</em></p>
-<p>Since then I’ve been lucky enough to develop or contribute to a handful of additional packages, many of which I still use in my day-to-day research. It’s always exciting when I see a bug report appear on github and figure out that someone else is finding my packages useful too.</p>
-<p>In my current research, I’m now working as part of a team on a large cohort study, wrangling (bulk) transcriptomics along with multiple additional ’omics layers (DNA, DNAme, Proteomics, Metabolomics, Lipidomics etc), in an ambitious collaboration between clinicians, Aboriginal Australians, public health experts and a team of bioinformaticians. We’re hoping to make some real gains in personalised medicine for the South Australian Aboriginal community, who’ve experienced a much lower standard of medical care along with reduced access to care, and have paid a significant price with their health. The different ’omics layers are gradually taking shape so we’re feeling very hopeful about what we’ll be able to accomplish.</p>
-<p><em>See my BioC2023 presentation on the extraChIPs package <a href="https://youtu.be/6aRtBTd4NyQ?feature=shared">here</a></em>.</p>
-</section>
-<section id="the-community-advisory-board" class="level2">
-<h2 class="anchored" data-anchor-id="the-community-advisory-board">The Community Advisory Board</h2>
+<p>Since then I’ve been lucky enough to develop or contribute to a handful of additional packages, many of which I still use in my day-to-day research, and if you’re interested, you can see my BioC2023 presentation on the extraChIPs package <a href="https://youtu.be/6aRtBTd4NyQ?feature=shared">here</a>. It’s always exciting when I see a bug report appear on github and realise that someone else is finding my packages useful too.</p>
+<p>In my current research, I’m now working as part of a team on a large cohort study, wrangling transcriptomics data along with multiple additional ’omics layers (DNA, DNAme, Proteomics, Metabolomics, Lipidomics etc), in an ambitious collaboration between clinicians, Aboriginal Australians, public health experts and a team of bioinformaticians. We’re hoping to make some real gains in personalised medicine for the South Australian Aboriginal community, who’ve experienced a much lower standard of medical care along with reduced access to care, and have paid a significant price with their health. The different ’omics layers are gradually taking shape so we’re feeling very hopeful about what we’ll be able to accomplish.</p>
+<section id="biocasia" class="level3">
+<h3 class="anchored" data-anchor-id="biocasia">BiocAsia</h3>
+<p>I first joined the CAB about 18 months ago after being involved with organising the BiocAsia conference fairly regularly since 2016. For me, joining the CAB was an opportunity to get more deeply involved with supporting other members of the Bioconductor community, and in particular, how we can improve our connection with both users and developers across the Asia Pacific region. We’ve since set up an official <a href="https://workinggroups.bioconductor.org/currently-active-working-groups-committees.html#biocasia">BiocAsia working group</a> to organise the conference and to try find our way given the many challenges and barriers within the region. New members for the BiocAsia Working Group are always welcome too!</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="CAB-map-2025.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="The CAB in 2025"><img src="CAB-map-2025.png" class="img-fluid figure-img" alt="The CAB in 2025"></a></p>
-<figcaption>The CAB in 2025</figcaption>
-</figure>
-</div>
-<p>I first joined the CAB about 18 months ago after being involved with organising the BiocAsia conference on and off since 2016. For me, joining the CAB was an opportunity to get more deeply involved with supporting other members of the Bioconductor community, and in particular, how we can improve our connection with both users and developers across the Asia Pacific region. We’ve since set up an official <a href="https://workinggroups.bioconductor.org/currently-active-working-groups-committees.html#biocasia">BiocAsia working group</a> to organise the conference and to try find our way given the many challenges and barriers within the region. New members are always welcome too!</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="biocasia_2024.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Some of the in-person attendees at BiocAsia 2024, Sydney, Australia"><img src="biocasia_2024.jpg" class="img-fluid figure-img" alt="Some of the in-person attendees at BiocAsia 2024, Sydney, Australia"></a></p>
+<p><a href="biocasia_2024.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Some of the in-person attendees at BiocAsia 2024, Sydney, Australia"><img src="biocasia_2024.jpg" class="img-fluid figure-img" alt="Some of the in-person attendees at BiocAsia 2024, Sydney, Australia"></a></p>
 <figcaption>Some of the in-person attendees at BiocAsia 2024, Sydney, Australia</figcaption>
 </figure>
 </div>
+</section>
+</section>
+<section id="the-community-advisory-board" class="level2">
+<h2 class="anchored" data-anchor-id="the-community-advisory-board">The Community Advisory Board</h2>
+<p>The CAB itself has members spread across Asia, Oceania, Europe, Africa and America giving us truly global representation, where each member can bring their own unique perspectives relevant to their region, along with those of the diverse communities they’re involved with, both professionally and personally.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="risso.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Davide Risso delivering one of the keynote addresses at BiocAsia 2024"><img src="risso.jpg" class="img-fluid figure-img" alt="Davide Risso delivering one of the keynote addresses at BiocAsia 2024"></a></p>
-<figcaption>Davide Risso delivering one of the keynote addresses at BiocAsia 2024</figcaption>
+<p><a href="CAB-map-2025.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="The CAB in 2025"><img src="CAB-map-2025.png" class="img-fluid figure-img" alt="The CAB in 2025"></a></p>
+<figcaption>The CAB in 2025</figcaption>
 </figure>
 </div>
-<p>The CAB itself has members spread across Asia, Oceania, Europe, Africa and America giving us truly global representation, where each member can bring their own unique perspectives relevant to their region, along with those of the diverse communities they’re involved with, both professionally and personally.</p>
-<p>Everyone on the CAB has a genuine interest in supporting and building the Bioconductor community across the areas we’re all focussed on and beyond. The overall aim is to provide our community with the resources we can to enable their research and develop their skills, no matter where people are based, or what resources they have access to. Much of our hands-on contribution is made through getting involved in <a href="https://workinggroups.bioconductor.org">working groups</a> and staying in touch with as many of these as we can. There is a wide variety of working groups, developing programs and initiatives across educational resources, social media engagement, R-Ladies collaboration, language translation of Bioconductor resources and multiple other areas where we can grow and support the Bioconductor community. If you’d like to get involved with one, please contact the group leads who are usually easy to find on the <a href="https://slack.bioconductor.org">Bioconductor Slack</a>. And if you’ve got ideas, questions or suggestions for the CAB, there’s a channel (#community-advisory-board) where you can easily find us too. We’d love to hear from you.</p>
-<section id="joining-the-cab" class="level3">
-<h3 class="anchored" data-anchor-id="joining-the-cab">Joining the CAB</h3>
-<p>If you think you might even like to join the CAB and get involved yourself, members serve 3-year terms, with an annual call for new members around August. We gladly welcome individuals who are passionate about Bioconductor and who are eager to contribute to its mission of fostering a diverse, collaborative, and welcoming community of developers and data scientists. For more information about the CAB and how to get involved, please have a look at our <a href="https://bioconductor.org/about/community-advisory-board/">CAB page</a>.</p>
+<p>Everyone on the CAB has a genuine interest in supporting and building the Bioconductor community across the areas we’re all focussed on and beyond. The overall aim is to provide our community with the resources we can to enable their research and develop their skills, no matter where people are based, or what resources they have access to. Much of our hands-on contribution is made through getting involved in <a href="https://workinggroups.bioconductor.org">working groups</a> and staying in touch with as many of these as we can. There is a wide variety of working groups, developing programs and initiatives across educational resources, social media engagement, R-Ladies collaboration, language translation of Bioconductor resources and multiple other areas where we can grow and support the Bioconductor community. If you’d like to get involved with one, please contact the group leads who are usually easy to find on the <a href="https://slack.bioconductor.org">Bioconductor Slack</a>.</p>
+<section id="get-involved" class="level3">
+<h3 class="anchored" data-anchor-id="get-involved">Get Involved</h3>
+<p>If you’ve got ideas, questions or suggestions for the CAB, there’s a channel (#community-advisory-board) where you can easily find us. We’d love to hear from you.</p>
+<p>If you think you might even like to join the CAB and get involved yourself, members serve 3-year terms, with an annual call for new members around August. We gladly welcome individuals who are passionate about Bioconductor and who are eager to contribute to its mission of fostering a diverse, collaborative, and welcoming community of developers and data scientists. We’re all involved across a range of working groups too, so finding one, or even starting one, that fits with your area of interest that can be a really good entry point. For more information about the CAB and how to get involved, please have a look at our <a href="https://bioconductor.org/about/community-advisory-board/">CAB page</a>.</p>
 
 
 </section>
