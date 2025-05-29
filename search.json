@@ -291,42 +291,42 @@
     "href": "posts/2025-05-29-slack-to-zulip/index.html",
     "title": "Bioconductor is Moving from Slack to Zulip for Community Chat",
     "section": "",
-    "text": "We’re moving Bioconductor’s community chat from Slack to Zulip on Monday 2 June 2025. This change helps ensure long-term access to discussions and supports our open-source values.\n© 2025 Bioconductor. Content is published under Creative Commons CC-BY-4.0 License for the text and BSD 3-Clause License for any code. | R-Bloggers"
+    "text": "Bioconductor’s community chat is moving from Slack to Zulip on Monday 2 June 2025. The transition ensures long-term access to discussions and better reflects our open-source values.\n© 2025 Bioconductor. Content is published under Creative Commons CC-BY-4.0 License for the text and BSD 3-Clause License for any code. | R-Bloggers"
   },
   {
     "objectID": "posts/2025-05-29-slack-to-zulip/index.html#why-were-moving-to-zulip",
     "href": "posts/2025-05-29-slack-to-zulip/index.html#why-were-moving-to-zulip",
     "title": "Bioconductor is Moving from Slack to Zulip for Community Chat",
     "section": "Why We’re Moving to Zulip",
-    "text": "Why We’re Moving to Zulip\nOur Slack Pro subscription ends on Sunday 1 June. Moving to Slack’s free tier would mean losing access to messages older than 90 days — including valuable discussions, decisions, and shared knowledge. To preserve our history and stay aligned with our open-source values, we’ve decided to move to Zulip.\nZulip is already used by many open-source and academic communities. It offers a more structured and searchable communication experience, which we believe will benefit our growing and distributed community.\nThanks to Zulip’s open-source sponsorship programme, Bioconductor receives access to the Standard plan at no cost — helping us sustain high-quality communication without compromising on openness or accessibility."
+    "text": "Why We’re Moving to Zulip\nOur Slack Pro subscription ends on Sunday 1 June. Switching to the free tier would mean losing older messages — including valuable conversations, decisions, and shared knowledge. To preserve this history and stay true to our open principles, we’re migrating to Zulip.\nZulip is already trusted by many open-source and academic communities. Its structured, topic-based approach makes it easier to follow and return to discussions — a good match for Bioconductor’s distributed, collaborative nature.\nThanks to Zulip’s open-source sponsorship programme, Bioconductor receives access to the Standard plan at no cost, enabling high-quality, sustainable communication.\n\n\n\n\n\n\nNote\n\n\n\nTo help preserve Bioconductor’s history, messages from public Slack channels will be migrated to Zulip.\nWe’re also exploring ways to improve long-term access to community discussions — such as public-read Zulip channels or archiving — in line with open-source norms. Any future changes will be clearly communicated and shaped by community input.\nQuestions? Contact maria.doyle [at] ul [dot] ie."
   },
   {
-    "objectID": "posts/2025-05-29-slack-to-zulip/index.html#what-makes-zulip-a-good-fit",
-    "href": "posts/2025-05-29-slack-to-zulip/index.html#what-makes-zulip-a-good-fit",
+    "objectID": "posts/2025-05-29-slack-to-zulip/index.html#why-zulip-is-a-good-fit",
+    "href": "posts/2025-05-29-slack-to-zulip/index.html#why-zulip-is-a-good-fit",
     "title": "Bioconductor is Moving from Slack to Zulip for Community Chat",
-    "section": "What Makes Zulip a Good Fit",
-    "text": "What Makes Zulip a Good Fit\n\nStructured Conversations: Zulip uses topics within streams, making it easier to follow and revisit discussions.\nFull Message History: No 90-day limit — all messages remain accessible.\nOpen Source: Zulip aligns with Bioconductor’s mission and principles.\nMarkdown and LaTeX Support: Ideal for technical and academic communication.\n\n\n\n\nScreenshot of Bioconductor’s Zulip space in testing. Streams are shown on the left, with topic-based threads in the #general channel."
+    "section": "Why Zulip is a Good Fit",
+    "text": "Why Zulip is a Good Fit\n\nStructured conversations: Topics within channels keep threads focused and easy to revisit.\n\nFull history: No 90-day limit — all messages remain accessible.\n\nOpen source: Zulip aligns with Bioconductor’s mission and values.\n\nMarkdown and LaTeX: Ideal for technical and academic exchanges.\n\n\n\n\nScreenshot of Bioconductor’s Zulip space in testing. Channels are shown on the left, with topic-based threads in the #general channel."
   },
   {
     "objectID": "posts/2025-05-29-slack-to-zulip/index.html#how-to-get-started",
     "href": "posts/2025-05-29-slack-to-zulip/index.html#how-to-get-started",
     "title": "Bioconductor is Moving from Slack to Zulip for Community Chat",
     "section": "How to Get Started",
-    "text": "How to Get Started\n\nFinal Slack Export: We’ll export our public Slack data on Friday 30 May to ensure nothing is lost.\nJoin Zulip:\n\nIf you had an email registered on Bioconductor Slack, you’ll receive an invite to join.\nYou don’t need to create an account — just click “Forgot your password?” to set it and log in.\n\nNew to Bioconductor Chat? You’ll be able to join directly via https://community-bioc.zulipchat.com once the site goes live on Monday 2 June.\nPrefer using an app? Zulip is available for desktop and mobile (iOS, Android, Windows, macOS, Linux)."
+    "text": "How to Get Started\n\nFinal Slack export: We’ll export public Slack data on Friday 30 May.\n\nJoin Zulip:\n\nIf you used your email on Bioconductor Slack, you’ll receive an invite.\nNo need to create a new account — click “Forgot your password?” to set it.\n\nNew to Bioconductor Chat? Join us from Monday 2 June at https://community-bioc.zulipchat.com.\n\nPrefer using an app? Zulip is available for desktop and mobile on all major platforms."
   },
   {
     "objectID": "posts/2025-05-29-slack-to-zulip/index.html#tips-for-using-zulip",
     "href": "posts/2025-05-29-slack-to-zulip/index.html#tips-for-using-zulip",
     "title": "Bioconductor is Moving from Slack to Zulip for Community Chat",
     "section": "Tips for Using Zulip",
-    "text": "Tips for Using Zulip\n\nStart a New Topic for each new subject — this keeps conversations tidy and easy to navigate. See: Introduction to topics\nEdit and Move Messages as needed — admins can help organise threads if anything goes off-topic.\nUse Markdown and LaTeX for formatting and equations.\n\n\n💡 Tip: Using both Slack and Zulip? Try Rambox to manage them side-by-side.\n\nFor more tips, see Zulip’s guide: Getting started with Zulip."
+    "text": "Tips for Using Zulip\n\nStart a new topic for each subject — it keeps conversations clear.\n→ Intro to topics\nAdmins can help move or rename threads to keep things tidy.\nUse Markdown and LaTeX for formatting and equations.\n\n💡 Tip: Using both Slack and Zulip? Rambox helps manage them side-by-side.\nMore tips: Getting started with Zulip"
   },
   {
     "objectID": "posts/2025-05-29-slack-to-zulip/index.html#whats-next",
     "href": "posts/2025-05-29-slack-to-zulip/index.html#whats-next",
     "title": "Bioconductor is Moving from Slack to Zulip for Community Chat",
     "section": "What’s Next",
-    "text": "What’s Next\n\nBioconductor Slack retires on 1 June: After this date, Slack will move to the free tier. A read-only archive may remain accessible temporarily.\nBioconductor Zulip launches on 2 June: You can join any time, but we encourage early access to stay connected.\nQuestions or feedback? Post in the #general stream on Bioconductor Zulip or reach out to Bioconductor Community Manager at maria.doyle [at] ul [dot] ie.\n\nWe hope you’ll enjoy the new platform — it’s built for open communities like ours."
+    "text": "What’s Next\n\nSlack retires on 1 June: It will revert to the free tier. A read-only archive may remain accessible for a limited time.\n\nZulip launches on 2 June: You can join anytime — but we recommend getting set up early to stay in the loop.\n\nNeed help or have feedback? Post in #general on Zulip or email maria.doyle [at] ul [dot] ie.\n\nWe hope you’ll find Zulip a welcoming space — built for open communities like ours."
   },
   {
     "objectID": "posts/2025-02-26-outreachy-mentoring/index.html",
