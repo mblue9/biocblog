@@ -298,7 +298,7 @@
     "href": "posts/2025-05-29-slack-to-zulip/index.html#why-were-moving-to-zulip",
     "title": "Bioconductor is Moving from Slack to Zulip for Community Chat",
     "section": "Why We’re Moving to Zulip",
-    "text": "Why We’re Moving to Zulip\nOur Slack Pro subscription ends on Sunday 1 June. Moving to Slack’s free tier would mean losing access to messages older than 90 days — including valuable discussions, decisions, and shared knowledge. To preserve our history and stay aligned with our open-source values, we’ve decided to move to Zulip.\nZulip is already used by many open-source and academic communities. It offers a more structured and searchable communication experience, which we believe will benefit our growing and distributed community."
+    "text": "Why We’re Moving to Zulip\nOur Slack Pro subscription ends on Sunday 1 June. Moving to Slack’s free tier would mean losing access to messages older than 90 days — including valuable discussions, decisions, and shared knowledge. To preserve our history and stay aligned with our open-source values, we’ve decided to move to Zulip.\nZulip is already used by many open-source and academic communities. It offers a more structured and searchable communication experience, which we believe will benefit our growing and distributed community.\nThanks to Zulip’s open-source sponsorship programme, Bioconductor receives access to the Standard plan at no cost — helping us sustain high-quality communication without compromising on openness or accessibility."
   },
   {
     "objectID": "posts/2025-05-29-slack-to-zulip/index.html#what-makes-zulip-a-good-fit",
