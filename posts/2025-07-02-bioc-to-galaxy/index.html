@@ -309,7 +309,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="bioconductor-package-example-gsva-in-galaxy---coming-soon" class="level2">
 <h2 class="anchored" data-anchor-id="bioconductor-package-example-gsva-in-galaxy---coming-soon">Bioconductor package example (GSVA) in Galaxy - coming soon</h2>
 <p>With expert input from GSVA developer Robert Castelo, we’re currently working on wrapping the Bioconductor package <a href="https://www.bioconductor.org/packages/release/bioc/html/GSVA.html">GSVA (Gene Set Variation Analysis)</a> in Galaxy. Widely used for functional enrichment analysis, GSVA will serve as a concrete example of how to bring Bioconductor methods into Galaxy.</p>
-<p>We’ve opened a <a href="https://github.com/rcastelo/GSVA/pull/247">draft pull request for the GSVA wrapper</a> to share our early work and invite feedback. Testing and refinement are ongoing—stay tuned for a follow-up blog post!</p>
+<p>We’ve opened a <a href="https://github.com/rcastelo/GSVA/pull/247">draft pull request for the GSVA wrapper</a> to share our early work and invite feedback. Testing and refinement are ongoing, we’ll share what we learn in an upcoming follow-up post.</p>
 </section>
 <section id="part-of-cofest-2025" class="level2">
 <h2 class="anchored" data-anchor-id="part-of-cofest-2025">Part of CoFest 2025</h2>
@@ -327,9 +327,12 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="whats-next" class="level2">
 <h2 class="anchored" data-anchor-id="whats-next">What’s next?</h2>
-<p>We’ll be publishing a follow-up post with a worked example of GSVA in Galaxy.</p>
-<p>Also during CoFest, <a href="https://github.com/GarethPrice-Aus">Gareth Price</a> from Galaxy Australia proposed a simple but powerful addition: including a maintainer field in the Galaxy tool XML to link wrapped tools back to their Bioconductor maintainers (<a href="https://github.com/galaxyproject/galaxy/issues/20583">see GitHub issue</a>). This could help surface hidden usage, support recognition, and potentially feed into metrics for grant reporting or community impact.</p>
-<p>If you’re curious about this work or thinking of wrapping your own tool, pop into the #galaxy channel on <a href="https://chat.bioconductor.org">chat.bioconductor.org</a>. We’re still figuring things out ourselves and would love to share ideas, help troubleshoot, and learn together.</p>
+<ul>
+<li><p><strong>Step-by-step guide for Bioconductor developers</strong> - We’re developing a Galaxy wrapper for the Bioconductor package GSVA, which will serve as a worked example showing how to wrap a Bioconductor package step by step. We’re experimenting with different approaches (including using LLMs like Gemini CLI) and will share tips, lessons learned, and a step-by-step guide in a follow-up post once we’ve refined the process. You can track progress or comment on the <a href="https://github.com/rcastelo/GSVA/pull/247">draft pull request here</a>.</p></li>
+<li><p><strong>Shiny apps with wrapper templates</strong> - Marcel Ramos has been testing <a href="https://github.com/bioconductor/BiocHubsShiny/tree/galaxy_wrapper">BiocHubsShiny as an interactive Galaxy tool</a> and exploring how to embed Shiny apps within Galaxy (e.g.&nbsp;via iframe). He’s also prototyping more Bioconductor-friendly wrapper templates. If you’ve worked on something similar or have ideas, feel free to get in touch.</p></li>
+<li><p><strong>Usage metrics for Bioconductor maintainers</strong> - During CoFest, <a href="https://github.com/GarethPrice-Aus">Gareth Price</a> from Galaxy Australia proposed adding a <em>maintainer</em> field to Galaxy tool XML to link wrapped tools back to their Bioconductor maintainers (<a href="https://github.com/galaxyproject/galaxy/issues/20583">see GitHub issue</a>). This could help surface usage that isn’t visible through download stats, support community recognition, and feed into reporting for grants or tenure.</p></li>
+</ul>
+<p>If you’re curious about any of this work or thinking of wrapping your own tool, pop into the #galaxy channel on <a href="https://chat.bioconductor.org">chat.bioconductor.org</a>. We’re still figuring things out ourselves, and would love to share ideas, troubleshoot together, and learn along the way.</p>
 
 
 </section>
