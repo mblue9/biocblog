@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2025-07-02">
-<meta name="description" content="Written during CoFest at GBCC2025, this post shares training materials, introduces Galaxy tool wrapping, and previews what’s next for Bioconductor integration">
+<meta name="description" content="Written during CoFest at GBCC2025, this post shares training materials, introduces Galaxy tool wrapping, and previews what’s next for integrating Bioconductor tools in Galaxy.">
 
 <title>Bringing Bioconductor to Galaxy: A CoFest Collaboration – Bioconductor community blog</title>
 <style>
@@ -79,7 +79,7 @@ ul.task-list li input[type="checkbox"] {
 
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Bringing Bioconductor to Galaxy: A CoFest Collaboration – Bioconductor community blog">
-<meta property="og:description" content="Written during CoFest at GBCC2025, this post shares training materials, introduces Galaxy tool wrapping, and previews what’s next for Bioconductor integration">
+<meta property="og:description" content="Written during CoFest at GBCC2025, this post shares training materials, introduces Galaxy tool wrapping, and previews what’s next for integrating Bioconductor tools in Galaxy.">
 <meta property="og:image" content="https://blog.bioconductor.org/posts/2025-07-02-bioc-to-galaxy/bioc-galaxy-image.jpeg">
 <meta property="og:site_name" content="Bioconductor community blog">
 </head>
@@ -157,7 +157,7 @@ ul.task-list li input[type="checkbox"] {
       <h1 class="title">Bringing Bioconductor to Galaxy: A CoFest Collaboration</h1>
                   <div>
         <div class="description">
-          Written during CoFest at GBCC2025, this post shares training materials, introduces Galaxy tool wrapping, and previews what’s next for Bioconductor integration
+          Written during CoFest at GBCC2025, this post shares training materials, introduces Galaxy tool wrapping, and previews what’s next for integrating Bioconductor tools in Galaxy.
         </div>
       </div>
                           <div class="quarto-categories">
@@ -250,13 +250,13 @@ ul.task-list li input[type="checkbox"] {
 <div style="text-align: center;">
 <p><em>Galaxy Home Page.</em></p>
 </div>
-<p><a href="https://usegalaxy.org/">Galaxy</a> is an open source, web-based platform designed to make complex computational analyses more accessible, reproducible, and transparent, no programming skills or specialised infrastructure required. It allows researchers to upload and analyse data, chain tools into workflows, and re-run analyses, all from their browser.</p>
-<p>This is especially powerful for researchers without programming experience or access to high-performance computing. A great example is shared in this <a href="https://zenodo.org/records/15776929">GBCC2025 presentation</a> by Carolina Santana from UEFS in Brazil, where students used Galaxy to analyse environmental microbiomes despite limited infrastructure and often sharing a single laptop. Tools like Galaxy help level the playing field.</p>
+<p><a href="https://usegalaxy.org/">Galaxy</a> is an open source, web-based platform that makes complex analyses more accessible, no coding or specialised infrastructure required. Like Bioconductor, it prioritises reproducibility and transparency, but delivers these through a user-friendly, point-and-click interface.</p>
+<p>This is especially powerful for researchers without programming experience or access to high-performance computing. A great example comes from this <a href="https://zenodo.org/records/15776929">GBCC2025 presentation</a> by Carolina Santana from UEFS in Brazil, where students analysed environmental microbiomes while working with limited infrastructure, often sharing a single laptop. Tools like Galaxy help level the playing field.</p>
 <p>Now imagine what’s possible when Bioconductor tools, some of the most robust analytical methods in genomics, can be run in Galaxy.</p>
 </section>
 <section id="why-bring-bioconductor-tools-into-galaxy" class="level2">
 <h2 class="anchored" data-anchor-id="why-bring-bioconductor-tools-into-galaxy">Why bring Bioconductor tools into Galaxy?</h2>
-<p>Bioconductor is a powerful ecosystem of R-based packages covering everything from differential expression and pathway analysis to spatial and single-cell methods. But for many researchers, these tools remain out of reach—either due to limited R experience, missing dependencies, or lack of compute resources.</p>
+<p>Bioconductor is a powerful ecosystem of R-based packages covering everything from differential expression and pathway analysis to spatial and single-cell methods. But for many researchers, these tools remain out of reach, either due to limited R experience, missing dependencies, or lack of compute resources.</p>
 <p>That’s where Galaxy comes in.</p>
 <section id="whats-in-it-for-developers" class="level3">
 <h3 class="anchored" data-anchor-id="whats-in-it-for-developers">What’s in it for developers?</h3>
@@ -266,7 +266,7 @@ ul.task-list li input[type="checkbox"] {
 <li><p><strong>Increase visibility</strong> – Gain exposure and potential citations as part of workflows and training materials beyond the R/Bioconductor sphere.</p></li>
 <li><p><strong>Surface hidden impact</strong> – A tool installed once on a Galaxy server may be used by hundreds. Emerging efforts to link usage metrics with Bioconductor maintainers could make this more visible in future.</p></li>
 </ul>
-<p>It can be a modest effort but the potential impact is significant.</p>
+<p>It may require modest effort, but the potential impact is significant.</p>
 </section>
 </section>
 <section id="wrapping-and-integrating-tools-into-galaxy" class="level2">
@@ -314,8 +314,8 @@ ul.task-list li input[type="checkbox"] {
 <section id="part-of-cofest-2025" class="level2">
 <h2 class="anchored" data-anchor-id="part-of-cofest-2025">Part of CoFest 2025</h2>
 <p>This work was part of <a href="https://gbcc2025.bioconductor.org/cofest/overview/">CoFest 2025</a>, a hands-on collaboration event held after GBCC on June 27–28. <strong>CoFest was more than a hackathon</strong>—it was a friendly and productive space for Galaxy and Bioconductor developers to connect and build things together.</p>
-<p>At CoFest, teams focused on various software development projects like workflow integration, parameter handling, app development, interface design, and more. You can explore this year’s CoFest projects on this <a href="https://docs.google.com/presentation/d/1zSIr1Z1eUzsCf0q5lah0mHziACqMLhb2F0HFkT0xoXs/edit?slide=id.g36b0fb0613a_2_6#slide=id.g36b0fb0613a_2_6">slide deck</a>!</p>
-<p>Our group—Maria, Gretta, Charlotte, and Marcel—worked in person at CoFest, supported remotely by Robert Castelo, who initiated the idea for this blog post and provided expert input on the GSVA wrapper. This was Gretta’s first time contributing to CoFest, and she jumped right in, bringing clear, thoughtful edits and valuable input. We also began experimenting with using LLMs to draft wrappers, an idea sparked by conversations with Brad Langhorst and Dannon Baker. The initial GSVA wrapper was created with Gemini and will be refined in the coming weeks.</p>
+<p>At CoFest, teams focused on various software development projects like workflow integration, parameter handling, app development, interface design, and more. You can explore this year’s CoFest projects in the community <a href="https://docs.google.com/presentation/d/1zSIr1Z1eUzsCf0q5lah0mHziACqMLhb2F0HFkT0xoXs/edit?slide=id.g36b0fb0613a_2_6#slide=id.g36b0fb0613a_2_6">slide deck</a>!</p>
+<p>Our group—Maria, Gretta, Charlotte, and Marcel—worked in person at CoFest, supported remotely by Robert Castelo, who initiated the idea for this blog post and provided expert input on the GSVA wrapper. It was Gretta’s first time contributing to CoFest, and she jumped right in, bringing clear, thoughtful edits and valuable input. We also began experimenting with using LLMs to draft wrappers, an idea sparked by conversations with <a href="https://github.com/bwlang">Brad Langhorst</a> and <a href="https://github.com/dannon">Dannon Baker</a>. The initial GSVA wrapper was created with Gemini and will be refined in the coming weeks.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><a href="cofest.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-17"><img src="cofest.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="CoFest 2025 team at work"></a></p>
@@ -328,7 +328,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="whats-next" class="level2">
 <h2 class="anchored" data-anchor-id="whats-next">What’s next?</h2>
 <p>We’ll be publishing a follow-up post with a worked example of GSVA in Galaxy.</p>
-<p>Also during CoFest, Gareth Price from Galaxy Australia proposed a simple but powerful addition: including a maintainer field in the Galaxy tool XML to link wrapped tools back to their Bioconductor maintainers (<a href="https://github.com/galaxyproject/galaxy/issues/20583">see GitHub issue</a>). This could help surface hidden usage, support recognition, and potentially feed into metrics for grant reporting or community impact.</p>
+<p>Also during CoFest, <a href="https://github.com/GarethPrice-Aus">Gareth Price</a> from Galaxy Australia proposed a simple but powerful addition: including a maintainer field in the Galaxy tool XML to link wrapped tools back to their Bioconductor maintainers (<a href="https://github.com/galaxyproject/galaxy/issues/20583">see GitHub issue</a>). This could help surface hidden usage, support recognition, and potentially feed into metrics for grant reporting or community impact.</p>
 <p>If you’re curious about this work or thinking of wrapping your own tool, pop into the #galaxy channel on <a href="https://chat.bioconductor.org">chat.bioconductor.org</a>. We’re still figuring things out ourselves and would love to share ideas, help troubleshoot, and learn together.</p>
 
 
