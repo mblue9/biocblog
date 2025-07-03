@@ -2,182 +2,190 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://blog.bioconductor.org/about.html</loc>
-    <lastmod>2025-07-02T23:02:33.696Z</lastmod>
+    <lastmod>2025-07-03T09:13:36.238Z</lastmod>
   </url>
   <url>
     <loc>https://blog.bioconductor.org/posts/2024-09-03-gbcc2025-announcement/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.809Z</lastmod>
+    <lastmod>2025-07-03T09:13:36.351Z</lastmod>
   </url>
   <url>
     <loc>https://blog.bioconductor.org/posts/2022-01-14-20years/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.712Z</lastmod>
+    <lastmod>2025-07-03T09:13:36.253Z</lastmod>
   </url>
   <url>
     <loc>https://blog.bioconductor.org/posts/2024-01-31-OutreachyInternshipJourney/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.784Z</lastmod>
+    <lastmod>2025-07-03T09:13:36.326Z</lastmod>
   </url>
   <url>
-    <loc>https://blog.bioconductor.org/posts/2022-01-12-biocasia2021-ja/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.704Z</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.bioconductor.org/posts/2023-02-24-carpentries-update/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.727Z</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.bioconductor.org/posts/2024-07-24-czi-os-meeting-highlights/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.799Z</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.bioconductor.org/posts/2023-08-01-website-redesign-update/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.780Z</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.bioconductor.org/posts/2022-01-18-metaRbolomics-2021/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.714Z</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.bioconductor.org/posts/2024-07-20-rladies-bioconductor-collaboration/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.794Z</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.bioconductor.org/posts/2025-04-23-outreachy-interns-experience/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.869Z</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.bioconductor.org/posts/2023-06-09-debug-linux-arm64-on-docker/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.760Z</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.bioconductor.org/posts/2022-10-22-awesome-lists/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.715Z</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.bioconductor.org/posts/2024-02-01-website-update/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.786Z</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.bioconductor.org/posts/2024-08-12-bioc2024-recap/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.808Z</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.bioconductor.org/posts/2025-05-21-kenya-course/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.874Z</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.bioconductor.org/posts/2025-03-05-CAB/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.866Z</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.bioconductor.org/posts/2023-08-17-bioc2023-recap/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.782Z</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.bioconductor.org/posts/2024-07-29-athena-award/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.801Z</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.bioconductor.org/posts/2021-11-11-biocasia2021/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.699Z</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.bioconductor.org/posts/2025-07-11-edam/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.898Z</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.bioconductor.org/posts-nolist/2024-07-29-athena-award/index-es.html</loc>
-    <lastmod>2025-07-02T23:02:33.697Z</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.bioconductor.org/posts-nolist/2024-07-29-athena-award/index-ca.html</loc>
-    <lastmod>2025-07-02T23:02:33.697Z</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.bioconductor.org/contributing.html</loc>
-    <lastmod>2025-07-02T23:02:33.697Z</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.bioconductor.org/posts/2023-06-22-website-redesign/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.777Z</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.bioconductor.org/posts/2023-07-14-OutreachyInternshipExperience/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.777Z</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.bioconductor.org/posts/2023-07-14-linux-arm64-github-actions/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.778Z</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.bioconductor.org/posts/2023-02-23-CuratedAtlasQueryR/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.727Z</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.bioconductor.org/posts/2024-07-10-slack-welcome/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.787Z</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.bioconductor.org/posts/2023-01-22-OutreachyInternship/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.722Z</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.bioconductor.org/posts/2022-07-12-carpentries-membership/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.715Z</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.bioconductor.org/posts/2022-01-31-join-the-bioconductor-community-advisory-board/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.715Z</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.bioconductor.org/posts/2024-09-20-eurobioc2024-recap/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.817Z</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.bioconductor.org/posts/2025-05-26-ask/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.889Z</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.bioconductor.org/posts/2023-06-16-smorgasbord-recap/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.775Z</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.bioconductor.org/posts/2023-11-17-twitter-exit/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.784Z</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.bioconductor.org/posts/2024-08-15-OutreachyInternshipExperience/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.808Z</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.bioconductor.org/posts/2024-07-12-czi-eoss6-grants/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.788Z</lastmod>
-  </url>
-  <url>
-    <loc>https://blog.bioconductor.org/posts/2025-01-08-bioc-in-scverse-workshop/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.851Z</lastmod>
+    <loc>https://blog.bioconductor.org/posts/2025-07-03-bioc-to-galaxy/index.html</loc>
+    <lastmod>2025-07-03T09:13:36.452Z</lastmod>
   </url>
   <url>
     <loc>https://blog.bioconductor.org/posts/2023-06-16-ELIXIR-allhands-meeting/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.772Z</lastmod>
+    <lastmod>2025-07-03T09:13:36.313Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts/2025-01-08-bioc-in-scverse-workshop/index.html</loc>
+    <lastmod>2025-07-03T09:13:36.393Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts/2024-07-12-czi-eoss6-grants/index.html</loc>
+    <lastmod>2025-07-03T09:13:36.329Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts/2024-08-15-OutreachyInternshipExperience/index.html</loc>
+    <lastmod>2025-07-03T09:13:36.350Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts/2023-11-17-twitter-exit/index.html</loc>
+    <lastmod>2025-07-03T09:13:36.325Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts/2023-06-16-smorgasbord-recap/index.html</loc>
+    <lastmod>2025-07-03T09:13:36.316Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts/2025-05-26-ask/index.html</loc>
+    <lastmod>2025-07-03T09:13:36.431Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts/2024-09-20-eurobioc2024-recap/index.html</loc>
+    <lastmod>2025-07-03T09:13:36.358Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts/2022-01-31-join-the-bioconductor-community-advisory-board/index.html</loc>
+    <lastmod>2025-07-03T09:13:36.256Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts/2022-07-12-carpentries-membership/index.html</loc>
+    <lastmod>2025-07-03T09:13:36.257Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts/2023-01-22-OutreachyInternship/index.html</loc>
+    <lastmod>2025-07-03T09:13:36.264Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts/2025-05-29-slack-to-zulip/index.html</loc>
+    <lastmod>2025-07-03T09:13:36.432Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts/2023-08-17-bioc2023-recap/index.html</loc>
+    <lastmod>2025-07-03T09:13:36.324Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts/2024-07-29-athena-award/index.html</loc>
+    <lastmod>2025-07-03T09:13:36.343Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts/2021-11-11-biocasia2021/index.html</loc>
+    <lastmod>2025-07-03T09:13:36.241Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts/2023-06-22-website-redesign/index.html</loc>
+    <lastmod>2025-07-03T09:13:36.318Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts-nolist/2024-07-29-athena-award/index-es.html</loc>
+    <lastmod>2025-07-03T09:13:36.238Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts-nolist/2024-07-29-athena-award/index-ca.html</loc>
+    <lastmod>2025-07-03T09:13:36.238Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/contributing.html</loc>
+    <lastmod>2025-07-03T09:13:36.238Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts/2025-06-20-physalia-collaboration/index.html</loc>
+    <lastmod>2025-07-03T09:13:36.433Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts/2023-07-14-OutreachyInternshipExperience/index.html</loc>
+    <lastmod>2025-07-03T09:13:36.319Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts/2023-07-14-linux-arm64-github-actions/index.html</loc>
+    <lastmod>2025-07-03T09:13:36.320Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts/2023-02-23-CuratedAtlasQueryR/index.html</loc>
+    <lastmod>2025-07-03T09:13:36.268Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts/2024-07-10-slack-welcome/index.html</loc>
+    <lastmod>2025-07-03T09:13:36.328Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts/2025-03-05-CAB/index.html</loc>
+    <lastmod>2025-07-03T09:13:36.408Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts/2025-05-21-kenya-course/index.html</loc>
+    <lastmod>2025-07-03T09:13:36.416Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts/2024-08-12-bioc2024-recap/index.html</loc>
+    <lastmod>2025-07-03T09:13:36.350Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts/2024-02-01-website-update/index.html</loc>
+    <lastmod>2025-07-03T09:13:36.327Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts/2022-10-22-awesome-lists/index.html</loc>
+    <lastmod>2025-07-03T09:13:36.257Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts/2023-06-09-debug-linux-arm64-on-docker/index.html</loc>
+    <lastmod>2025-07-03T09:13:36.302Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts/2025-04-23-outreachy-interns-experience/index.html</loc>
+    <lastmod>2025-07-03T09:13:36.411Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts/2024-07-20-rladies-bioconductor-collaboration/index.html</loc>
+    <lastmod>2025-07-03T09:13:36.335Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts/2022-01-18-metaRbolomics-2021/index.html</loc>
+    <lastmod>2025-07-03T09:13:36.255Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts/2023-08-01-website-redesign-update/index.html</loc>
+    <lastmod>2025-07-03T09:13:36.322Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts/2024-07-24-czi-os-meeting-highlights/index.html</loc>
+    <lastmod>2025-07-03T09:13:36.340Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts/2023-02-24-carpentries-update/index.html</loc>
+    <lastmod>2025-07-03T09:13:36.269Z</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.bioconductor.org/posts/2022-01-12-biocasia2021-ja/index.html</loc>
+    <lastmod>2025-07-03T09:13:36.245Z</lastmod>
   </url>
   <url>
     <loc>https://blog.bioconductor.org/posts/2023-03-01-transition-to-devel/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.760Z</lastmod>
+    <lastmod>2025-07-03T09:13:36.302Z</lastmod>
   </url>
   <url>
     <loc>https://blog.bioconductor.org/posts/2025-02-28-carpentries-update/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.858Z</lastmod>
+    <lastmod>2025-07-03T09:13:36.400Z</lastmod>
   </url>
   <url>
     <loc>https://blog.bioconductor.org/posts/2025-02-26-outreachy-mentoring/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.856Z</lastmod>
+    <lastmod>2025-07-03T09:13:36.398Z</lastmod>
   </url>
   <url>
     <loc>https://blog.bioconductor.org/posts/2023-01-20-hacktoberfest/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.721Z</lastmod>
+    <lastmod>2025-07-03T09:13:36.263Z</lastmod>
   </url>
   <url>
     <loc>https://blog.bioconductor.org/index.html</loc>
-    <lastmod>2025-07-02T23:02:33.697Z</lastmod>
+    <lastmod>2025-07-03T09:13:36.238Z</lastmod>
   </url>
 </urlset>
