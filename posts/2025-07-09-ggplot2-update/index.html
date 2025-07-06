@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Bioconductor and ggplot2 4.0.0: What to Expect – Bioconductor community blog">
+<meta property="og:title" content="Bioconductor and ggplot2 4.0.0: What’s Changing and How to Prepare – Bioconductor community blog">
 <meta property="og:description" content="Preparing for the upcoming update - key changes, potential breakages, and what developers and users can do">
 <meta property="og:site_name" content="Bioconductor community blog">
 </head>
@@ -906,9 +906,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb6" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Bioconductor and ggplot2 4.0.0: What to Expect"</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Bioconductor and ggplot2 4.0.0: What’s Changing and How to Prepare"</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Preparing for the upcoming update - key changes, potential breakages, and what developers and users can do"</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Maria Doyle (Bioconductor Community Manager), with input from the Bioconductor and ggplot2 developer communities"</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Maria Doyle (Bioconductor Community Manager), with contributions from the Bioconductor and ggplot2 developer communities"</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2025-07-09</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> tech-notes</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
@@ -927,9 +927,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`ggplot2`</span> 4.0.0 is a major internal update switching to S7 classes</span>
 <span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Some Bioconductor packages may break, especially those customising <span class="in">`ggplot`</span> themes/geoms</span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>This update only affects plotting - core statistical functionality isn't impacted</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Hold off updating <span class="in">`ggplot2`</span> if you rely on these packages</span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Developers: test using <span class="in">`pak::pak("tidyverse/ggplot2")`</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Only affects plotting - statistical or modelling functions remain unchanged</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>If you're a user, hold off updating ggplot2 until your packages are confirmed to work</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>If you're a developer, test now using <span class="in">`pak::pak("tidyverse/ggplot2")`</span> to prepare before release</span>
 <span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Questions or issues? Join us on <span class="co">[</span><span class="ot">Zulip</span><span class="co">](https://chat.bioconductor.org/)</span></span>
 <span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a></span>
@@ -983,63 +983,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Invalid element properties**: With S7 class adoption, element constructors like <span class="in">`element_text()`</span> now enforce stricter type checks (e.g. no TRUE for family, no decimal colours). Fix the incorrect properties in your package. See <span class="co">[</span><span class="ot">#6507</span><span class="co">](https://github.com/tidyverse/ggplot2/issues/6507)</span>.</span>
 <span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**S3 method consistency**: Generics like <span class="in">`ggplot_build()`</span> and <span class="in">`ggplot_add()`</span> now include <span class="in">`...`</span> Your methods must include it too, even if unused, to avoid warnings. See <span class="co">[</span><span class="ot">#6515</span><span class="co">](https://github.com/tidyverse/ggplot2/issues/6515)</span>.</span>
 <span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a>The Bioconductor core team has also been running automated tests on a subset of packages to help spot issues early. Due to resource constraints, this currently covers only a portion of the ecosystem, so it’s still important for developers to test their own packages.</span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a>These are evolving, if something looks broken, it’s worth checking the <span class="co">[</span><span class="ot">ggplot2 issues page</span><span class="co">](https://github.com/tidyverse/ggplot2/issues)</span> for updates before opening a new one.</span>
 <span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a><span class="fu">### How Bioconductor Packages May Be Affected</span></span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>The Bioconductor core team has also been running automated tests on a subset of packages to help spot issues early. Due to resource constraints, this currently covers only a portion of the ecosystem, so it’s still important for developers to test their own packages.</span>
 <span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a>We’ve compiled a list of packages in Bioconductor 3.21 that declare <span class="in">`ggplot2`</span> in <span class="in">`Depends`</span>, <span class="in">`Imports`</span>, or <span class="in">`Suggests`</span>:</span>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a><span class="fu">### How Bioconductor Packages May Be Affected</span></span>
 <span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a><span class="in">````{r message=FALSE, warning=FALSE}</span></span>
-<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BiocManager)</span>
-<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reactable)</span>
-<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a>repos <span class="ot">&lt;-</span> <span class="fu">repositories</span>(<span class="at">version =</span> <span class="st">"3.21"</span>)</span>
-<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a>bioc_repos <span class="ot">&lt;-</span> repos[<span class="fu">grepl</span>(<span class="st">"BioC"</span>, <span class="fu">names</span>(repos))]</span>
-<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> <span class="fu">available.packages</span>(<span class="fu">contrib.url</span>(bioc_repos))</span>
-<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a>pkg_df <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(db) <span class="sc">%&gt;%</span></span>
-<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a>    <span class="at">ggplot2_usage =</span> <span class="fu">case_when</span>(</span>
-<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a>      <span class="fu">grepl</span>(<span class="st">"ggplot2"</span>, Depends) <span class="sc">~</span> <span class="st">"Depends"</span>,</span>
-<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a>      <span class="fu">grepl</span>(<span class="st">"ggplot2"</span>, Imports) <span class="sc">~</span> <span class="st">"Imports"</span>,</span>
-<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a>      <span class="fu">grepl</span>(<span class="st">"ggplot2"</span>, Suggests) <span class="sc">~</span> <span class="st">"Suggests"</span>,</span>
-<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
-<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(ggplot2_usage)) <span class="sc">%&gt;%</span></span>
-<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Package, ggplot2_usage) <span class="sc">%&gt;%</span></span>
-<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Package)</span>
-<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a><span class="fu">reactable</span>(</span>
-<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a>  pkg_df,</span>
-<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a>  <span class="at">searchable =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a>  <span class="at">filterable =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a>  <span class="at">columns =</span> <span class="fu">list</span>(</span>
-<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a>    <span class="at">Package =</span> <span class="fu">colDef</span>(<span class="at">name =</span> <span class="st">"Package"</span>),</span>
-<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a>    <span class="at">ggplot2_usage =</span> <span class="fu">colDef</span>(<span class="at">name =</span> <span class="st">"ggplot2 Usage"</span>)</span>
-<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a>  <span class="at">defaultSorted =</span> <span class="st">"Package"</span>,</span>
-<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a>  <span class="at">striped =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a>  <span class="at">bordered =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a>  <span class="at">highlight =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb6-119"><a href="#cb6-119" aria-hidden="true" tabindex="-1"></a>  <span class="at">defaultPageSize =</span> <span class="dv">10</span>,</span>
-<span id="cb6-120"><a href="#cb6-120" aria-hidden="true" tabindex="-1"></a>  <span class="at">showPageSizeOptions =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb6-121"><a href="#cb6-121" aria-hidden="true" tabindex="-1"></a>  <span class="at">compact =</span> <span class="cn">TRUE</span></span>
-<span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a><span class="in">````</span></span>
-<span id="cb6-124"><a href="#cb6-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a>**Note:** Not all of these packages will be equally affected. In fact, many Bioconductor packages use <span class="in">`ggplot2`</span> in straightforward ways (e.g. to create standard plots using <span class="in">`ggplot()`</span> and <span class="in">`geom_*()`</span>), which are unlikely to break. The packages most at risk are those that define custom geoms, themes, or modify internal <span class="in">`ggplot2`</span> behaviour. </span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a>We’ve compiled a list of packages in Bioconductor 3.21 that declare <span class="in">`ggplot2`</span> in <span class="in">`Depends`</span>, <span class="in">`Imports`</span>, or <span class="in">`Suggests`</span>:</span>
+<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a><span class="in">````{r message=FALSE, warning=FALSE}</span></span>
+<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BiocManager)</span>
+<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reactable)</span>
+<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>repos <span class="ot">&lt;-</span> <span class="fu">repositories</span>(<span class="at">version =</span> <span class="st">"3.21"</span>)</span>
+<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a>bioc_repos <span class="ot">&lt;-</span> repos[<span class="fu">grepl</span>(<span class="st">"BioC"</span>, <span class="fu">names</span>(repos))]</span>
+<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> <span class="fu">available.packages</span>(<span class="fu">contrib.url</span>(bioc_repos))</span>
+<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a>pkg_df <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(db) <span class="sc">%&gt;%</span></span>
+<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a>    <span class="at">ggplot2_usage =</span> <span class="fu">case_when</span>(</span>
+<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a>      <span class="fu">grepl</span>(<span class="st">"ggplot2"</span>, Depends) <span class="sc">~</span> <span class="st">"Depends"</span>,</span>
+<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a>      <span class="fu">grepl</span>(<span class="st">"ggplot2"</span>, Imports) <span class="sc">~</span> <span class="st">"Imports"</span>,</span>
+<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a>      <span class="fu">grepl</span>(<span class="st">"ggplot2"</span>, Suggests) <span class="sc">~</span> <span class="st">"Suggests"</span>,</span>
+<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
+<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(ggplot2_usage)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Package, ggplot2_usage) <span class="sc">%&gt;%</span></span>
+<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Package)</span>
+<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a><span class="fu">reactable</span>(</span>
+<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a>  pkg_df,</span>
+<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a>  <span class="at">searchable =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a>  <span class="at">filterable =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a>  <span class="at">columns =</span> <span class="fu">list</span>(</span>
+<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a>    <span class="at">Package =</span> <span class="fu">colDef</span>(<span class="at">name =</span> <span class="st">"Package"</span>),</span>
+<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a>    <span class="at">ggplot2_usage =</span> <span class="fu">colDef</span>(<span class="at">name =</span> <span class="st">"ggplot2 Usage"</span>)</span>
+<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a>  <span class="at">defaultSorted =</span> <span class="st">"Package"</span>,</span>
+<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a>  <span class="at">striped =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-119"><a href="#cb6-119" aria-hidden="true" tabindex="-1"></a>  <span class="at">bordered =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-120"><a href="#cb6-120" aria-hidden="true" tabindex="-1"></a>  <span class="at">highlight =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-121"><a href="#cb6-121" aria-hidden="true" tabindex="-1"></a>  <span class="at">defaultPageSize =</span> <span class="dv">10</span>,</span>
+<span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a>  <span class="at">showPageSizeOptions =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a>  <span class="at">compact =</span> <span class="cn">TRUE</span></span>
+<span id="cb6-124"><a href="#cb6-124" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a><span class="in">````</span></span>
 <span id="cb6-126"><a href="#cb6-126" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-127"><a href="#cb6-127" aria-hidden="true" tabindex="-1"></a>A total of 985 packages in Bioconductor 3.21 declare <span class="in">`ggplot2`</span> as a dependency: 91 in <span class="in">`Depends`</span>, 722 in <span class="in">`Imports`</span>, and 172 in <span class="in">`Suggests`</span>.</span>
+<span id="cb6-127"><a href="#cb6-127" aria-hidden="true" tabindex="-1"></a>**Note:** Not all of these packages will be equally affected. In fact, many Bioconductor packages use <span class="in">`ggplot2`</span> in straightforward ways (e.g. to create standard plots using <span class="in">`ggplot()`</span> and <span class="in">`geom_*()`</span>), which are unlikely to break. The packages most at risk are those that define custom geoms, themes, or modify internal <span class="in">`ggplot2`</span> behaviour. </span>
 <span id="cb6-128"><a href="#cb6-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-129"><a href="#cb6-129" aria-hidden="true" tabindex="-1"></a>Packages listed under <span class="in">`Depends`</span> or <span class="in">`Imports`</span> are more likely to use <span class="in">`ggplot2`</span> in their main functionality, so users and developers may see breakages. Those listed under <span class="in">`Suggests`</span> typically only use <span class="in">`ggplot2`</span> in optional examples or vignettes, and may not be affected unless those features are run.</span>
+<span id="cb6-129"><a href="#cb6-129" aria-hidden="true" tabindex="-1"></a>A total of 985 packages in Bioconductor 3.21 declare <span class="in">`ggplot2`</span> as a dependency: 91 in <span class="in">`Depends`</span>, 722 in <span class="in">`Imports`</span>, and 172 in <span class="in">`Suggests`</span>.</span>
 <span id="cb6-130"><a href="#cb6-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-131"><a href="#cb6-131" aria-hidden="true" tabindex="-1"></a>Developers of these packages have already been notified through the Bioconductor Zulip, the bioc-devel mailing list, and direct outreach on GitHub. Teun van den Brand from the <span class="in">`ggplot2`</span> team has been contacting affected maintainers, and several packages have already been patched or are in progress.</span>
+<span id="cb6-131"><a href="#cb6-131" aria-hidden="true" tabindex="-1"></a>Packages listed under <span class="in">`Depends`</span> or <span class="in">`Imports`</span> are more likely to use <span class="in">`ggplot2`</span> in their main functionality, so users and developers may see breakages. Those listed under <span class="in">`Suggests`</span> typically only use <span class="in">`ggplot2`</span> in optional examples or vignettes, and may not be affected unless those features are run.</span>
 <span id="cb6-132"><a href="#cb6-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-133"><a href="#cb6-133" aria-hidden="true" tabindex="-1"></a><span class="fu">### What We've Learned from the Community</span></span>
+<span id="cb6-133"><a href="#cb6-133" aria-hidden="true" tabindex="-1"></a>Developers of these packages have already been notified through the Bioconductor Zulip, the bioc-devel mailing list, and direct outreach on GitHub. Teun van den Brand from the <span class="in">`ggplot2`</span> team has been contacting affected maintainers, and several packages have already been patched or are in progress.</span>
 <span id="cb6-134"><a href="#cb6-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-135"><a href="#cb6-135" aria-hidden="true" tabindex="-1"></a><span class="fu">### Practical Tips from Package Maintainers</span></span>
+<span id="cb6-135"><a href="#cb6-135" aria-hidden="true" tabindex="-1"></a><span class="fu">### Lessons from the Community: Practical Tips</span></span>
 <span id="cb6-136"><a href="#cb6-136" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-137"><a href="#cb6-137" aria-hidden="true" tabindex="-1"></a>Many developers have already been testing their packages and sharing their findings in the <span class="co">[</span><span class="ot">Bioconductor Zulip</span><span class="co">](https://chat.bioconductor.org)</span>. These discussions have surfaced some practical tips and patterns to watch for, useful whether you're maintaining a package or trying to understand why something might have broken:</span>
 <span id="cb6-138"><a href="#cb6-138" aria-hidden="true" tabindex="-1"></a></span>
@@ -1077,7 +1077,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-170"><a href="#cb6-170" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-171"><a href="#cb6-171" aria-hidden="true" tabindex="-1"></a><span class="fu">### How to Check If You’re Affected</span></span>
 <span id="cb6-172"><a href="#cb6-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-173"><a href="#cb6-173" aria-hidden="true" tabindex="-1"></a>If you're curious or need to be sure:</span>
+<span id="cb6-173"><a href="#cb6-173" aria-hidden="true" tabindex="-1"></a>The development version of ggplot2 (4.0.0) is already available for testing using {pak}. The CRAN release is expected mid-to-late July. If you’re not sure whether to update once it’s out, here’s how you can test your current setup ahead of time.</span>
 <span id="cb6-174"><a href="#cb6-174" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-175"><a href="#cb6-175" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Create a temporary or isolated R project (e.g. using <span class="in">`{renv}`</span> or RStudio Project)</span>
 <span id="cb6-176"><a href="#cb6-176" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Install the development version of <span class="in">`ggplot2`</span>:</span>
@@ -1101,28 +1101,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-196"><a href="#cb6-196" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-197"><a href="#cb6-197" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use <span class="in">`{renv}`</span> to snapshot your current setup:</span>
 <span id="cb6-198"><a href="#cb6-198" aria-hidden="true" tabindex="-1"></a>  <span class="in">```r</span></span>
-<span id="cb6-199"><a href="#cb6-199" aria-hidden="true" tabindex="-1"></a>  renv<span class="sc">::</span><span class="fu">init</span>()</span>
-<span id="cb6-200"><a href="#cb6-200" aria-hidden="true" tabindex="-1"></a>  renv<span class="sc">::</span><span class="fu">snapshot</span>()</span>
-<span id="cb6-201"><a href="#cb6-201" aria-hidden="true" tabindex="-1"></a>  <span class="in">```</span></span>
-<span id="cb6-202"><a href="#cb6-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-203"><a href="#cb6-203" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>When updating, use:</span>
-<span id="cb6-204"><a href="#cb6-204" aria-hidden="true" tabindex="-1"></a>  <span class="in">```r</span></span>
-<span id="cb6-205"><a href="#cb6-205" aria-hidden="true" tabindex="-1"></a>  <span class="fu">update.packages</span>(<span class="at">ask =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb6-206"><a href="#cb6-206" aria-hidden="true" tabindex="-1"></a>  <span class="in">```</span></span>
-<span id="cb6-207"><a href="#cb6-207" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-208"><a href="#cb6-208" aria-hidden="true" tabindex="-1"></a>and consider skipping <span class="in">`ggplot2`</span> if you're unsure.</span>
-<span id="cb6-209"><a href="#cb6-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-210"><a href="#cb6-210" aria-hidden="true" tabindex="-1"></a><span class="fu">## Final Notes</span></span>
-<span id="cb6-211"><a href="#cb6-211" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-212"><a href="#cb6-212" aria-hidden="true" tabindex="-1"></a>Thanks to everyone who has tested, reported, or patched packages ahead of this release. Special thanks to <span class="co">[</span><span class="ot">Teun van den Brand</span><span class="co">](https://github.com/teunbrand)</span> and the <span class="in">`ggplot2`</span> team for their proactive and open collaboration with the Bioconductor community.</span>
-<span id="cb6-213"><a href="#cb6-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-214"><a href="#cb6-214" aria-hidden="true" tabindex="-1"></a>If you maintain a package using <span class="in">`ggplot2`</span> and haven’t tested it yet, testing now can help your users, and save others from running into the same issues.</span>
-<span id="cb6-215"><a href="#cb6-215" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-216"><a href="#cb6-216" aria-hidden="true" tabindex="-1"></a>Not a developer? Reporting even small glitches after updating ggplot2 can still be useful, if the issue isn’t already known. Before posting, it’s worth checking if the problem has been reported on the package's GitHub or discussed in Bioconductor Zulip. If it has, you can add a comment or emoji reaction to help signal it’s affecting others too. That kind of input helps maintainers prioritise and can save time for everyone.</span>
-<span id="cb6-217"><a href="#cb6-217" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-218"><a href="#cb6-218" aria-hidden="true" tabindex="-1"></a>Fixes may take time to propagate, especially with so many interdependent packages, and most Bioconductor maintainers contributing alongside full academic workloads. But progress is steady, and made easier when people flag issues early.</span>
-<span id="cb6-219"><a href="#cb6-219" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-220"><a href="#cb6-220" aria-hidden="true" tabindex="-1"></a>Big changes like this aren’t always smooth, but open communication goes a long way. Whether you're maintaining a package, reporting a bug, or just keeping an eye out, it all helps. Thanks for reading, and for being part of this collaborative process.</span>
+<span id="cb6-199"><a href="#cb6-199" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create a reproducible project setup</span></span>
+<span id="cb6-200"><a href="#cb6-200" aria-hidden="true" tabindex="-1"></a>  renv<span class="sc">::</span><span class="fu">init</span>()</span>
+<span id="cb6-201"><a href="#cb6-201" aria-hidden="true" tabindex="-1"></a>  renv<span class="sc">::</span><span class="fu">snapshot</span>()</span>
+<span id="cb6-202"><a href="#cb6-202" aria-hidden="true" tabindex="-1"></a>  <span class="in">```</span></span>
+<span id="cb6-203"><a href="#cb6-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-204"><a href="#cb6-204" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>When updating, use:</span>
+<span id="cb6-205"><a href="#cb6-205" aria-hidden="true" tabindex="-1"></a>  <span class="in">```r</span></span>
+<span id="cb6-206"><a href="#cb6-206" aria-hidden="true" tabindex="-1"></a>  <span class="fu">update.packages</span>(<span class="at">ask =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-207"><a href="#cb6-207" aria-hidden="true" tabindex="-1"></a>  <span class="in">```</span></span>
+<span id="cb6-208"><a href="#cb6-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-209"><a href="#cb6-209" aria-hidden="true" tabindex="-1"></a>and consider skipping <span class="in">`ggplot2`</span> if you're unsure.</span>
+<span id="cb6-210"><a href="#cb6-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-211"><a href="#cb6-211" aria-hidden="true" tabindex="-1"></a><span class="fu">## Final Notes</span></span>
+<span id="cb6-212"><a href="#cb6-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-213"><a href="#cb6-213" aria-hidden="true" tabindex="-1"></a>Thanks to everyone who has tested, reported, or patched packages ahead of this release. Special thanks to <span class="co">[</span><span class="ot">Teun van den Brand</span><span class="co">](https://github.com/teunbrand)</span> and the <span class="in">`ggplot2`</span> team for their proactive and open collaboration with the Bioconductor community.</span>
+<span id="cb6-214"><a href="#cb6-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-215"><a href="#cb6-215" aria-hidden="true" tabindex="-1"></a>If you maintain a package using <span class="in">`ggplot2`</span> and haven’t tested it yet, testing now can help your users, and save others from running into the same issues.</span>
+<span id="cb6-216"><a href="#cb6-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-217"><a href="#cb6-217" aria-hidden="true" tabindex="-1"></a>Not a developer? Reporting even small glitches after updating ggplot2 can still be useful, if the issue isn’t already known. Before posting, it’s worth checking if the problem has been reported on the package's GitHub or discussed in Bioconductor Zulip. If it has, you can add a comment or emoji reaction to help signal it’s affecting others too. That kind of input helps maintainers prioritise and can save time for everyone.</span>
+<span id="cb6-218"><a href="#cb6-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-219"><a href="#cb6-219" aria-hidden="true" tabindex="-1"></a>Fixes may take time to propagate, especially with so many interdependent packages, and most Bioconductor maintainers contributing alongside full academic workloads. But progress is steady, and made easier when people flag issues early.</span>
+<span id="cb6-220"><a href="#cb6-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-221"><a href="#cb6-221" aria-hidden="true" tabindex="-1"></a>Big changes like this aren’t always smooth, but open communication goes a long way. Whether you're maintaining a package, reporting a bug, or just keeping an eye out, it all helps. Thanks for reading, and for being part of this collaborative process.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
