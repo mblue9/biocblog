@@ -1071,59 +1071,60 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-164"><a href="#cb6-164" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-165"><a href="#cb6-165" aria-hidden="true" tabindex="-1"></a>**To avoid disruptions**:</span>
 <span id="cb6-166"><a href="#cb6-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-167"><a href="#cb6-167" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Hold off updating `ggplot2` until you’ve confirmed it works with your code and the packages you use.**</span>
-<span id="cb6-168"><a href="#cb6-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-169"><a href="#cb6-169" aria-hidden="true" tabindex="-1"></a>You don’t need to act now if everything is working, but it’s worth being cautious around updates until fixes are in place.</span>
-<span id="cb6-170"><a href="#cb6-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-171"><a href="#cb6-171" aria-hidden="true" tabindex="-1"></a><span class="fu">### How to Check If You’re Affected</span></span>
-<span id="cb6-172"><a href="#cb6-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-173"><a href="#cb6-173" aria-hidden="true" tabindex="-1"></a>The development version of ggplot2 (4.0.0) is already available for testing using {pak}. The CRAN release is expected mid-to-late July. If you’re not sure whether to update once it’s out, here’s how you can test your current setup ahead of time.</span>
-<span id="cb6-174"><a href="#cb6-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-175"><a href="#cb6-175" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Create a temporary or isolated R project (e.g. using <span class="in">`{renv}`</span> or RStudio Project)</span>
-<span id="cb6-176"><a href="#cb6-176" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Install the development version of <span class="in">`ggplot2`</span>:</span>
-<span id="cb6-177"><a href="#cb6-177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-180"><a href="#cb6-180" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb6-181"><a href="#cb6-181" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb6-182"><a href="#cb6-182" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb6-183"><a href="#cb6-183" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
-<span id="cb6-184"><a href="#cb6-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-185"><a href="#cb6-185" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"pak"</span>)</span>
-<span id="cb6-186"><a href="#cb6-186" aria-hidden="true" tabindex="-1"></a>pak<span class="sc">::</span><span class="fu">pak</span>(<span class="st">"tidyverse/ggplot2"</span>)</span>
-<span id="cb6-187"><a href="#cb6-187" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-188"><a href="#cb6-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-189"><a href="#cb6-189" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Re-run your code and check that plots appear as expected </span>
-<span id="cb6-190"><a href="#cb6-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-191"><a href="#cb6-191" aria-hidden="true" tabindex="-1"></a>If something breaks, you can always roll back, or just hold off updating until patches are released.</span>
-<span id="cb6-192"><a href="#cb6-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-193"><a href="#cb6-193" aria-hidden="true" tabindex="-1"></a><span class="fu">### Tools to Help</span></span>
-<span id="cb6-194"><a href="#cb6-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-195"><a href="#cb6-195" aria-hidden="true" tabindex="-1"></a>To manage versions and avoid surprises:</span>
-<span id="cb6-196"><a href="#cb6-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-197"><a href="#cb6-197" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use <span class="in">`{renv}`</span> to snapshot your current setup:</span>
-<span id="cb6-198"><a href="#cb6-198" aria-hidden="true" tabindex="-1"></a>  <span class="in">```r</span></span>
-<span id="cb6-199"><a href="#cb6-199" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create a reproducible project setup</span></span>
-<span id="cb6-200"><a href="#cb6-200" aria-hidden="true" tabindex="-1"></a>  renv<span class="sc">::</span><span class="fu">init</span>()</span>
-<span id="cb6-201"><a href="#cb6-201" aria-hidden="true" tabindex="-1"></a>  renv<span class="sc">::</span><span class="fu">snapshot</span>()</span>
-<span id="cb6-202"><a href="#cb6-202" aria-hidden="true" tabindex="-1"></a>  <span class="in">```</span></span>
-<span id="cb6-203"><a href="#cb6-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-204"><a href="#cb6-204" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>When updating, use:</span>
-<span id="cb6-205"><a href="#cb6-205" aria-hidden="true" tabindex="-1"></a>  <span class="in">```r</span></span>
-<span id="cb6-206"><a href="#cb6-206" aria-hidden="true" tabindex="-1"></a>  <span class="fu">update.packages</span>(<span class="at">ask =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb6-207"><a href="#cb6-207" aria-hidden="true" tabindex="-1"></a>  <span class="in">```</span></span>
-<span id="cb6-208"><a href="#cb6-208" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-209"><a href="#cb6-209" aria-hidden="true" tabindex="-1"></a>and consider skipping <span class="in">`ggplot2`</span> if you're unsure.</span>
-<span id="cb6-210"><a href="#cb6-210" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-211"><a href="#cb6-211" aria-hidden="true" tabindex="-1"></a><span class="fu">## Final Notes</span></span>
-<span id="cb6-212"><a href="#cb6-212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-213"><a href="#cb6-213" aria-hidden="true" tabindex="-1"></a>Thanks to everyone who has tested, reported, or patched packages ahead of this release. Special thanks to <span class="co">[</span><span class="ot">Teun van den Brand</span><span class="co">](https://github.com/teunbrand)</span> and the <span class="in">`ggplot2`</span> team for their proactive and open collaboration with the Bioconductor community.</span>
-<span id="cb6-214"><a href="#cb6-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-215"><a href="#cb6-215" aria-hidden="true" tabindex="-1"></a>If you maintain a package using <span class="in">`ggplot2`</span> and haven’t tested it yet, testing now can help your users, and save others from running into the same issues.</span>
-<span id="cb6-216"><a href="#cb6-216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-217"><a href="#cb6-217" aria-hidden="true" tabindex="-1"></a>Not a developer? Reporting even small glitches after updating ggplot2 can still be useful, if the issue isn’t already known. Before posting, it’s worth checking if the problem has been reported on the package's GitHub or discussed in Bioconductor Zulip. If it has, you can add a comment or emoji reaction to help signal it’s affecting others too. That kind of input helps maintainers prioritise and can save time for everyone.</span>
-<span id="cb6-218"><a href="#cb6-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-219"><a href="#cb6-219" aria-hidden="true" tabindex="-1"></a>Fixes may take time to propagate, especially with so many interdependent packages, and most Bioconductor maintainers contributing alongside full academic workloads. But progress is steady, and made easier when people flag issues early.</span>
-<span id="cb6-220"><a href="#cb6-220" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-221"><a href="#cb6-221" aria-hidden="true" tabindex="-1"></a>Big changes like this aren’t always smooth, but open communication goes a long way. Whether you're maintaining a package, reporting a bug, or just keeping an eye out, it all helps. Thanks for reading, and for being part of this collaborative process.</span>
+<span id="cb6-167"><a href="#cb6-167" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Hold off updating `ggplot2` until you’ve tested that it works with your code and the packages you use.**</span>
+<span id="cb6-168"><a href="#cb6-168" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**You can already test with the development version, see below.**</span>
+<span id="cb6-169"><a href="#cb6-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-170"><a href="#cb6-170" aria-hidden="true" tabindex="-1"></a>If your code is working as expected, you don’t need to act immediately. But testing ahead of the CRAN release can give you confidence that everything will continue working once <span class="in">`ggplot2`</span> 4.0.0 is out.</span>
+<span id="cb6-171"><a href="#cb6-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-172"><a href="#cb6-172" aria-hidden="true" tabindex="-1"></a><span class="fu">### How to Check If You’re Affected</span></span>
+<span id="cb6-173"><a href="#cb6-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-174"><a href="#cb6-174" aria-hidden="true" tabindex="-1"></a>The development version of ggplot2 (4.0.0) is already available for testing using {pak}. The CRAN release is expected mid-to-late July. If you’re not sure whether to update once it’s out, here’s how you can test your current setup ahead of time.</span>
+<span id="cb6-175"><a href="#cb6-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-176"><a href="#cb6-176" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Create a temporary or isolated R project (e.g. using <span class="in">`{renv}`</span> or RStudio Project)</span>
+<span id="cb6-177"><a href="#cb6-177" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Install the development version of <span class="in">`ggplot2`</span>:</span>
+<span id="cb6-178"><a href="#cb6-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-181"><a href="#cb6-181" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-182"><a href="#cb6-182" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb6-183"><a href="#cb6-183" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb6-184"><a href="#cb6-184" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb6-185"><a href="#cb6-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-186"><a href="#cb6-186" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"pak"</span>)</span>
+<span id="cb6-187"><a href="#cb6-187" aria-hidden="true" tabindex="-1"></a>pak<span class="sc">::</span><span class="fu">pak</span>(<span class="st">"tidyverse/ggplot2"</span>)</span>
+<span id="cb6-188"><a href="#cb6-188" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-189"><a href="#cb6-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-190"><a href="#cb6-190" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Re-run your code and check that plots appear as expected </span>
+<span id="cb6-191"><a href="#cb6-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-192"><a href="#cb6-192" aria-hidden="true" tabindex="-1"></a>If something breaks, you can always roll back, or just hold off updating until patches are released.</span>
+<span id="cb6-193"><a href="#cb6-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-194"><a href="#cb6-194" aria-hidden="true" tabindex="-1"></a><span class="fu">### Tools to Help</span></span>
+<span id="cb6-195"><a href="#cb6-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-196"><a href="#cb6-196" aria-hidden="true" tabindex="-1"></a>To manage versions and avoid surprises:</span>
+<span id="cb6-197"><a href="#cb6-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-198"><a href="#cb6-198" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use <span class="in">`{renv}`</span> to snapshot your current setup:</span>
+<span id="cb6-199"><a href="#cb6-199" aria-hidden="true" tabindex="-1"></a>  <span class="in">```r</span></span>
+<span id="cb6-200"><a href="#cb6-200" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create a reproducible project setup</span></span>
+<span id="cb6-201"><a href="#cb6-201" aria-hidden="true" tabindex="-1"></a>  renv<span class="sc">::</span><span class="fu">init</span>()</span>
+<span id="cb6-202"><a href="#cb6-202" aria-hidden="true" tabindex="-1"></a>  renv<span class="sc">::</span><span class="fu">snapshot</span>()</span>
+<span id="cb6-203"><a href="#cb6-203" aria-hidden="true" tabindex="-1"></a>  <span class="in">```</span></span>
+<span id="cb6-204"><a href="#cb6-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-205"><a href="#cb6-205" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>When updating, use:</span>
+<span id="cb6-206"><a href="#cb6-206" aria-hidden="true" tabindex="-1"></a>  <span class="in">```r</span></span>
+<span id="cb6-207"><a href="#cb6-207" aria-hidden="true" tabindex="-1"></a>  <span class="fu">update.packages</span>(<span class="at">ask =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-208"><a href="#cb6-208" aria-hidden="true" tabindex="-1"></a>  <span class="in">```</span></span>
+<span id="cb6-209"><a href="#cb6-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-210"><a href="#cb6-210" aria-hidden="true" tabindex="-1"></a>and consider skipping <span class="in">`ggplot2`</span> if you're unsure.</span>
+<span id="cb6-211"><a href="#cb6-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-212"><a href="#cb6-212" aria-hidden="true" tabindex="-1"></a><span class="fu">## Final Notes</span></span>
+<span id="cb6-213"><a href="#cb6-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-214"><a href="#cb6-214" aria-hidden="true" tabindex="-1"></a>Thanks to everyone who has tested, reported, or patched packages ahead of this release. Special thanks to <span class="co">[</span><span class="ot">Teun van den Brand</span><span class="co">](https://github.com/teunbrand)</span> and the <span class="in">`ggplot2`</span> team for their proactive and open collaboration with the Bioconductor community.</span>
+<span id="cb6-215"><a href="#cb6-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-216"><a href="#cb6-216" aria-hidden="true" tabindex="-1"></a>If you maintain a package using <span class="in">`ggplot2`</span> and haven’t tested it yet, testing now can help your users, and save others from running into the same issues.</span>
+<span id="cb6-217"><a href="#cb6-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-218"><a href="#cb6-218" aria-hidden="true" tabindex="-1"></a>Not a developer? Reporting even small glitches after updating ggplot2 can still be useful, if the issue isn’t already known. Before posting, it’s worth checking if the problem has been reported on the package's GitHub or discussed in Bioconductor Zulip. If it has, you can add a comment or emoji reaction to help signal it’s affecting others too. That kind of input helps maintainers prioritise and can save time for everyone.</span>
+<span id="cb6-219"><a href="#cb6-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-220"><a href="#cb6-220" aria-hidden="true" tabindex="-1"></a>Fixes may take time to propagate, especially with so many interdependent packages, and most Bioconductor maintainers contributing alongside full academic workloads. But progress is steady, and made easier when people flag issues early.</span>
+<span id="cb6-221"><a href="#cb6-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-222"><a href="#cb6-222" aria-hidden="true" tabindex="-1"></a>Big changes like this aren’t always smooth, but open communication goes a long way. Whether you're maintaining a package, reporting a bug, or just keeping an eye out, it all helps. Thanks for reading, and for being part of this collaborative process.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
