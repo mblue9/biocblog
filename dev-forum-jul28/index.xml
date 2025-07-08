@@ -1,0 +1,1289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Bioconductor community blog</title>
+<link>https://blog.bioconductor.org/</link>
+<atom:link href="https://blog.bioconductor.org/index.xml" rel="self" type="application/rss+xml"/>
+<description>A blog for the Bioconductor community!</description>
+<generator>quarto-1.7.32</generator>
+<lastBuildDate>Mon, 07 Jul 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Bioconductor and ggplot2 4.0.0: What’s Changing and How to Prepare</title>
+  <dc:creator>Maria Doyle (Bioconductor Community Manager), with contributions from the Bioconductor and ggplot2 developer communities</dc:creator>
+  <link>https://blog.bioconductor.org/posts/2025-07-07-ggplot2-update/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://blog.bioconductor.org/posts/2025-07-07-ggplot2-update/bioc-ggplot2-r_logos.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%" alt="Bioconductor, ggplot2 and R logos"></p>
+</figure>
+</div>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>A major update to <a href="https://ggplot2.tidyverse.org/"><code>ggplot2</code></a> (version 4.0.0) is expected around <strong>mid-to-late July 2025</strong>. It brings a significant internal change, replacing most of the S3 backend with the newer S7 object system. While this improves long-term maintainability and extensibility, it may break Bioconductor packages that depend on <code>ggplot2</code>, especially those that customise how plots are built or styled. Packages that use <code>ggplot2</code> for typical plotting tasks, such as creating plots with <code>ggplot()</code> and <code>geom_*()</code>, are unlikely to be affected.</p>
+<section id="tldr" class="level2">
+<h2 class="anchored" data-anchor-id="tldr">TL;DR</h2>
+<ul>
+<li><code>ggplot2</code> 4.0.0 is a major internal update switching to S7 classes</li>
+<li>Some Bioconductor packages may break, especially those customising <code>ggplot2</code> themes/geoms</li>
+<li>Only affects plotting - statistical or modelling functions remain unchanged</li>
+<li>If you’re a user, hold off updating <code>ggplot2</code> until your packages are confirmed to work</li>
+<li>If you’re a developer, test now using <code>pak::pak("tidyverse/ggplot2")</code> to prepare before release</li>
+<li>Questions or issues? Join us on <a href="https://chat.bioconductor.org/">Zulip</a></li>
+</ul>
+</section>
+<section id="whats-changing" class="level2">
+<h2 class="anchored" data-anchor-id="whats-changing">What’s Changing?</h2>
+<p>The 4.0.0 release of <code>ggplot2</code> introduces a major internal refactor: S3 classes are being migrated to the new S7 system. While most users won’t notice the difference, some packages rely on how <code>ggplot2</code> is built internally, for example, by modifying its themes, geoms, or using helper functions. These packages (e.g.&nbsp;<code>ComplexUpset</code>, <code>ggtree</code>, <code>plotly</code>) may break if that internal structure changes.</p>
+<p>Some issues may be minor, like test failures, while others may cause runtime errors. Either way, this is a good time to review your usage.</p>
+</section>
+<section id="why-s7" class="level2">
+<h2 class="anchored" data-anchor-id="why-s7">Why S7?</h2>
+<p>S7 is a new object-oriented system in R that makes packages more robust, predictable, and easier to extend. It gives developers better tools for managing complex code, but switching to it can affect packages that rely on how things used to work under the old system (S3).</p>
+<p>It offers:</p>
+<ul>
+<li>Formal class and method definitions<br>
+</li>
+<li>Limited multiple dispatch<br>
+</li>
+<li>Cleaner support for interoperability<br>
+</li>
+<li>Greater consistency across packages</li>
+</ul>
+<p>S7 is being developed by the R Consortium’s OOP Working Group, with contributors from R Core, Bioconductor, Posit, and others.</p>
+<p>Learn more in the <a href="https://www.tidyverse.org/blog/2024/11/s7-0-2-0/">tidyverse blog post</a> and on the <a href="https://rconsortium.github.io/S7/index.html">R Consortium’s S7 site</a>.</p>
+</section>
+<section id="for-developers" class="level2">
+<h2 class="anchored" data-anchor-id="for-developers">For Developers</h2>
+<section id="what-developers-should-do-now" class="level3">
+<h3 class="anchored" data-anchor-id="what-developers-should-do-now">What Developers Should Do Now</h3>
+<p>You can test your package against the development version of <code>ggplot2</code> using <a href="https://pak.r-lib.org/"><code>pak</code></a>:</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># install.packages("pak")</span></span>
+<span id="cb1-2">pak<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pak</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"tidyverse/ggplot2"</span>)</span></code></pre></div>
+<p>We recommend testing in an isolated environment using <a href="https://rstudio.github.io/renv/"><code>renv</code></a> to avoid unexpected interactions with your existing packages.</p>
+<p>If you find issues:</p>
+<ul>
+<li>Report a bug: <a href="https://github.com/tidyverse/ggplot2/issues">github.com/tidyverse/ggplot2/issues</a><br>
+</li>
+<li>Tag <a href="https://github.com/teunbrand"><span class="citation" data-cites="teunbrand">@teunbrand</span> on GitHub</a> if you’d like input from the <code>ggplot2</code> team</li>
+<li>Discuss with the Bioconductor community: Post in <a href="https://chat.bioconductor.org/">Bioconductor Zulip</a> or email the <code>bioc-devel@r-project.org</code> mailing list</li>
+</ul>
+</section>
+<section id="common-issues-already-reported" class="level3">
+<h3 class="anchored" data-anchor-id="common-issues-already-reported">Common Issues Already Reported</h3>
+<p>These are specific breakages already reported on the <code>ggplot2</code> GitHub:</p>
+<ul>
+<li><strong>Class checks</strong>: Tests relying on exact class structures like <code>class(p)</code> or <code>expect_type(p, "list")</code> may now fail. Instead, use <code>expect_true(is_ggplot(p))</code> or <code>expect_s3_class(p, "ggplot")</code> for compatibility. See <a href="https://github.com/tidyverse/ggplot2/issues/6498">#6498</a>.</li>
+<li><strong>Label handling</strong>: Labels are now stricter and constructed later in the build step. Use <code>get_labs()</code> in tests, and avoid unnamed or duplicate arguments in <code>labs()</code>. See <a href="https://github.com/tidyverse/ggplot2/issues/6505">#6505</a>.</li>
+<li><strong>Custom + methods</strong>: Packages defining custom + operators (e.g.&nbsp;<code>+.gg</code>) may need to revise their implementation, especially with mixed S3/S7 class use. See <a href="https://github.com/tidyverse/ggplot2/issues/6504">#6504</a>.</li>
+<li><strong>Invalid element properties</strong>: With S7 class adoption, element constructors like <code>element_text()</code> now enforce stricter type checks (e.g.&nbsp;no TRUE for family, no decimal colours). Fix the incorrect properties in your package. See <a href="https://github.com/tidyverse/ggplot2/issues/6507">#6507</a>.</li>
+<li><strong>S3 method consistency</strong>: Generics like <code>ggplot_build()</code> and <code>ggplot_add()</code> now include <code>...</code> Your methods must include it too, even if unused, to avoid warnings. See <a href="https://github.com/tidyverse/ggplot2/issues/6515">#6515</a>.</li>
+</ul>
+<p>These are evolving, if something looks broken, it’s worth checking the <a href="https://github.com/tidyverse/ggplot2/issues">ggplot2 issues page</a> for updates before opening a new one.</p>
+<p>The Bioconductor core team has also been running automated tests on a subset of packages to help spot issues early. Due to resource constraints, this currently covers only a portion of the ecosystem, so it’s still important for developers to test their own packages.</p>
+</section>
+<section id="how-bioconductor-packages-may-be-affected" class="level3">
+<h3 class="anchored" data-anchor-id="how-bioconductor-packages-may-be-affected">How Bioconductor Packages May Be Affected</h3>
+<p>We’ve compiled a list of packages in Bioconductor 3.21 that declare <code>ggplot2</code> in <code>Depends</code>, <code>Imports</code>, or <code>Suggests</code>:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(BiocManager)</span>
+<span id="cb2-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(tidyverse)</span>
+<span id="cb2-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(reactable)</span>
+<span id="cb2-4"></span>
+<span id="cb2-5">repos <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">repositories</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">version =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"3.21"</span>)</span>
+<span id="cb2-6">bioc_repos <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> repos[<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">grepl</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"BioC"</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">names</span>(repos))]</span>
+<span id="cb2-7">db <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">available.packages</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">contrib.url</span>(bioc_repos))</span>
+<span id="cb2-8"></span>
+<span id="cb2-9">pkg_df <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as_tibble</span>(db) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb2-10">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(</span>
+<span id="cb2-11">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ggplot2_usage =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">case_when</span>(</span>
+<span id="cb2-12">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">grepl</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ggplot2"</span>, Depends) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Depends"</span>,</span>
+<span id="cb2-13">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">grepl</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ggplot2"</span>, Imports) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Imports"</span>,</span>
+<span id="cb2-14">      <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">grepl</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ggplot2"</span>, Suggests) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Suggests"</span>,</span>
+<span id="cb2-15">      <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NA_character_</span></span>
+<span id="cb2-16">    )</span>
+<span id="cb2-17">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb2-18">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">is.na</span>(ggplot2_usage)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb2-19">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">select</span>(Package, ggplot2_usage) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb2-20">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">arrange</span>(Package)</span>
+<span id="cb2-21"></span>
+<span id="cb2-22"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">reactable</span>(</span>
+<span id="cb2-23">  pkg_df,</span>
+<span id="cb2-24">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">searchable =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>,</span>
+<span id="cb2-25">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">filterable =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>,</span>
+<span id="cb2-26">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">columns =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(</span>
+<span id="cb2-27">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Package =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">colDef</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">name =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Package"</span>),</span>
+<span id="cb2-28">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ggplot2_usage =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">colDef</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">name =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ggplot2 Usage"</span>)</span>
+<span id="cb2-29">  ),</span>
+<span id="cb2-30">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">defaultSorted =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Package"</span>,</span>
+<span id="cb2-31">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">striped =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>,</span>
+<span id="cb2-32">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">bordered =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>,</span>
+<span id="cb2-33">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">highlight =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>,</span>
+<span id="cb2-34">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">defaultPageSize =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>,</span>
+<span id="cb2-35">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">showPageSizeOptions =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>,</span>
+<span id="cb2-36">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">compact =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span></span>
+<span id="cb2-37">)</span></code></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-df61ff56382f18a5669b" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-df61ff56382f18a5669b">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Package":["ACE","ADAMgui","ADAPT","ALDEx2","AMARETTO","APAlyzer","APL","ASICS","ASSIGN","ASURAT","ATACseqTFEA","AlphaBeta","AlphaMissenseR","AlpsNMR","AnVILBilling","Anaquin","AneuFinder","BANDITS","BASiCS","BOBaFIT","BPRMeth","BUSpaRse","BaalChIP","Banksy","BatchQC","BatchSVG","BayesSpace","BindingSiteFinder","BioCor","BioGA","BioNAR","BioNERO","BioQC","BioTIP","BiocHail","BloodCancerMultiOmics2017","BloodGen3Module","BreastSubtypeR","BubbleTree","BulkSignalR","CAFE","CAGEr","CARDspa","CATALYST","CBNplot","CCPlotR","CDI","CEMiTool","CHETAH","CIMICE","CLLmethylation","CNEr","CNVPanelizer","CNVrd2","COCOA","COMPASS","CONFESS","CONSTANd","COTAN","CPSM","CRISPRball","CSSQ","CTDquerier","CTexploreR","CaDrA","CaMutQC","CatsCradle","CeTF","CellBarcode","CellBench","CellMixS","CellNOptR","CellTrails","CelliD","Cepo","ChAMP","ChIPQC","ChIPexoQual","ChIPpeakAnno","ChIPseeker","ChemmineR","ChromSCape","CircSeqAlignTk","CiteFuse","ClassifyR","CleanUpRNAseq","CluMSID","ClustAll","ClustIRR","ClusterFoldSimilarity","ClusterSignificance","CoGAPS","CoSIA","Cogito","ComPrAn","CrispRVariants","CuratedAtlasQueryR","CytoGLMM","CytoMDS","CytoPipeline","CytoPipelineGUI","DAMEfinder","DAPAR","DEGreport","DELocal","DEP","DESeq2","DESpace","DEqMS","DEsubs","DOSE","DRIMSeq","DaMiRseq","Damsel","DeMixT","DeconRNASeq","DeconvoBuddies","DeepTarget","DegNorm","DepInfeR","DepecheR","DiffBind","DifferentialRegulation","Dino","DiscoRhythm","Doscheda","Dune","DuoClustering2018","EGSEA","ELMER","ELViS","EMDomics","ERSSA","EWCE","EasyCellType","EnMCB","EnhancedVolcano","EnrichDO","EpiCompare","EpiMix","EpiTxDb","EpipwR","ExpHunterSuite","ExploreModelMatrix","FLAMES","FRASER","FindIT2","FlowSOM","FuseSOM","G4SNVHunter","GARS","GBScleanR","GDCRNATools","GEM","GENESIS","GEOexplorer","GNET2","GOTHiC","GOexpress","GPA","GRENITS","GRaNIE","GRmetrics","GSCA","GSEAmining","GSVA","GSgalgoR","GUIDEseq","GWENA","GeDi","GenVisR","GeneTonic","GenomicDataCommons","GenomicDistributions","GenomicInteractions","GenomicOZone","GenomicPlot","GenomicSuperSignature","GeoMxWorkflows","GeomxTools","GladiaTOX","GloScope","GrafGen","Guitar","HCATonsilData","HDCytoData","HGC","HIBAG","HIPPO","HMP16SData","HMP2Data","HPAanalyze","HPiP","HiCBricks","HiCDOC","HiCcompare","HiContacts","HiLDA","HicAggR","HuBMAPR","HybridExpress","IHW","IHWpaper","ILoReg","IMAS","INTACT","IONiseR","ISAnalytics","IVAS","IgGeneUsage","InPAS","InTAD","InterCellar","IsoBayes","IsoformSwitchAnalyzeR","KnowSeq","LACE","LRcell","LedPred","LegATo","Lheuristic","LimROTS","LinTInd","LinkHD","Linnorm","LymphoSeq","M3C","MACSQuantifyR","MAPFX","MAST","MBECS","MBQN","MCbiclust","MEAL","MGnifyR","MICSQTL","MIRA","MIRit","MLSeq","MMDiff2","MMUPHin","MOFA2","MOMA","MOSClip","MOSim","MPAC","MSA2dist","MSnID","MSnbase","MSstats","MSstatsLOBD","MSstatsLiP","MSstatsPTM","MSstatsQC","MSstatsShiny","MSstatsTMT","MWASTools","Maaslin2","MatrixQCvis","Melissa","MerfishData","MesKit","MetCirc","MetMashR","MetNet","MetaCyto","MetaNeighbor","MetaPhOR","MetaScope","MetaboDynamics","MethReg","MethylAid","MethylMix","MicrobiomeBenchmarkData","MicrobiomeProfiler","MicrobiotaProcess","MineICA","MoleculeExperiment","Moonlight2R","MotifPeeker","MouseFM","MsQuality","MultiBaC","MultiDataSet","MultiRNAflow","MutationalPatterns","NBAMSeq","NPARC","NanoMethViz","NanoStringNCTools","NanoTube","Nebulosa","NestLink","NewWave","NoRCE","NormalyzerDE","OGRE","OMICsPCA","OPWeight","ORFik","OSCA.advanced","OUTRIDER","OVESEG","Omixer","OmnipathR","OncoSimulR","Organism.dplyr","PAST","PCAtools","PDATK","PICB","PIUMA","PLSDAbatch","POMA","POWSC","PPInfer","PRONE","PathoStat","PeacoQC","Pedixplorer","PepsNMR","PharmacoGx","PhenStat","PhosR","PhyloProfile","Pigengene","Pirat","PoDCall","Polytect","Prostar","ProteinGymR","ProteoDisco","ProteoMM","PureCN","QFeatures","QSutils","R3CPET","RAIDS","RAREsim","RCAS","RCM","RCSL","RESOLVE","RFLOMICS","RITAN","RIVER","RNAAgeCalc","RNAdecay","RNAmodR","RNAsense","RTCGA","RTNsurvival","RUCova","Rbec","Rcollectl","ReactomeGSA","ReactomePA","ReducedExperiment","RegEnrich","RegionalST","ReportingTools","Rfastp","RforProteomics","RgnTX","RiboCrypt","RiboDiPA","RiboProfiling","RnBeads","RnaSeqSampleSize","Rnits","Rqc","Rtpca","SARC","SC3","SCnorm","SEraster","SEtools","SGCP","SIMAT","SMITE","SNPhood","SOMNiBUS","SPIAT","SPLINTER","SPONGE","SPOTlight","STATegRa","SUITOR","SVP","SWATH2stats","Sconify","ScreenR","SeqSQC","SigFuge","SimBu","Single.mTEC.Transcriptomes","SingleCellAlleleExperiment","SingleCellMultiModal","SingleMoleculeFootprinting","SingleR","SingscoreAMLMutations","SomaticCancerAlterations","SomaticSignatures","SpaNorm","SpaceMarkers","Spaniel","SparseSignatures","SpatialCPie","SpatialOmicsOverlay","SpliceWiz","SplicingFactory","SplineDV","SpotClean","SpotSweeper","Statial","StructuralVariantAnnotation","SubCellBarCode","SubcellularSpatialData","SurfR","TADCompare","TAPseq","TBSignatureProfiler","TCGAbiolinks","TCseq","TEKRABber","TENET","TFEA.ChIP","TFutils","TOAST","TOP","TPP","TPP2D","TREG","TSAR","TSCAN","TVTB","TabulaMurisSenisData","TargetDecoy","TimerQuant","TissueEnrich","ToxicoGx","TrIdent","TrajectoryGeometry","TreeAndLeaf","TreeSummarizedExperiment","TumourMethData","UCell","UMI4Cats","Ularcirc","VDJdive","VarCon","VariantAnnotation","VennDetail","ViSEAGO","Voyager","VplotR","XAItest","XINA","Xeva","YAPSA","abseqR","affycoretools","aggregateBioVar","airpart","alevinQC","amplican","animalcules","annotatr","artMS","atSNP","autonomics","awst","bacon","bambu","bandle","barbieQ","barcodetrackR","basecallQC","beadarray","beer","benchdamic","benchmarkfdrData2019","betaHMM","bettr","bioassayR","biobroom","biotmle","borealis","branchpointer","breakpointR","broadSeq","bugphyzz","cTRAP","cageminer","cardelino","ceRNAnetsim","celaref","celda","cellity","cellmigRation","censcyt","cfDNAPro","cfdnakit","chevreulPlot","chevreulShiny","chromVAR","cicero","circRNAprofiler","clevRvis","cliProfiler","clustSIGNAL","clustifyr","coRdon","cogena","cogeqc","comapr","combi","compSPOT","compcodeR","concordexR","condiments","consICA","consensusOV","consensusSeekeR","corral","coseq","cosmosR","countsimQC","cpvSNP","crumblr","crupR","ctsGE","cummeRbund","curatedAdipoChIP","curatedAdipoRNA","curatedBreastData","curatedPCaData","cyanoFilter","cytofQC","cytomapper","dStruct","dada2","dar","dce","ddPCRclust","dearseq","debrowser","decompTumor2Sig","decontX","decontam","deconvR","decoupleR","deltaCaptureC","deltaGseg","demuxmix","densvis","depmap","derfinder","derfinderPlot","destiny","diffUTR","diffuStats","dinoR","distinct","dittoSeq","dmrseq","doubletrouble","drawProteins","dreamlet","drugTargetInteractions","easier","edge","enrichViewNet","enrichplot","epialleleR","epidecodeR","epigraHMM","epimutacions","epiregulon.extra","epistasisGA","erccdashboard","erma","esATAC","escape","escheR","esetVis","evaluomeR","ewceData","extraChIPs","fCCAC","factR","fedup","fenr","fgsea","flowAI","flowCHIC","flowGate","flowGraph","flowSpecs","flowTime","flowWorkspace","fluentGenomics","fobitools","furrowSeg","gCrisprTools","gINTomics","gatom","gcatest","gemini","gemma.R","geneplast","genomation","geyser","gg4way","ggbio","ggcyto","ggkegg","ggmanh","ggmsa","ggsc","ggseqalign","ggspavis","ggtree","ggtreeDendro","ggtreeExtra","ggtreeSpace","glmGamPoi","glmSparseNet","goSorensen","granulator","graper","h5vc","hdxmsqc","hermes","hiAnnotator","hicVennDiagram","hipathia","hoodscanR","hypeR","iBMQ","iCNV","iCOBRA","iPath","iSEE","iSEEfier","iSEEhex","iSEEpathways","iSEEtree","iSEEu","icetea","ideal","idpr","idr2d","imageTCGA","imcRtools","immApex","immunogenViewer","immunotation","infercnv","interactiveDisplay","isobar","isomiRs","ivygapSE","jazzPanda","katdetectr","kissDE","knowYourCG","lefser","levi","lfa","limpca","lipidr","lisaClust","lute","mCSEA","maEndToEnd","maaslin3","magrene","marr","maser","mastR","mbQTL","mdp","memes","messina","metabinR","metabomxtr","metagene2","metapone","methimpute","methodical","methrix","methylCC","methylGSA","methylInheritance","methylclock","methylumi","mfa","miQC","miaSim","miaViz","microSTASIS","microbiome","microbiomeDASim","midasHLA","miloR","mina","mirIntegrator","mirTarRnaSeq","missRows","mist","mistyR","mitch","mitoClone2","mitology","mixOmics","mnem","mobileRNA","monaLisa","monocle","mosdef","motifStack","motifTestR","msPurity","msgbsR","mspms","muSpaData","multiWGCNA","multicrispr","multistateQTL","muscat","musicatk","ncRNAtools","nearBynding","netSmooth","nethet","netprioR","netresponse","ngsReports","nipalsMCIA","nnSVG","nucleR","nullranges","octad","omada","omicRexposome","omicsViewer","oncomix","openPrimeR","oppti","orthogene","orthos","orthosData","pRoloc","pRolocGUI","padma","pairedGSEA","pandaR","pathMED","pathlinkR","pcaExplorer","pcaMethods","peakPantheR","pepStat","periodicDNA","pgxRpi","phantasus","phenoTest","phenomis","phenopath","philr","phyloseq","pipeComp","planet","plotGrouper","plotgardener","plyranges","pmp","poem","pogos","ppcseq","pqsfinder","proActiv","profileplyr","progeny","projectR","protGear","psichomics","ptairMS","qPLEXanalyzer","qckitfastq","qcmetrics","qmtools","qsvaR","quantiseqr","quantro","qvalue","rCGH","rTRM","ramr","rawDiag","rcellminer","receptLoss","reconsi","recount","recountmethylation","recoup","regionReport","regioneReloaded","retrofit","rexposome","rgoslin","rhdf5","ribor","ribosomeProfilingQC","rifi","rifiComparative","rnaseqGene","roastgsa","ropls","rprimer","rrvgo","sRACIPE","sSNAPPY","sampleClassifier","sarks","satuRn","scAnnotatR","scBFA","scBubbletree","scClassify","scDD","scDDboost","scDataviz","scDblFinder","scDesign3","scDiagnostics","scDotPlot","scFeatureFilter","scGPS","scHOT","scHiCcompare","scMET","scMitoMut","scMultiSim","scPCA","scPipe","scQTLtools","scRNAseqApp","scRepertoire","scTGIF","scTensor","scTreeViz","scanMiR","scanMiRApp","scater","scatterHatch","sccomp","schex","scider","scifer","scmap","scmeth","scone","scp","scruff","scry","scviR","seahtrue","selectKSigs","seqArchR","seqArchRplus","seqCAT","seqcombo","seqsetvis","sesame","shinyDSP","shinyepico","sights","signatureSearch","signeR","signifinder","simPIC","simpleSeg","simplifyEnrichment","sincell","singleCellTK","singscore","sitePath","sketchR","slalom","smartid","smoppix","snifter","soGGi","sosta","spaSim","spacexr","sparrow","spatialDE","spatialFDA","spatialHeatmap","spatialLIBD","spatialSimGP","spatzie","speckle","spicyR","spicyWorkflow","spiky","spillR","splatter","splots","spqn","squallms","ssPATHS","ssviz","stJoincount","standR","strandCheckR","struct","structToolbox","subSeq","supersigs","surfaltr","svaNUMT","svaRetro","swfdr","switchde","synapsis","synaptome.db","synergyfinder","synlet","syntenet","systemPipeR","systemPipeShiny","systemPipeTools","tLOH","tRNA","tRNAscanImport","tadar","tanggle","tidyCoverage","tidyFlowCore","tidySingleCellExperiment","tidySpatialExperiment","tidySummarizedExperiment","tidybulk","tidyomics","tidytof","timeOmics","tissueTreg","tomoda","tomoseqr","topconfects","topdownr","tradeSeq","transcriptR","transcriptogramer","transite","transmogR","treeclimbR","treeio","treekoR","tricycle","tuberculosis","twoddpcr","uSORT","universalmotif","variancePartition","velociraptor","vidger","visiumStitched","vissE","vmrseq","vsn","wavClusteR","weitrix","wiggleplotr","wpm","xCell2","xenLite","zFPKM","zenith","zinbwave","zitools"],"ggplot2_usage":["Imports","Imports","Imports","Suggests","Imports","Imports","Imports","Imports","Imports","Suggests","Imports","Imports","Imports","Imports","Imports","Depends","Depends","Imports","Imports","Imports","Imports","Imports","Imports","Suggests","Imports","Imports","Imports","Imports","Suggests","Imports","Imports","Imports","Suggests","Suggests","Suggests","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Depends","Imports","Suggests","Imports","Imports","Depends","Imports","Suggests","Imports","Suggests","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Suggests","Imports","Depends","Imports","Imports","Imports","Imports","Depends","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Suggests","Imports","Imports","Imports","Imports","Depends","Suggests","Imports","Imports","Imports","Imports","Imports","Suggests","Imports","Imports","Imports","Imports","Imports","Depends","Imports","Imports","Imports","Depends","Imports","Imports","Depends","Imports","Imports","Imports","Suggests","Imports","Imports","Imports","Suggests","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Depends","Imports","Imports","Imports","Suggests","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Depends","Imports","Imports","Imports","Suggests","Imports","Imports","Imports","Imports","Imports","Depends","Imports","Imports","Depends","Imports","Suggests","Suggests","Imports","Imports","Imports","Imports","Imports","Suggests","Imports","Imports","Depends","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Depends","Suggests","Suggests","Imports","Suggests","Imports","Suggests","Suggests","Imports","Imports","Imports","Imports","Imports","Imports","Depends","Imports","Suggests","Imports","Suggests","Imports","Imports","Depends","Imports","Imports","Imports","Depends","Suggests","Imports","Imports","Imports","Imports","Depends","Imports","Imports","Imports","Imports","Imports","Imports","Suggests","Depends","Depends","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Suggests","Imports","Imports","Imports","Depends","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Suggests","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Suggests","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Suggests","Imports","Imports","Depends","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Suggests","Suggests","Depends","Depends","Depends","Depends","Suggests","Suggests","Imports","Imports","Imports","Imports","Suggests","Imports","Depends","Imports","Suggests","Imports","Suggests","Imports","Suggests","Imports","Depends","Imports","Suggests","Depends","Imports","Imports","Imports","Depends","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Suggests","Imports","Imports","Suggests","Suggests","Imports","Imports","Suggests","Imports","Imports","Imports","Imports","Depends","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Suggests","Imports","Imports","Imports","Imports","Depends","Depends","Depends","Depends","Imports","Imports","Imports","Imports","Imports","Suggests","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Suggests","Suggests","Suggests","Imports","Suggests","Imports","Suggests","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Suggests","Suggests","Imports","Imports","Imports","Suggests","Imports","Suggests","Imports","Imports","Suggests","Imports","Imports","Imports","Suggests","Imports","Suggests","Suggests","Imports","Imports","Imports","Imports","Suggests","Imports","Imports","Imports","Suggests","Imports","Imports","Depends","Imports","Imports","Imports","Suggests","Suggests","Suggests","Suggests","Imports","Imports","Imports","Imports","Suggests","Imports","Imports","Imports","Depends","Imports","Imports","Imports","Depends","Imports","Imports","Suggests","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Suggests","Depends","Suggests","Imports","Imports","Imports","Imports","Imports","Suggests","Imports","Suggests","Imports","Imports","Suggests","Suggests","Imports","Imports","Imports","Imports","Imports","Suggests","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Suggests","Suggests","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Suggests","Imports","Imports","Depends","Imports","Imports","Imports","Imports","Imports","Suggests","Suggests","Imports","Suggests","Suggests","Imports","Imports","Suggests","Imports","Imports","Depends","Imports","Imports","Depends","Suggests","Suggests","Depends","Suggests","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Depends","Imports","Imports","Suggests","Suggests","Imports","Depends","Imports","Suggests","Suggests","Suggests","Imports","Imports","Imports","Suggests","Imports","Imports","Depends","Imports","Imports","Imports","Depends","Suggests","Imports","Suggests","Suggests","Imports","Suggests","Imports","Imports","Imports","Imports","Imports","Depends","Imports","Imports","Imports","Depends","Suggests","Imports","Suggests","Depends","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Suggests","Imports","Suggests","Imports","Suggests","Imports","Imports","Imports","Suggests","Imports","Suggests","Suggests","Imports","Imports","Depends","Depends","Depends","Depends","Depends","Imports","Imports","Imports","Depends","Imports","Imports","Imports","Imports","Suggests","Imports","Suggests","Imports","Imports","Depends","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Depends","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Suggests","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Suggests","Imports","Imports","Imports","Imports","Imports","Suggests","Imports","Imports","Imports","Imports","Imports","Depends","Imports","Suggests","Imports","Depends","Imports","Imports","Imports","Imports","Imports","Suggests","Imports","Imports","Depends","Depends","Depends","Imports","Suggests","Imports","Imports","Imports","Depends","Imports","Imports","Suggests","Depends","Imports","Depends","Imports","Suggests","Imports","Imports","Imports","Depends","Depends","Suggests","Imports","Imports","Imports","Imports","Depends","Imports","Imports","Imports","Depends","Imports","Imports","Depends","Imports","Imports","Imports","Suggests","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Suggests","Imports","Imports","Imports","Depends","Imports","Suggests","Imports","Imports","Depends","Depends","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Suggests","Imports","Imports","Suggests","Imports","Imports","Imports","Imports","Imports","Suggests","Imports","Imports","Imports","Imports","Imports","Depends","Imports","Imports","Imports","Imports","Imports","Suggests","Imports","Suggests","Suggests","Imports","Suggests","Imports","Imports","Suggests","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Suggests","Imports","Imports","Imports","Imports","Imports","Imports","Suggests","Suggests","Imports","Imports","Imports","Imports","Suggests","Suggests","Depends","Suggests","Imports","Suggests","Imports","Suggests","Suggests","Imports","Imports","Imports","Imports","Depends","Imports","Imports","Imports","Imports","Imports","Depends","Imports","Suggests","Imports","Imports","Imports","Imports","Imports","Imports","Depends","Imports","Suggests","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Suggests","Imports","Imports","Imports","Depends","Imports","Imports","Imports","Imports","Imports","Depends","Imports","Imports","Depends","Imports","Imports","Imports","Suggests","Suggests","Imports","Imports","Suggests","Suggests","Imports","Suggests","Imports","Imports","Imports","Imports","Depends","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Suggests","Suggests","Suggests","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Suggests","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Suggests","Imports","Imports","Imports","Suggests","Imports","Imports","Suggests","Suggests","Depends","Imports","Suggests","Depends","Imports","Imports","Depends","Suggests","Imports","Imports","Suggests","Imports","Suggests","Suggests","Suggests","Imports","Suggests","Suggests","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Suggests","Depends","Depends","Imports","Imports","Imports","Imports","Imports","Suggests","Suggests","Imports","Imports","Suggests","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Suggests","Imports","Imports","Suggests","Imports","Suggests","Imports","Depends","Suggests","Imports","Suggests","Imports","Imports","Imports","Imports","Imports","Imports","Imports","Suggests","Imports","Imports","Imports","Suggests","Imports"]},"columns":[{"id":"Package","name":"Package","type":"character"},{"id":"ggplot2_usage","name":"ggplot2 Usage","type":"character"}],"filterable":true,"searchable":true,"defaultSorted":[{"id":"Package","desc":false}],"defaultPageSize":10,"showPageSizeOptions":true,"highlight":true,"bordered":true,"striped":true,"compact":true,"dataKey":"b2f56ef1b9549cd7a695861f6d8f46bb"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p><strong>Note:</strong> Not all of these packages will be equally affected. In fact, many Bioconductor packages use <code>ggplot2</code> in straightforward ways (e.g.&nbsp;to create standard plots using <code>ggplot()</code> and <code>geom_*()</code>), which are unlikely to break. The packages most at risk are those that define custom geoms, themes, or modify internal <code>ggplot2</code> behaviour.</p>
+<p>A total of 985 packages in Bioconductor 3.21 declare <code>ggplot2</code> as a dependency: 91 in <code>Depends</code>, 722 in <code>Imports</code>, and 172 in <code>Suggests</code>.</p>
+<p>Packages listed under <code>Depends</code> or <code>Imports</code> are more likely to use <code>ggplot2</code> in their main functionality, so users and developers may see breakages. Those listed under <code>Suggests</code> typically only use <code>ggplot2</code> in optional examples or vignettes, and may not be affected unless those features are run.</p>
+<p>Developers of these packages have already been notified through the Bioconductor Zulip, the bioc-devel mailing list, and direct outreach on GitHub. Teun van den Brand from the <code>ggplot2</code> team has been contacting affected maintainers, and several packages have already been patched or are in progress.</p>
+</section>
+<section id="lessons-from-the-community-practical-tips" class="level3">
+<h3 class="anchored" data-anchor-id="lessons-from-the-community-practical-tips">Lessons from the Community: Practical Tips</h3>
+<p>Many developers have already been testing their packages and sharing their findings in the <a href="https://chat.bioconductor.org">Bioconductor Zulip</a>. These discussions have surfaced some practical tips and patterns to watch for, useful whether you’re maintaining a package or trying to understand why something might have broken:</p>
+<ul>
+<li><strong>Tests relying on internal structure may fail.</strong> Avoid checks like <code>class(p)</code> or <code>expect_type(p, "list")</code>. Use <code>expect_s3_class()</code> or helper functions like <code>is_ggplot()</code> instead.</li>
+<li><strong>Theme customisation is safer with best practices.</strong> Build from a base theme using <code>%+replace%</code>, and avoid storing theme objects in compiled code.</li>
+<li><strong>Related packages matter.</strong> Updating packages like <code>patchwork</code> or <code>plotly</code> may help if your code uses them alongside <code>ggplot2</code>.</li>
+<li><strong>Make your package easy to find and fix.</strong> Ensure your <code>DESCRIPTION</code> includes <code>URL</code> and <code>BugReports</code> fields so others can locate your repo or report issues.</li>
+</ul>
+<p>You can follow the discussion in the <a href="https://chat.bioconductor.org/">Bioconductor Zulip</a> topic: <em>Notifying Bioc maintainers (ggplot2 S7 reverse deps)</em>.</p>
+</section>
+</section>
+<section id="for-users" class="level2">
+<h2 class="anchored" data-anchor-id="for-users">For Users</h2>
+<section id="why-this-might-break-your-code" class="level3">
+<h3 class="anchored" data-anchor-id="why-this-might-break-your-code">Why This Might Break Your Code</h3>
+<p><a href="https://bioconductor.org/about/release-announcements/">Bioconductor has two scheduled releases</a> a year, and those versions are mostly fixed once released. But CRAN packages like <code>ggplot2</code> update more frequently, and those updates can occasionally break Bioconductor packages, especially if you install the new version before Bioconductor packages have had a chance to adapt. In some cases, developers can patch their packages within the current Bioconductor release. But that’s not always possible, it depends on the issue and whether the maintainer has time and capacity to update quickly.</p>
+<p>This <code>ggplot2</code> update doesn’t mean your whole installation will break. In most cases, only some plotting functionality might stop working, or plots may look different e.g.&nbsp;missing labels or themes.</p>
+</section>
+<section id="what-you-can-do" class="level3">
+<h3 class="anchored" data-anchor-id="what-you-can-do">What You Can Do</h3>
+<p>If you use <code>ggplot2</code>, either directly or via a Bioconductor package, this update may affect you.</p>
+<p>Breakages can happen if you:</p>
+<ul>
+<li>Run <code>update.packages()</code><br>
+</li>
+<li>Install a CRAN or GitHub package that pulls in the new <code>ggplot2</code><br>
+</li>
+<li>Use a package manager like <code>pak</code> that updates dependencies automatically</li>
+</ul>
+<p><strong>To avoid disruptions</strong>:</p>
+<ul>
+<li><strong>Hold off updating <code>ggplot2</code> until you’ve tested that it works with your code and the packages you use.</strong></li>
+<li><strong>You can already test with the development version, see below.</strong></li>
+</ul>
+<p>If your code is working as expected, you don’t need to act immediately. But testing ahead of the CRAN release can give you confidence that everything will continue working once <code>ggplot2</code> 4.0.0 is out.</p>
+</section>
+<section id="how-to-check-if-youre-affected" class="level3">
+<h3 class="anchored" data-anchor-id="how-to-check-if-youre-affected">How to Check If You’re Affected</h3>
+<p>The development version of ggplot2 (4.0.0) is already available for testing using <code>pak</code>. The CRAN release is expected mid-to-late July. If you’re not sure whether to update once it’s out, here’s how you can test your current setup ahead of time with <a href="https://rstudio.github.io/renv/"><code>renv</code></a> and <a href="https://pak.r-lib.org/"><code>pak</code></a>:</p>
+<ul>
+<li>Create a temporary or isolated environment using <code>renv</code></li>
+<li>Install the development version of <code>ggplot2</code>:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">install.packages</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"pak"</span>)</span>
+<span id="cb3-2">pak<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pak</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"tidyverse/ggplot2"</span>)</span></code></pre></div>
+</div>
+<ul>
+<li>Re-run your code and check that plots appear as expected</li>
+</ul>
+<p>If something breaks, you can always roll back, or just hold off updating until patches are released.</p>
+</section>
+<section id="tools-to-help" class="level3">
+<h3 class="anchored" data-anchor-id="tools-to-help">Tools to Help</h3>
+<p>To manage versions and avoid surprises:</p>
+<ul>
+<li><p>Use <code>renv</code> to snapshot your current setup:</p>
+<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Create a reproducible project setup</span></span>
+<span id="cb4-2">renv<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">init</span>()</span>
+<span id="cb4-3">renv<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">snapshot</span>()</span></code></pre></div></li>
+<li><p>When updating, use:</p>
+<div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">update.packages</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ask =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>)</span></code></pre></div></li>
+</ul>
+<p>and consider skipping <code>ggplot2</code> if you’re unsure.</p>
+</section>
+</section>
+<section id="final-notes" class="level2">
+<h2 class="anchored" data-anchor-id="final-notes">Final Notes</h2>
+<p>Thanks to everyone who has tested, reported, or patched packages ahead of this release. Special thanks to <a href="https://github.com/teunbrand">Teun van den Brand</a> and the <code>ggplot2</code> team for their proactive and open collaboration with the Bioconductor community.</p>
+<p>If you maintain a package using <code>ggplot2</code> and haven’t tested it yet, testing now can help your users, and save others from running into the same issues.</p>
+<p>Not a developer? Reporting even small glitches after updating <code>ggplot2</code> can still be useful, if the issue isn’t already known. Before posting, it’s worth checking if the problem has been reported on the package’s GitHub or discussed in Bioconductor Zulip. If it has, you can add a comment or emoji reaction to help signal it’s affecting others too. That kind of input helps maintainers prioritise and can save time for everyone.</p>
+<p>Fixes may take time to propagate, especially with so many interdependent packages, and most Bioconductor maintainers contributing alongside full academic workloads. But progress is steady, and made easier when people flag issues early.</p>
+<p>Big changes like this aren’t always smooth, but open communication goes a long way. Whether you’re maintaining a package, reporting a bug, or just keeping an eye out, it all helps. Thanks for reading, and for being part of this collaborative process.</p>
+
+
+<!-- -->
+
+</section>
+</section>
+
+<p>
+© 2025 Bioconductor. Content is published under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons CC-BY-4.0 License</a> for the text and <a href="https://opensource.org/licenses/BSD-3-Clause">BSD 3-Clause License</a> for any code. | <a href="https://www.r-bloggers.com">R-Bloggers</a>
+</p> ]]></description>
+  <category>tech-notes</category>
+  <guid>https://blog.bioconductor.org/posts/2025-07-07-ggplot2-update/</guid>
+  <pubDate>Mon, 07 Jul 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://blog.bioconductor.org/posts/2025-07-07-ggplot2-update/bioc-ggplot2-r_logos.png" medium="image" type="image/png" height="81" width="144"/>
+</item>
+<item>
+  <title>Bringing Bioconductor to Galaxy: A CoFest Collaboration</title>
+  <dc:creator>Gretta Yagudayeva</dc:creator>
+  <dc:creator>Maria Doyle</dc:creator>
+  <dc:creator>Charlotte Soneson</dc:creator>
+  <dc:creator>Marcel Ramos Pérez</dc:creator>
+  <dc:creator>Robert Castelo</dc:creator>
+  <link>https://blog.bioconductor.org/posts/2025-07-03-bioc-to-galaxy/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="bioc-galaxy-image.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://blog.bioconductor.org/posts/2025-07-03-bioc-to-galaxy/bioc-galaxy-image.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%" alt="Bioconductor and Galaxy logos"></a></p>
+</figure>
+</div>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>This blog post was written during CoFest (CollaborationFest) that took place after the <a href="https://gbcc2025.bioconductor.org/about/overview/">2025 Galaxy Bioconductor Community Conference</a>, held this year at Cold Spring Harbor Laboratory in New York. For the first time, this joint meeting brought together two of the most widely used open-source platforms in bioinformatics, Galaxy and Bioconductor, to explore how their strengths can complement each other and expand access to bioinformatics tools.</p>
+<p>In this post, we spotlight one of the most exciting sessions from the event: <strong>“Streamlining Bioinformatics: Adding Bioconductor Tools in Galaxy”</strong>, presented by <a href="https://github.com/cumbof">Fabio Cumbo</a>, <a href="https://github.com/jaidevjoshi83">Jayadev Joshi</a>, <a href="https://github.com/thepineapplepirate">Bryan Raubenolt</a>, and <a href="https://github.com/blankenberg">Daniel Blankenberg</a>. The session explored how developers can integrate Bioconductor tools into Galaxy by wrapping them within the web-based platform to expand accessibility and usability for researchers.</p>
+<p>If you missed it, you can access the full set of training materials, including slides and example files, on their <a href="https://github.com/cumbof/gbcc25_training_session">GitHub repository</a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="bioc-galaxy-image3.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="https://blog.bioconductor.org/posts/2025-07-03-bioc-to-galaxy/bioc-galaxy-image3.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Github linked here"></a></p>
+</figure>
+</div>
+<div style="text-align: center;">
+<p><em>“Streamlining Bioinformatics: Adding Bioconductor Tools in Galaxy” GitHub repo.</em></p>
+</div>
+</section>
+<section id="why-galaxy" class="level2">
+<h2 class="anchored" data-anchor-id="why-galaxy">Why Galaxy?</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="bioc-galaxy-image2.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="https://blog.bioconductor.org/posts/2025-07-03-bioc-to-galaxy/bioc-galaxy-image2.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Galaxy Home Page"></a></p>
+</figure>
+</div>
+<div style="text-align: center;">
+<p><em>Galaxy Home Page.</em></p>
+</div>
+<p><a href="https://usegalaxy.org/">Galaxy</a> is an open source, web-based platform that makes complex analyses more accessible, no coding or specialised infrastructure required. Like Bioconductor, it prioritises reproducibility and transparency, but delivers these through a user-friendly, point-and-click interface.</p>
+<p>This is especially powerful for researchers without programming experience or access to high-performance computing. A great example comes from this <a href="https://zenodo.org/records/15776929">GBCC2025 presentation</a> by Carolina Santana from UEFS in Brazil, where students analysed environmental microbiomes while working with limited infrastructure, often sharing a single laptop. Tools like Galaxy help level the playing field.</p>
+<p>Now imagine what’s possible when Bioconductor tools, some of the most robust analytical methods in genomics, can be run in Galaxy.</p>
+</section>
+<section id="why-bring-bioconductor-tools-into-galaxy" class="level2">
+<h2 class="anchored" data-anchor-id="why-bring-bioconductor-tools-into-galaxy">Why bring Bioconductor tools into Galaxy?</h2>
+<p>Bioconductor is a powerful ecosystem of R-based packages covering everything from differential expression and pathway analysis to spatial and single-cell methods. But for many researchers, these tools remain out of reach, either due to limited R experience, missing dependencies, or lack of compute resources.</p>
+<p>That’s where Galaxy comes in.</p>
+<section id="whats-in-it-for-developers" class="level3">
+<h3 class="anchored" data-anchor-id="whats-in-it-for-developers">What’s in it for developers?</h3>
+<p>Wrapping your Bioconductor tool for Galaxy can:</p>
+<ul>
+<li><p><strong>Expand access</strong> – Make your method usable by researchers without coding experience, and by educators and students in teaching settings.</p></li>
+<li><p><strong>Increase visibility</strong> – Gain exposure and potential citations as part of workflows and training materials beyond the R/Bioconductor sphere.</p></li>
+<li><p><strong>Surface hidden impact</strong> – A tool installed once on a Galaxy server may be used by hundreds. Emerging efforts to link usage metrics with Bioconductor maintainers could make this more visible in future.</p></li>
+</ul>
+<p>It may require modest effort, but the potential impact is significant.</p>
+</section>
+</section>
+<section id="wrapping-and-integrating-tools-into-galaxy" class="level2">
+<h2 class="anchored" data-anchor-id="wrapping-and-integrating-tools-into-galaxy">Wrapping and Integrating Tools into Galaxy</h2>
+<p>Wrapping a tool means making it available through Galaxy’s graphical interface so users can run it without touching the command line. There are multiple ways to do this depending on how the tool is built. Below is a gallery from the GBCC2025 training session showing the key components of a Galaxy tool wrapper:</p>
+<div id="awards-gallery" class="columns">
+<div class="column" style="width:18.5%;">
+<p><a href="bioc-galaxy-4.png" class="lightbox" data-gallery="slides-gallery"><img src="https://blog.bioconductor.org/posts/2025-07-03-bioc-to-galaxy/bioc-galaxy-4.png" class="img-fluid" style="border: 1px solid #ccc; padding: 5px;" alt="Overview of Galaxy XML tool structure, including sections for inputs, outputs, dependencies, and test data."></a></p>
+</div><div class="column" style="width:18.5%;">
+<p><a href="bioc-galaxy-5.png" class="lightbox" data-gallery="slides-gallery"><img src="https://blog.bioconductor.org/posts/2025-07-03-bioc-to-galaxy/bioc-galaxy-5.png" class="img-fluid" style="border: 1px solid #ccc; padding: 5px;" alt="Version control conventions for tool wrappers — tracking Bioconductor and Galaxy tool versions."></a></p>
+</div><div class="column" style="width:18.5%;">
+<p><a href="bioc-galaxy-6.png" class="lightbox" data-gallery="slides-gallery"><img src="https://blog.bioconductor.org/posts/2025-07-03-bioc-to-galaxy/bioc-galaxy-6.png" class="img-fluid" style="border: 1px solid #ccc; padding: 5px;" alt="Specifying software dependencies using Bioconda to ensure reproducible tool environments."></a></p>
+</div><div class="column" style="width:18.5%;">
+<p><a href="bioc-galaxy-7.png" class="lightbox" data-gallery="slides-gallery"><img src="https://blog.bioconductor.org/posts/2025-07-03-bioc-to-galaxy/bioc-galaxy-7.png" class="img-fluid" style="border: 1px solid #ccc; padding: 5px;" alt="Defining command-line prompts to run the tool logic, with parameters passed directly from the Galaxy interface."></a></p>
+</div><div class="column" style="width:18.5%;">
+<p><a href="bioc-galaxy-8.png" class="lightbox" data-gallery="slides-gallery"><img src="https://blog.bioconductor.org/posts/2025-07-03-bioc-to-galaxy/bioc-galaxy-8.png" class="img-fluid" style="border: 1px solid #ccc; padding: 5px;" alt="Advanced command configuration using conditional logic and GPU settings."></a></p>
+</div><div class="column" style="width:18.5%;">
+<p><a href="bioc-galaxy-9.png" class="lightbox" data-gallery="slides-gallery"><img src="https://blog.bioconductor.org/posts/2025-07-03-bioc-to-galaxy/bioc-galaxy-9.png" class="img-fluid" style="border: 1px solid #ccc; padding: 5px;" alt="Declaring input parameters including dataset and user-defined variables."></a></p>
+</div><div class="column" style="width:18.5%;">
+<p><a href="bioc-galaxy-10.png" class="lightbox" data-gallery="slides-gallery"><img src="https://blog.bioconductor.org/posts/2025-07-03-bioc-to-galaxy/bioc-galaxy-10.png" class="img-fluid" style="border: 1px solid #ccc; padding: 5px;" alt="Grouping input parameters by section and defining allowed values."></a></p>
+</div><div class="column" style="width:18.5%;">
+<p><a href="bioc-galaxy-11.png" class="lightbox" data-gallery="slides-gallery"><img src="https://blog.bioconductor.org/posts/2025-07-03-bioc-to-galaxy/bioc-galaxy-11.png" class="img-fluid" style="border: 1px solid #ccc; padding: 5px;" alt="Defining output files and formats for result datasets."></a></p>
+</div><div class="column" style="width:18.5%;">
+<p><a href="bioc-galaxy-12.png" class="lightbox" data-gallery="slides-gallery"><img src="https://blog.bioconductor.org/posts/2025-07-03-bioc-to-galaxy/bioc-galaxy-12.png" class="img-fluid" style="border: 1px solid #ccc; padding: 5px;" alt="Tool testing: providing test input/output files to validate reproducibility."></a></p>
+</div><div class="column" style="width:18.5%;">
+<p><a href="bioc-galaxy-13.png" class="lightbox" data-gallery="slides-gallery"><img src="https://blog.bioconductor.org/posts/2025-07-03-bioc-to-galaxy/bioc-galaxy-13.png" class="img-fluid" style="border: 1px solid #ccc; padding: 5px;" alt="Adding citations to acknowledge upstream software and tools used."></a></p>
+</div><div class="column" style="width:18.5%;">
+<p><a href="bioc-galaxy-14.png" class="lightbox" data-gallery="slides-gallery"><img src="https://blog.bioconductor.org/posts/2025-07-03-bioc-to-galaxy/bioc-galaxy-14.png" class="img-fluid" style="border: 1px solid #ccc; padding: 5px;" alt="Running Planemo lint on a Galaxy tool"></a></p>
+</div><div class="column" style="width:18.5%;">
+<p><a href="bioc-galaxy-15.png" class="lightbox" data-gallery="slides-gallery"><img src="https://blog.bioconductor.org/posts/2025-07-03-bioc-to-galaxy/bioc-galaxy-15.png" class="img-fluid" style="border: 1px solid #ccc; padding: 5px;" alt="Running Planemo test on a Galaxy tool"></a></p>
+</div><div class="column" style="width:18.5%;">
+<p><a href="bioc-galaxy-16.png" class="lightbox" data-gallery="slides-gallery"><img src="https://blog.bioconductor.org/posts/2025-07-03-bioc-to-galaxy/bioc-galaxy-16.png" class="img-fluid" style="border: 1px solid #ccc; padding: 5px;" alt="Manually adding tools to Galaxy via tool_conf.xml"></a></p>
+</div>
+</div>
+<div style="text-align: center;">
+<p><em>Slides from the GBCC2025 training session showing the basics of a Galaxy wrapper.</em></p>
+</div>
+<p>The presenters also shared a basic “Hello World” tool to demonstrate how Galaxy runs tools behind the scenes. This hands-on demo gave participants a practical foundation, and you can try it too using the <a href="https://github.com/cumbof/gbcc25_training_session/blob/main/Deck.pptx">training slide deck</a>.</p>
+</section>
+<section id="bioconductor-package-example-gsva-in-galaxy---coming-soon" class="level2">
+<h2 class="anchored" data-anchor-id="bioconductor-package-example-gsva-in-galaxy---coming-soon">Bioconductor package example (GSVA) in Galaxy - coming soon</h2>
+<p>With expert input from GSVA developer Robert Castelo, we’re currently working on wrapping the Bioconductor package <a href="https://www.bioconductor.org/packages/release/bioc/html/GSVA.html">GSVA (Gene Set Variation Analysis)</a> in Galaxy. Widely used for functional enrichment analysis, GSVA will serve as a concrete example of how to bring Bioconductor methods into Galaxy.</p>
+<p>We’ve opened a <a href="https://github.com/rcastelo/GSVA/pull/247">draft pull request for the GSVA wrapper</a> to share our early work and invite feedback. Testing and refinement are ongoing, we’ll share what we learn in an upcoming follow-up post.</p>
+</section>
+<section id="part-of-cofest-2025" class="level2">
+<h2 class="anchored" data-anchor-id="part-of-cofest-2025">Part of CoFest 2025</h2>
+<p>This work was part of <a href="https://gbcc2025.bioconductor.org/cofest/overview/">CoFest 2025</a>, a hands-on collaboration event held after GBCC on June 27–28. <strong>CoFest was more than a hackathon</strong>—it was a friendly and productive space for Galaxy and Bioconductor developers to connect and build things together.</p>
+<p>At CoFest, teams focused on various software development projects like workflow integration, parameter handling, app development, interface design, and more. You can explore this year’s CoFest projects in the community <a href="https://docs.google.com/presentation/d/1zSIr1Z1eUzsCf0q5lah0mHziACqMLhb2F0HFkT0xoXs/edit?slide=id.g36b0fb0613a_2_6#slide=id.g36b0fb0613a_2_6">slide deck</a>!</p>
+<p>Our group—Maria, Gretta, Charlotte, and Marcel—worked in person at CoFest, supported remotely by Robert Castelo, who initiated the idea for this blog post and provided expert input on the GSVA wrapper. It was Gretta’s first time contributing to CoFest, and she jumped right in, bringing clear, thoughtful edits and valuable input. We also began experimenting with using LLMs to draft wrappers, an idea sparked by conversations with <a href="https://github.com/bwlang">Brad Langhorst</a> and <a href="https://github.com/dannon">Dannon Baker</a>. The initial GSVA wrapper was created with Gemini and will be refined in the coming weeks.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="cofest.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-17"><img src="https://blog.bioconductor.org/posts/2025-07-03-bioc-to-galaxy/cofest.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="CoFest 2025 team at work"></a></p>
+</figure>
+</div>
+<div style="text-align: center;">
+<p><em>CoFest 2025 Day 2 wrap-up.</em></p>
+</div>
+</section>
+<section id="whats-next" class="level2">
+<h2 class="anchored" data-anchor-id="whats-next">What’s next?</h2>
+<ul>
+<li><p><strong>Guide for Bioconductor developers</strong> - We’re creating a worked example wrapping GSVA in Galaxy, exploring different approaches (including Gemini CLI). Once we’ve refined the process, we’ll share a step-by-step guide, tips, and lessons learned. Follow the <a href="https://github.com/rcastelo/GSVA/pull/247">draft pull request</a> to stay in the loop.</p></li>
+<li><p><strong>Shiny apps in Galaxy</strong> - Marcel Ramos is experimenting with embedding <a href="https://github.com/bioconductor/BiocHubsShiny/tree/galaxy_wrapper">BiocHubsShiny within Galaxy</a> and building more Bioconductor-friendly wrapper templates. If you’ve explored similar ideas, get in touch.</p></li>
+<li><p><strong>Linking usage to Bioconductor maintainers</strong> - During CoFest, <a href="https://github.com/GarethPrice-Aus">Gareth Price</a> from Galaxy Australia proposed adding a <em>maintainer</em> field to Galaxy tool XML (<a href="https://github.com/galaxyproject/galaxy/issues/20583">see GitHub issue</a>). This could help surface usage that isn’t visible through download stats, support community recognition, and feed into reporting for grants or tenure.</p></li>
+</ul>
+<p>If you’re curious about any of this work or thinking of wrapping your own tool, pop into the #galaxy channel on <a href="https://chat.bioconductor.org">chat.bioconductor.org</a>. We’re still figuring things out ourselves, and would love to share ideas, troubleshoot together, and learn along the way.</p>
+
+
+</section>
+
+<p>
+© 2025 Bioconductor. Content is published under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons CC-BY-4.0 License</a> for the text and <a href="https://opensource.org/licenses/BSD-3-Clause">BSD 3-Clause License</a> for any code. | <a href="https://www.r-bloggers.com">R-Bloggers</a>
+</p> ]]></description>
+  <category>education</category>
+  <category>collaborations</category>
+  <category>galaxy</category>
+  <guid>https://blog.bioconductor.org/posts/2025-07-03-bioc-to-galaxy/</guid>
+  <pubDate>Thu, 03 Jul 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://blog.bioconductor.org/posts/2025-07-03-bioc-to-galaxy/bioc-galaxy-image.jpeg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Bioconductor Training partners with Physalia Courses</title>
+  <dc:creator>Maria Doyle, Charlotte Soneson, and Laurent Gatto</dc:creator>
+  <link>https://blog.bioconductor.org/posts/2025-06-20-physalia-collaboration/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://blog.bioconductor.org/posts/2025-06-20-physalia-collaboration/bioc-physalia.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%" alt="Bioconductor and Physalia logos"></p>
+</figure>
+</div>
+<p>We’re pleased to announce a new collaboration between the <a href="https://training.bioconductor.org/">Bioconductor Training Committee</a> and <a href="https://www.physalia-courses.org/">Physalia Courses</a>, aimed at expanding access to high-quality training in bioinformatics and computational biology.</p>
+<p>This partnership builds on shared goals around education, community engagement, and inclusivity. It was shaped through early discussions within the Bioconductor community, including contributions from Fabricio Almeida-Silva, a Bioconductor community member who has taught several Physalia courses. We’re also grateful to Carlo Pecoraro, Director of Physalia Courses, who welcomed the idea of a partnership and helped bring it to fruition.</p>
+<p>You can explore Bioconductor–Physalia courses on our <a href="https://training.bioconductor.org/collaborations/physalia">collaboration page</a>.</p>
+<section id="what-this-collaboration-looks-like" class="level2">
+<h2 class="anchored" data-anchor-id="what-this-collaboration-looks-like">What This Collaboration Looks Like</h2>
+<p><strong>Instructor Collaboration</strong><br>
+The Training Committee will identify and support instructors to co-develop and deliver courses on topics of shared interest. Some of these may be newly designed courses to address emerging needs in the community.</p>
+<p><strong>Joint Visibility</strong><br>
+Co-branded Bioconductor/Physalia courses will be promoted through Bioconductor’s communication channels and featured at events such as the <a href="https://eurobioc2025.bioconductor.org/">EuroBioC2025 conference</a>, where the collaboration will also be highlighted in a lightning talk.</p>
+<p><strong>Support and Sponsorship</strong><br>
+Physalia will manage course logistics and administration, and will also sponsor Bioconductor events such as EuroBioC to help amplify our shared mission.</p>
+<p><strong>Impact Tracking</strong><br>
+Physalia will share course participation and outcome data with the Training Committee to help assess the reach and effectiveness of our joint efforts.</p>
+<p><strong>Expanding Access</strong><br>
+To support inclusivity, Physalia will offer two free seats per eligible Bioconductor course to participants from low- or middle-income countries. These seats will be allocated by the Bioconductor Training Committee. Researchers based in eligible countries are warmly encouraged to <a href="https://forms.gle/3XEJJaKizJvuX9tu6">apply here</a> for a free place. This is a great opportunity to gain hands-on training and connect with the broader bioinformatics community.</p>
+</section>
+<section id="looking-ahead" class="level2">
+<h2 class="anchored" data-anchor-id="looking-ahead">Looking Ahead</h2>
+<p>The collaboration with Physalia has officially begun, marked by their sponsorship of the <a href="https://eurobioc2025.bioconductor.org/">EuroBioC2025 conference</a>. This partnership will run for one year, with the option to renew. We’re looking forward to seeing how it helps us reach more learners, support more researchers, and strengthen the global bioinformatics community.</p>
+<p>We’ll be sharing more course announcements soon and we hope you’ll join us in spreading the word or getting involved.</p>
+
+
+</section>
+
+<p>
+© 2025 Bioconductor. Content is published under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons CC-BY-4.0 License</a> for the text and <a href="https://opensource.org/licenses/BSD-3-Clause">BSD 3-Clause License</a> for any code. | <a href="https://www.r-bloggers.com">R-Bloggers</a>
+</p> ]]></description>
+  <category>education</category>
+  <category>collaborations</category>
+  <guid>https://blog.bioconductor.org/posts/2025-06-20-physalia-collaboration/</guid>
+  <pubDate>Fri, 20 Jun 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://blog.bioconductor.org/posts/2025-06-20-physalia-collaboration/bioc-physalia.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Bioconductor is Moving from Slack to Zulip for Community Chat</title>
+  <dc:creator>Maria Doyle</dc:creator>
+  <link>https://blog.bioconductor.org/posts/2025-05-29-slack-to-zulip/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Bioconductor’s community chat is moving from Slack to <strong>Zulip</strong> on <strong>Monday 2 June 2025</strong>. The transition ensures long-term access to discussions and better reflects our open-source values.</p>
+<hr>
+<section id="why-were-moving-to-zulip" class="level2">
+<h2 class="anchored" data-anchor-id="why-were-moving-to-zulip">Why We’re Moving to Zulip</h2>
+<p>Our Slack Pro subscription ends on Sunday 1 June. Switching to the free tier would mean losing older messages — including valuable conversations, decisions, and shared knowledge. To preserve this history and stay true to our open principles, we’re migrating to <a href="https://zulip.com/">Zulip</a>.</p>
+<p>Zulip is already trusted by many open-source and academic communities. Its structured, topic-based approach makes it easier to follow and return to discussions — a good match for Bioconductor’s distributed, collaborative nature.</p>
+<p>Thanks to Zulip’s <a href="https://zulip.com/for/open-source/">open-source sponsorship programme</a>, Bioconductor receives access to the Standard plan at no cost, enabling high-quality, sustainable communication.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To help preserve Bioconductor’s history, messages from public Slack channels will be migrated to Zulip.</p>
+<p>We’re also exploring ways to improve long-term access to community discussions — such as public-read Zulip channels or archiving — in line with open-source norms. Any future changes will be clearly communicated and shaped by community input.</p>
+<p>Questions? Contact <em>maria.doyle [at] ul [dot] ie</em>.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="why-zulip-is-a-good-fit" class="level2">
+<h2 class="anchored" data-anchor-id="why-zulip-is-a-good-fit">Why Zulip is a Good Fit</h2>
+<ul>
+<li><strong>Structured conversations</strong>: Topics within channels keep threads focused and easy to revisit.<br>
+</li>
+<li><strong>Full history</strong>: No 90-day limit — all messages remain accessible.<br>
+</li>
+<li><strong>Open source</strong>: Zulip aligns with Bioconductor’s mission and values.<br>
+</li>
+<li><strong>Markdown and LaTeX</strong>: Ideal for technical and academic exchanges.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://blog.bioconductor.org/posts/2025-05-29-slack-to-zulip/bioconductor-zulip-screenshot.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Screenshot of Bioconductor’s Zulip space in testing. Channels are shown on the left, with topic-based threads in the <code>#general</code> channel.</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="how-to-get-started" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-get-started">How to Get Started</h2>
+<ol type="1">
+<li><strong>Final Slack export</strong>: We’ll export public Slack data on <strong>Friday 30 May</strong>.<br>
+</li>
+<li><strong>Join Zulip</strong>:
+<ul>
+<li>If you used your email on Bioconductor Slack, you’ll receive an invite.</li>
+<li>No need to create a new account — click “Forgot your password?” to set it.</li>
+</ul></li>
+<li><strong>New to Bioconductor Chat?</strong> Join us from <strong>Monday 2 June</strong> at <a href="https://chat.bioconductor.org">https://chat.bioconductor.org</a>.<br>
+</li>
+<li><strong>Prefer using an app?</strong> Zulip is available for <a href="https://zulip.com/apps/">desktop and mobile</a> on all major platforms.</li>
+</ol>
+<hr>
+</section>
+<section id="tips-for-using-zulip" class="level2">
+<h2 class="anchored" data-anchor-id="tips-for-using-zulip">Tips for Using Zulip</h2>
+<ul>
+<li><strong>Start a new topic</strong> for each subject — it keeps conversations clear.<br>
+→ <a href="https://zulip.com/help/introduction-to-topics">Intro to topics</a></li>
+<li><strong>Admins can help</strong> move or rename threads to keep things tidy.</li>
+<li><strong>Use Markdown and LaTeX</strong> for formatting and equations.</li>
+</ul>
+<p>💡 Want more tips? Explore our community-sourced <a href="https://docs.google.com/document/d/1BY_eWPRE4jvUcw1Uzem_obn6ryN7tmApWfEU0lxP63o/edit?usp=sharing">Zulip Tips &amp; Tricks for Bioconductor</a> guide.</p>
+<hr>
+</section>
+<section id="whats-next" class="level2">
+<h2 class="anchored" data-anchor-id="whats-next">What’s Next</h2>
+<ul>
+<li><strong>Slack retires on 1 June</strong>: It will revert to the free tier. A read-only archive may remain accessible for a limited time.<br>
+</li>
+<li><strong>Zulip launches on 2 June</strong>: You can join anytime — but we recommend getting set up early to stay in the loop.<br>
+</li>
+<li><strong>Need help or have feedback?</strong> Post in <code>#general</code> on Zulip or email <em>maria.doyle [at] ul [dot] ie</em>.</li>
+</ul>
+<p>We hope you’ll find Zulip a welcoming space — built for open communities like ours.</p>
+<p><em>Edited in June 2025: Added link to community-sourced Tips doc and updated link to Bioconductor Zulip.</em></p>
+
+
+</section>
+
+<p>
+© 2025 Bioconductor. Content is published under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons CC-BY-4.0 License</a> for the text and <a href="https://opensource.org/licenses/BSD-3-Clause">BSD 3-Clause License</a> for any code. | <a href="https://www.r-bloggers.com">R-Bloggers</a>
+</p> ]]></description>
+  <category>bioconductor</category>
+  <guid>https://blog.bioconductor.org/posts/2025-05-29-slack-to-zulip/</guid>
+  <pubDate>Thu, 29 May 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://blog.bioconductor.org/posts/2025-05-29-slack-to-zulip/zulip-org-logo.svg" medium="image" type="image/svg+xml"/>
+</item>
+<item>
+  <title>Ask and you shall receive</title>
+  <dc:creator>Vince Carey</dc:creator>
+  <link>https://blog.bioconductor.org/posts/2025-05-26-ask/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="in-the-beginning" class="level1">
+<h1>In the beginning …</h1>
+<p>… there was a 9-track tape shipped from Bell Labs. <a href="https://en.wikipedia.org/wiki/S_(programming_language)">S</a> would be installed for “unix”. Extensions could be programmed in Fortran. I started using this around 1985.</p>
+<p>S REPORT presaged Sweave and knitr: <a href="https://en.wikipedia.org/wiki/Troff">troff</a>, <a href="https://en.wikipedia.org/wiki/Eqn_(software)">eqn</a>, <a href="https://en.wikipedia.org/wiki/PIC_(markup_language)">pic</a> could be interlarded with S computations.</p>
+<p>Here’s a taste of inputs and outputs for S REPORT. In the left hand panel of Figure 1, .PP starts a paragraph, .EQ and .EN offset an equation markup, and backslash-left-bracket is used to start a block of S code that will be executed when the report is compiled. A right-bracket closes the code block. This markup generates the second paragraph in the right hand panel.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://blog.bioconductor.org/posts/2025-05-26-ask/combo.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 1. Left panel: troff, eqn, and S code for processing by S REPORT. Right panel: output including a table for which code is not shown. From <span class="citation" data-cites="becker1984s">Becker and Chambers (1984)</span></figcaption>
+</figure>
+</div>
+</section>
+<section id="fast-forward" class="level1">
+<h1>Fast forward:</h1>
+<p>In May 2002, Bioconductor 1.0 was released with 15 packages, developed for version 1.5 of R. By April of 2025 the collection has grown to over 2300 software packages, developed for version 4.5 of R. To give a sense of the components and processes in play, I made a sketch:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://blog.bioconductor.org/posts/2025-05-26-ask/crazy.jpg" class="img-fluid figure-img"></p>
+<figcaption>Figure 2. Author’s agitated overview of Bioconductor in early 2024. The motivation was, in part, an encounter with the notion that LaTeX might be replaced by Typst.</figcaption>
+</figure>
+</div>
+<p>The “infinity signs” are used with “refresh” circular arrows to indicate that the associated resources can be modified at any time, while Bioconductor’s release is nominally “stable” for six months.</p>
+</section>
+<section id="in-sum" class="level1">
+<h1>In sum</h1>
+<p>Figure 2 depicts many aspects of Bioconductor that are invisible to users <em>as they do their work</em>. “Ask and you shall receive” is not an overt commitment of Bioconductor’s core. I found it interesting to reflect on the ways in which new capabilities are introduced into the system. The user experience, particularly for those doing statistical analysis of numerical data, is not dramatically different from that of the user of S in the 1980s. The number of technologies involved, and the maintenance efforts required for those technologies and their interactions, is much greater.</p>
+<p>It is natural, in my view, to refer to Bioconductor as an ecosystem, as it forms a home for many beings and processes engaged in biological data science. “Ecosystem”, for me, leads to “ecology”, and in my view, ecology is not just a study of interactions between beings and their environments, but includes a normative component. An ecology of Bioconductor will address how to manage its growth and change, identifying principles for expanding along new frontiers, for forming new connections, and for shedding materials that have lost value.</p>
+</section>
+<section id="upcoming" class="level1">
+<h1>Upcoming</h1>
+<p>My purpose here is to set the stage for a series of posts examining some relatively new but underappreciated aspects of the project, including</p>
+<ul>
+<li>biocViews, EDAM, and the description of Bioconductor resources</li>
+<li>approaching GPU computing for genomics with Bioconductor</li>
+<li>containers and binaries to speed environment creation</li>
+<li>subcommunity dynamics: scverse, spatialdata, Bioconductor … how to relate?
+<ul>
+<li>python interop</li>
+<li>OME-Zarr</li>
+</ul></li>
+<li>values derived from excursions involving WebAssembly</li>
+<li>“vendoring” sources of important libraries</li>
+<li>curating genomic annotation</li>
+<li>large arrays: sparsity and indexing</li>
+</ul>
+</section>
+<section id="reference" class="level1">
+
+
+
+
+</section>
+
+<p>
+© 2025 Bioconductor. Content is published under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons CC-BY-4.0 License</a> for the text and <a href="https://opensource.org/licenses/BSD-3-Clause">BSD 3-Clause License</a> for any code. | <a href="https://www.r-bloggers.com">R-Bloggers</a>
+</p><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Reference</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
+<div id="ref-becker1984s" class="csl-entry">
+Becker, Richard A., and John M. Chambers. 1984. <em>S: An Interactive Environment for Data Analysis and Graphics</em>. Pacific Grove, CA: Wadsworth.
+</div>
+</div></section></div> ]]></description>
+  <category>bioconductor-evolution</category>
+  <category>education</category>
+  <guid>https://blog.bioconductor.org/posts/2025-05-26-ask/</guid>
+  <pubDate>Mon, 26 May 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://blog.bioconductor.org/posts/2025-05-26-ask/crazy.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Bioconductor in Africa: Highlights from Our First In-Person Course</title>
+  <dc:creator>Maria Doyle</dc:creator>
+  <link>https://blog.bioconductor.org/posts/2025-05-21-kenya-course/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>In March 2025, Bioconductor marked an exciting milestone—our first in-person course on the African continent. Hosted by the International Institute of Tropical Agriculture (IITA) in Nairobi, this five-day workshop brought together 32 researchers for hands-on training in genomic data analysis using R and Bioconductor.</p>
+<p>With contributions from local and international instructors, the course highlighted the power of open-source tools to bridge global research gaps and foster community-led training initiatives.</p>
+<section id="what-we-taught" class="level2">
+<h2 class="anchored" data-anchor-id="what-we-taught">What We Taught</h2>
+<p>The course covered:</p>
+<ul>
+<li><strong>Introduction to R and Bioconductor</strong> (March 24–25): Data handling, visualisation, and reproducible workflows for genomic data.</li>
+<li><strong>RNA-seq analysis</strong> (March 26–27): Differential expression analysis using real datasets.</li>
+<li><strong>Bring Your Own Data Day</strong> (March 28): Participants applied their new skills to their own research questions with guidance from instructors.</li>
+</ul>
+</section>
+<section id="learning-community" class="level2">
+<h2 class="anchored" data-anchor-id="learning-community">Learning &amp; Community</h2>
+<p>Sessions were delivered by a diverse team, including:</p>
+<ul>
+<li>Laurent Gatto (UCLouvain, Belgium)</li>
+<li>Michael Landi (IITA, Kenya)</li>
+<li>Fabricio Almeida-Silva (VIB, Belgium)</li>
+<li>Laurah Ondari (IITA, Kenya)</li>
+<li>Zedias Chikwambi (AiBST, Zimbabwe)</li>
+</ul>
+<p>We received 145 applications for 32 places, underscoring strong regional demand for this type of training. Participants came from over a dozen institutions, primarily across East Africa, including Egerton University, ILRI, KALRO, ICIPE, University of Nairobi, and University of Ghana. Most were MSc or PhD students, alongside postdocs, lecturers, and research scientists from institutes working in genomics, infectious disease, and agriculture—highlighting the cross-disciplinary nature of bioinformatics training and its relevance to <a href="https://www.who.int/health-topics/one-health">One Health</a> efforts across human, animal, and environmental health.</p>
+<p>The course was deeply interactive, with hands-on coding exercises, breakout support, and flexible pacing. A highlight was the learner-centred revision group, which started small but quickly grew in demand—prompting us to hire a second room mid-course!</p>
+<p>Outside the classroom, participants enjoyed a lab tour of the ILRI campus, as well as informal networking during lunch, coffee breaks, and a BBQ on the final evening.</p>
+<div id="gallery-instructors" class="columns">
+<div class="column" style="width:20%;">
+<p><a href="laurent.jpeg" class="lightbox" data-gallery="gallery-instructors"><img src="https://blog.bioconductor.org/posts/2025-05-21-kenya-course/laurent.jpeg" class="img-fluid" style="padding-right: 1px;" alt="Laurent Gatto teaching"></a></p>
+</div><div class="column" style="width:20%;">
+<p><a href="michael.jpeg" class="lightbox" data-gallery="gallery-instructors"><img src="https://blog.bioconductor.org/posts/2025-05-21-kenya-course/michael.jpeg" class="img-fluid" style="padding-right: 1px;" alt="Michael Landi teaching"></a></p>
+</div><div class="column" style="width:20%;">
+<p><a href="laurah.jpeg" class="lightbox" data-gallery="gallery-instructors"><img src="https://blog.bioconductor.org/posts/2025-05-21-kenya-course/laurah.jpeg" class="img-fluid" style="padding-right: 1px;" alt="Laurah Ondari teaching"></a></p>
+</div><div class="column" style="width:20%;">
+<p><a href="fabricio.jpeg" class="lightbox" data-gallery="gallery-instructors"><img src="https://blog.bioconductor.org/posts/2025-05-21-kenya-course/fabricio.jpeg" class="img-fluid" style="padding-right: 1px;" alt="Fabricio Almeida-Silva teaching"></a></p>
+</div><div class="column" style="width:20%;">
+<p><a href="zedias.jpeg" class="lightbox" data-gallery="gallery-instructors"><img src="https://blog.bioconductor.org/posts/2025-05-21-kenya-course/zedias.jpeg" class="img-fluid" style="padding-right: 1px;" alt="Zedias Chikwambi teaching"></a></p>
+</div><div class="figure-caption" style="text-align: left; font-size: 90%;">
+<p>From left to right: Laurent Gatto, Michael Landi, Laurah Ondari, Fabricio Almeida-Silva, and Zedias Chikwambi, teaching at the Nairobi course</p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="group-photo.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Participants at the Bioconductor Nairobi course"><img src="https://blog.bioconductor.org/posts/2025-05-21-kenya-course/group-photo.jpeg" class="img-fluid figure-img" alt="Participants at the Bioconductor Nairobi course"></a></p>
+<figcaption>Participants at the Bioconductor Nairobi course</figcaption>
+</figure>
+</div>
+</section>
+<section id="participant-voices" class="level2">
+<h2 class="anchored" data-anchor-id="participant-voices">Participant Voices</h2>
+<p><strong>Impact snapshot</strong>:<br>
+- 100% would recommend the course<br>
+- 97% rated it “Excellent” or “Very good”<br>
+- All participants reported an improvement in their R skills, with most rating it as significant (5 out of 5)<br>
+- Beginners and intermediates alike benefited, with average improvement scores of 4.4 and 4.8 respectively (on a 5-point scale)<br>
+- 25 expressed interest in contributing to future Bioconductor Africa activities</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="feedback-summary.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Participant feedback summary"><img src="https://blog.bioconductor.org/posts/2025-05-21-kenya-course/feedback-summary.png" class="img-fluid figure-img" alt="Participant feedback summary"></a></p>
+<figcaption>Participant feedback summary</figcaption>
+</figure>
+</div>
+<p>Of the 32 participants, 29 completed the feedback survey — and 100% said they would recommend the course. Most rated it Excellent and reported a significant improvement in their R skills, especially among beginners. Participants praised the interactive teaching, patient instructors, and the split-track format, which allowed learners to progress at their own pace. Several suggested extending the course to two weeks and including accommodation support to enhance learning and peer interaction. Here’s what a few had to say:</p>
+<blockquote class="blockquote">
+<p>“I loved how helpful and knowledgeable the instructors were. They did a great job in giving me insight into the meanings and purpose of the codes. I also appreciated the fact that the biological and statistical significance behind differential expression was explained. Overall, this course greatly enhanced my knowledge of differential expression analysis and R programming.”</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>“The hands-on experience with real datasets and comprehensive coverage of various Bioconductor packages relevant for data analysis. The instructors were highly knowledgeable, explaining complex topics in a clear and engaging way. I really appreciated the interactiveness of all the sessions and exercises that reinforced key concepts in bioinformatics and data analysis. Overall the materials were well organised and structured, making it easy to revisit and apply what I learned.”</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>“The learner-centred approach was really helpful. I was particularly happy with the special room/clinic sessions that greatly guided me from a level of no experience with R to where I am now; I can gladly manipulate some functions in R and I am most grateful.”</p>
+</blockquote>
+<p>There was strong interest in future topics such as:</p>
+<ul>
+<li>Microbiome and metagenomics</li>
+<li>Genomic variation analysis, including SNPs and CNVs</li>
+<li>Linux and R integration</li>
+<li>Single-cell omics and machine learning</li>
+<li>Graph theory and chemoinformatics</li>
+</ul>
+<p>Importantly, 25 participants expressed interest in contributing to the Bioconductor Africa community through teaching, webinars, or organising events—highlighting the workshop’s role in building local capacity and leadership.</p>
+</section>
+<section id="social-media-highlights" class="level2">
+<h2 class="anchored" data-anchor-id="social-media-highlights">Social Media Highlights</h2>
+<p>Participants also shared their excitement online:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="social-media.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Social media posts during and after the workshop (shared with permission)"><img src="https://blog.bioconductor.org/posts/2025-05-21-kenya-course/social-media.jpg" class="img-fluid figure-img" alt="Social media posts during and after the workshop (shared with permission)"></a></p>
+<figcaption>Social media posts during and after the workshop (shared with permission)</figcaption>
+</figure>
+</div>
+</section>
+<section id="lessons-learned" class="level2">
+<h2 class="anchored" data-anchor-id="lessons-learned">Lessons Learned</h2>
+<p>A key insight from this workshop was the value of a flexible, split-track design. As the course progressed, it became clear that some participants—especially those newer to R—benefited from revisiting earlier material at a slower pace.</p>
+<p>To support this, we introduced a revision track during Days 3–5, focused on reinforcing the Introduction to R and Bioconductor lessons. Learners could move between the tracks based on their comfort level. This approach allowed novice users to build confidence without feeling left behind, while more experienced learners continued with RNA-seq material and prepared their own data for the final “Bring Your Own Data” day.</p>
+<p>The feedback was overwhelmingly positive. The revision group began with five participants and grew to ten by the end of the week. Although we hadn’t initially planned for this format, we secured a second room to support it—something we’ll now plan for from the outset.</p>
+</section>
+<section id="collaborators-acknowledgements" class="level2">
+<h2 class="anchored" data-anchor-id="collaborators-acknowledgements">Collaborators &amp; Acknowledgements</h2>
+<p>This course was co-organised by <strong>Maria Doyle</strong> (University of Limerick, Lead Organiser) and <strong>Trushar Shah</strong> (IITA, Local Host), with support from <strong>Aedín Culhane</strong> (University of Limerick), <strong>Charlotte Soneson</strong> (Friedrich Miescher Institute for Biomedical Research), <strong>Laurent Gatto</strong> (Institut de Duve, UCLouvain), <strong>Umar Ahmad</strong> (Bauchi State University / Africa CDC), and <strong>Zedias Chikwambi</strong> (African Institute of Biomedical Sciences and Technology), who contributed through regular planning meetings.</p>
+<p>The workshop was supported by a grant from the Chan Zuckerberg Initiative EOSS Cycle 6, one of five Bioconductor projects funded in this round to support training, developer infrastructure, and community engagement. <a href="https://blog.bioconductor.org/posts/2024-07-12-czi-eoss6-grants/">Read about the projects funded</a>. Maria’s travel was supported by Erasmus+ funding via UL Global.</p>
+</section>
+<section id="whats-next" class="level2">
+<h2 class="anchored" data-anchor-id="whats-next">What’s Next?</h2>
+<p>Planning is already underway for a West Africa workshop. One East Africa participant was so inspired by the experience that they’re now working to host the next event at their home institute in West Africa. We’ll be applying the lessons learned in Nairobi from the start—like budgeting for a second room to support the split-track structure.</p>
+<p>We’re also exploring potential collaborations with the <a href="https://bioinformaticsinstitute.africa">African Bioinformatics Institute (ABI)</a>, a new pan-African initiative launched in 2024 and funded by Wellcome and the Chan Zuckerberg Initiative to strengthen genomics and bioinformatics research across the continent. In parallel, we’re keen to connect with Bioconductor instructors and contributors on upcoming topics of interest—such as microbiome analysis, single-cell omics, and Linux integration—through future workshops, webinars, or community-led sessions. If you’re interested, feel free to get in touch: maria.doyle [at] ul [dot] ie.</p>
+</section>
+<section id="get-involved" class="level2">
+<h2 class="anchored" data-anchor-id="get-involved">Get Involved</h2>
+<p>Interested in helping grow Bioconductor’s training network in Africa? Reach out or explore our open training resources:</p>
+<ul>
+<li><a href="https://github.com/lgatto/202503-Bioconductor-Kenya">📘 Course materials</a> — includes links to the lessons, data, and original course info page</li>
+<li><a href="https://training.bioconductor.org/">🌍 About Bioconductor training</a></li>
+</ul>
+<p>Want to stay in the loop? <a href="https://training.bioconductor.org/workshops/2025-03-Nairobi/index.html#%F0%9F%8C%8D-join-the-bioconductor-africa-community">Join the Bioconductor Africa mailing list</a> or follow us on social media to hear about future opportunities.</p>
+<p>Stay connected:</p>
+<ul>
+<li><a href="https://www.linkedin.com/company/bioconductor/">LinkedIn</a><br>
+</li>
+<li><a href="https://genomic.social/@bioconductor">Mastodon</a><br>
+</li>
+<li><a href="https://bsky.app/profile/bioconductor.bsky.social">Bluesky</a></li>
+</ul>
+
+
+</section>
+
+<p>
+© 2025 Bioconductor. Content is published under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons CC-BY-4.0 License</a> for the text and <a href="https://opensource.org/licenses/BSD-3-Clause">BSD 3-Clause License</a> for any code. | <a href="https://www.r-bloggers.com">R-Bloggers</a>
+</p> ]]></description>
+  <category>education</category>
+  <category>events</category>
+  <category>Carpentries</category>
+  <category>CZI</category>
+  <guid>https://blog.bioconductor.org/posts/2025-05-21-kenya-course/</guid>
+  <pubDate>Wed, 21 May 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://blog.bioconductor.org/posts/2025-05-21-kenya-course/group-photo.jpeg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Outreachy December 2024 Interns with Bioconductor</title>
+  <dc:creator>Kate Rasheed</dc:creator>
+  <dc:creator>Divine Aleru</dc:creator>
+  <link>https://blog.bioconductor.org/posts/2025-04-23-outreachy-interns-experience/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Open source provides an accessible platform for individuals to develop and refine their skills while collaborating on real-world projects. For tech enthusiasts with little to no experience, contributing to open-source projects is a great way to gain hands-on experience, learn from experts, and become part of a global community. One program that actively supports newcomers in open source is <a href="https://www.outreachy.org">Outreachy</a>.</p>
+<p>Outreachy is a paid, remote internship program designed to support individuals who have faced bias or discrimination in any form. Its goal is to create an inclusive environment where everyone is welcome to contribute, develop their skills, and make a meaningful impact on the communities they work with.</p>
+<p>Outreachy interns work on diverse projects, including programming, design, and documentation, while receiving a $7,000 USD stipend and valuable mentorship. Many interns continue contributing to their chosen open-source communities long after the program ends. Microbiome Study Curation (BugSigDB project) is one of the diverse projects enlisted in Outreachy.</p>
+<section id="steps-to-becoming-an-outreachy-intern" class="level3">
+<h3 class="anchored" data-anchor-id="steps-to-becoming-an-outreachy-intern">Steps to Becoming an Outreachy Intern:</h3>
+<ol type="1">
+<li>Initial Application: Submit a well-written essay when the next round of internships is announced.</li>
+<li>Contribution Stage: Applicants who pass the initial application stage must select one or two projects they can meaningfully contribute to during this phase.</li>
+<li>Internship Stage: Congratulations! Interns who excel during the contribution phase and are selected by mentors move on to this stage—a world of hands-on learning and experience.</li>
+</ol>
+</section>
+</section>
+<section id="the-bugsigdb-project" class="level2">
+<h2 class="anchored" data-anchor-id="the-bugsigdb-project">The BugSigDB Project</h2>
+<p><a href="https://bugsigdb.org/">BugSigDB</a> is a comprehensive community-editable database designed to help make sense of the enormous amounts of data related to the human microbiome. As researchers continue to uncover the complex relationships between microbiota and human health, BugSigDB stores these microbial signatures associated with various health conditions. The microbial signatures are essentially patterns in the composition of the microbiome that are linked to specific diseases or health outcomes.</p>
+<p>Designed to make microbiome research more efficient and accessible, here are some of the key features of BugSigDB:</p>
+<ul>
+<li>Standardized study information: Key details from published microbiome studies are organized using ontologies and the NCBI taxonomy, so it is easier to compare results across different studies.</li>
+<li>Searchability: You can quickly find microbial signatures linked to conditions, host species, or body sites.</li>
+<li>Enrichment analysis tools: Either through <a href="https://bugsigdb.org/Help:Export">bulk exports</a>, <a href="https://github.com/waldronlab/BugSigDBExports">GMT files</a>, or the <a href="https://bioconductor.org/packages/release/bioc/html/bugsigdbr.html">bugsigdbr</a> R package, you can dig deeper into the data to discover patterns.</li>
+<li>Community collaboration: Anyone can request an account to contribute, explore, ask questions, or report issues on the <a href="https://www.dropbox.com/?q=%23bugsigdb"></a><a href="https://community-bioc.slack.com/archives/C04RATV9VCY/p1697144958544289">#bugsigdb channel</a> of the <strong>community-bioc</strong> Slack team.</li>
+</ul>
+<p>This simplicity and versatility makes BugSigDB an essential tool in microbiome research. For more details, the <a href="https://www.nature.com/articles/s41587-023-01872-y">article</a> <em>BugSigDB captures patterns of differential abundance across a broad range of host-associated microbial signatures</em> (Geistlinger et al., Nat Biotechnol., 2024.) offers an in-depth look at the project.</p>
+</section>
+<section id="our-journeys" class="level2">
+<h2 class="anchored" data-anchor-id="our-journeys">Our Journeys</h2>
+<section id="divines-experience" class="level3">
+<h3 class="anchored" data-anchor-id="divines-experience">Divine’s Experience</h3>
+<div style="text-align: center;">
+<p><a href="DivineAleru.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://blog.bioconductor.org/posts/2025-04-23-outreachy-interns-experience/DivineAleru.png" class="img-fluid" width="300"></a></p>
+<p style="text-align: center;">
+</p><p><em>Divine Aleru</em></p>
+<p></p>
+</div>
+<p>Hello Hello! My name is Divine Aleru. I am a Biochemist, a writer, and an aspiring researcher. Being selected as one of the Outreachy interns was truly a dream come true. You may wonder why, well, this is because I applied three times to the Bioconductor project before finally getting selected.</p>
+<p>When I first learned about Outreachy, one key detail stood out, I did not need to be super qualified to apply. It meant I could apply without feeling the weight of expectations or the fear of not measuring up. The idea that I could be considered based on my potential rather than what I knew gave me the courage to take that first step.</p>
+<p>Outreachy offered me something I did not even realize I needed, a reset. It was an opportunity to start fresh in an environment where I could be an unpolished version of myself, without having to prove what I already knew. I did apply three times before finally getting selected and although the wait and rejections were tough, each attempt made me more patient, reflective, and better at communicating my thoughts. Looking back, I realize that the process was preparing me for what was to come.</p>
+<section id="joining-the-bioconductor-bugsigdb-project" class="level4">
+<h4 class="anchored" data-anchor-id="joining-the-bioconductor-bugsigdb-project">Joining the Bioconductor (BugSigDB) Project</h4>
+<p>When I came across the <strong>Bioconductor’s Microbiome Study Curation (<a href="https://bugsigdb.org/">BugSigDB</a>)</strong> project, I was drawn to it not just because it was bio-related, which is something I was already familiar with (well, this was one of the reasons, say 45%), but also because I thought it would introduce me further to the world of human microbiome research, data curation, and exploratory data analysis in a way I had never experienced before and I was right.</p>
+<p>Before joining BugSigDB, I had a little idea of how scattered microbiome findings were across scientific literature and how hard it was to compare results between studies because there were tons of results. This project helps break down these barriers and makes it easier for researchers to see and compare patterns across different health outcomes.</p>
+<p>Now as a contributor, I have become part of something huge and impactful, a collaborative effort to organize microbiome signatures from published studies. I am immensely proud of myself and grateful for this opportunity and the support of my mentors, Chloe Mirzayi, Svetlana Ugarcina Perovic, Levi Waldron and Chioma Onyido, my co-intern, Kate Rasheed and the entire Bioconductor community for every feedback, insight, and support that has turned every challenge into an opportunity for growth and learning.</p>
+</section>
+<section id="my-achievements" class="level4">
+<h4 class="anchored" data-anchor-id="my-achievements">My Achievements</h4>
+<p>To date, I have contributed to over <a href="https://github.com/waldronlab/BugSigDBcuration/issues?q=is%3Aissue%20assignee%3AAleruDivine%20">100 issues</a> and <a href="https://bugsigdb.org/Special:Contributions/Aleru_Divine">study curations</a> so far, helping ensure the quality and reliability of the database. This experience has sharpened my attention to detail and made me more aware of how small contributions can have a significant impact.</p>
+<p>One thing that I am proud of is expanding data for underrepresented conditions. Towards the end of my internship, I focused on identifying studies related to glucose metabolism-associated microbiome signatures and curating them into the database. This work makes BugSigDB more comprehensive and also helps amplify knowledge in areas that are less explored.</p>
+<p>Before Outreachy, I had little experience with R programming. Through my internship, I have learned how to use R, from updating functions to fixing errors in analyses. This experience has been pushing me to expand my technical skills and I am gaining confidence in working with data every day. Currently, I am working on an analysis of the studies I recently added related to glucose metabolism-associated microbiome, something I never imagined I would be able to do just a few months ago. You can read more about my Outreachy experience in my <a href="https://divinealeru.substack.com/">blog</a>.</p>
+</section>
+<section id="where-im-going" class="level4">
+<h4 class="anchored" data-anchor-id="where-im-going">Where I’m Going?</h4>
+<p>As I look ahead, I am committed to deepening my R programming skills and broadening my understanding of data science. I plan to continue contributing to BugSigDB while pursuing extra learning in statistics and getting ready to start graduate school this Fall. What started as an internship has become a stepping stone toward a future where I can combine my interest in microbiome research and data science with Biochemistry.</p>
+<p>Outreachy and Bioconductor have shown me that growth begins in small steps, and that sometimes the best journeys are the ones that take a little longer to begin.</p>
+</section>
+</section>
+<section id="kate-rasheeds-experience" class="level3">
+<h3 class="anchored" data-anchor-id="kate-rasheeds-experience">Kate Rasheed’s Experience</h3>
+<div style="text-align: center;">
+<p><a href="KateRasheed.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="https://blog.bioconductor.org/posts/2025-04-23-outreachy-interns-experience/KateRasheed.png" class="img-fluid" width="300"></a></p>
+<p style="text-align: center;">
+</p><p><em>Kate Rasheed</em></p>
+<p></p>
+</div>
+<p>Hello everyone! I am Kate Rasheed, an Outreachy intern working on the Microbiome Study Curation Project (BugSigDB).</p>
+<p>My journey into BugSigDB reflects the actions of my role model who “went, knowing not where he went”. During the contribution stage, I came across the Microbiome Study Project and I knew instantly that this is where I wanted to be. Despite having no background in Microbiology, Biochemistry, or the Sciences, I knew I could fit in.</p>
+<p>At first, I faced struggles and knowledge gaps, which turned me into a relentless question-asker. Whether during office hours or on Slack, I constantly sought answers because I didn’t know—but I truly wanted to learn. See more details <a href="https://katerasheed1.wordpress.com/2024/12/18/struggles-stretchers-and-yardsticks-for-growth/">here</a>.</p>
+<p>I am immensely grateful for the support of my mentors, Svetlana Ugarcina Perovic, Chloe Mirzayi, Peace Sandy, and Esther Afuape, as well as my fellow contributors and aspirants, Aleru Divine (co-intern), Adeshile Oluwatosin, Mildred Anashie, Yoko Corzon, and many others, whose peer reviews have helped shape my curations.</p>
+<section id="so-far" class="level4">
+<h4 class="anchored" data-anchor-id="so-far">So far</h4>
+<p>I am amazed at all I have achieved in the past three months—technically, mentally, and career-wise. This internship has been a period of immense growth. One of the most amusing and fulfilling aspects was publishing seven blog posts—you can check them out <a href="https://katerasheed1.wordpress.com/">here</a>.</p>
+<p>During the contribution and internship period, I have worked on over 100 <a href="https://github.com/waldronlab/BugSigDBcuration/issues?q=is%3Aissue%20assignee%3AKateRasheed%20">issues</a> and <a href="https://bugsigdb.org/Special:Contributions/KateRasheed">study curations</a>. Through curating and reviewing published microbiome articles, I have developed a deep appreciation for the importance of healthy living and the role of bacteria in and around us. I particularly contributed to curating a selection of whole genome metagenomic studies on Parkinson’s disease.</p>
+<p>Additionally, I worked on a side project comparing Paul Jensen’s findings on the “<a href="https://www.biorxiv.org/content/10.1101/2025.01.04.631297v1">Most Studied Species</a>” and BugSigDB’s most recorded species.</p>
+<p>According to Jensen’s preprint, ‘More than 90% of all bacteriology articles study fewer than 1% of species, creating a long tail of understudied microbes.’ This project aimed to determine whether BugSigDB exhibits a similar bias toward certain species. This comparison revealed that <em>Escherichia coli</em> (the most studied species from Paul Jensen’s findings) was seen as the third most recorded species in BugSigDB.</p>
+<div style="text-align: center;">
+<p><a href="Top_50_Species_in_BugSigDB.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="https://blog.bioconductor.org/posts/2025-04-23-outreachy-interns-experience/Top_50_Species_in_BugSigDB.png" class="img-fluid" width="300"></a></p>
+<p style="text-align: center;">
+</p><p><em>Top 50 Species curated in BugSigDB</em></p>
+<p></p>
+</div>
+</section>
+<section id="my-mantra-during-this-outreachy-internship" class="level4">
+<h4 class="anchored" data-anchor-id="my-mantra-during-this-outreachy-internship">My mantra during this Outreachy internship:</h4>
+<ul>
+<li>Ask questions, don’t assume (adapted from BugSigDB community)</li>
+<li>Be kind (adapted from my mentor, Svetlana)</li>
+<li>Be clear and concise while communicating (adapted from my mentor, Svetlana)</li>
+<li>Be flexible and open-minded (adapted from my mentor, Chloe)</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="upcoming-opportunities" class="level2">
+<h2 class="anchored" data-anchor-id="upcoming-opportunities">Upcoming Opportunities</h2>
+<p>For beginners looking to get involved, open source is an invaluable resource. It allows you to sharpen your technical skills, work on real-world projects, engage with a global community, and explore GitHub repositories to enhance learning and expertise.</p>
+<p>Below is a list of notable open-source programs, sourced from <a href="https://www.geeksforgeeks.org/best-open-source-programs-for-students-to-participate/">GeeksforGeeks</a>:</p>
+<ul>
+<li>DigitalOcean Hacktoberfest</li>
+<li>Google Summer of Code (GSoC)</li>
+<li>MLH Fellowship</li>
+<li>Google Season of Docs (GSoD)</li>
+<li>Outreachy: Interested applicants can apply via this link: <a href="https://www.outreachy.org/apply/">Apply to Outreachy</a>.</li>
+</ul>
+<p>If you are inspired to be a part of the BugSigDB project, reach out or connect with the Bioconductor community via <a href="https://community-bioc.slack.com/archives/C04RATV9VCY/p1697144958544289">Slack</a> and if you are interested in beginning your own open source journey, Outreachy provides ongoing internship opportunities. Applications for the December 2025 to March 2026 cohort will open in August 2025.</p>
+
+
+</section>
+
+<p>
+© 2025 Bioconductor. Content is published under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons CC-BY-4.0 License</a> for the text and <a href="https://opensource.org/licenses/BSD-3-Clause">BSD 3-Clause License</a> for any code. | <a href="https://www.r-bloggers.com">R-Bloggers</a>
+</p> ]]></description>
+  <category>Outreachy</category>
+  <category>open science</category>
+  <guid>https://blog.bioconductor.org/posts/2025-04-23-outreachy-interns-experience/</guid>
+  <pubDate>Wed, 23 Apr 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://blog.bioconductor.org/posts/2025-04-23-outreachy-interns-experience/featured-image.png" medium="image" type="image/png" height="76" width="144"/>
+</item>
+<item>
+  <title>Bioconductor Community Advisory Board</title>
+  <dc:creator>Stevie Pederson</dc:creator>
+  <link>https://blog.bioconductor.org/posts/2025-03-05-CAB/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Hi everyone!</p>
+<p>I’m Stevie Pederson (they/them) &amp; I’ve recently joined Janani Ravi (she/her) as co-chair of the Bioconductor <a href="https://bioconductor.org/about/community-advisory-board/">Community Advisory Board</a> (CAB), and thought I’d take a moment to introduce myself and the CAB. We also figured that many members of the Bioconductor community may not know that we exist, or what we get up to.</p>
+<section id="who-even-am-i" class="level2">
+<h2 class="anchored" data-anchor-id="who-even-am-i">Who Even Am I?</h2>
+<p>I grew up in, studied in and am (still) based in Adelaide, Australia, first coming across Bioconductor in late 2002, as part of an undergraduate student project. I was asked to analyse a two-colour microarray dataset, so found my way with <em>limma</em> fairly clumsily, and realised that I loved exploring data and making figures with R, which set me on my eventual path to becoming a bioinformatician. Things have certainly grown since those early days, both for me and the Bioconductor community!</p>
+<p>I eventually became more of a regular Bioconductor user whilst running a core facility at the University of Adelaide (2014-2020), during which time I was also trying to finish my PhD, finally managing the difficult juggle between the two roles, and graduating in 2018. As part of our work in the facility, we developed the package <a href="https://bioconductor.org/packages/release/bioc/html/ngsReports.html">ngsReports</a> to help as we built our own data QC workflows. There were no other Bioconductor developers in Adelaide at the time, so submitting that first Bioconductor package felt like a hugely intimidating step into a more public space. <em>What on earth was I doing out there with all the real developers who actually know what they’re doing?</em> <em>Are people going to read my code &amp; laugh?</em></p>
+<p>Since then I’ve been lucky enough to develop or contribute to a handful of additional packages, many of which I still use in my day-to-day research, and if you’re interested, you can see my BioC2023 presentation on the extraChIPs package <a href="https://youtu.be/6aRtBTd4NyQ?feature=shared">here</a>. It’s always exciting when I see a bug report appear on github and realise that someone else is finding my packages useful too.</p>
+<p>In my current research, I’m now working as part of a team on a large cohort study, wrangling transcriptomics data along with multiple additional ’omics layers (DNA, DNAme, Proteomics, Metabolomics, Lipidomics etc), in an ambitious collaboration between clinicians, Aboriginal Australians, public health experts and a team of bioinformaticians. We’re hoping to make some real gains in personalised medicine for the South Australian Aboriginal community, who’ve experienced a much lower standard of medical care along with reduced access to care, and have paid a significant price with their health. The different ’omics layers are gradually taking shape so we’re feeling very hopeful about what we’ll be able to accomplish.</p>
+<section id="biocasia" class="level3">
+<h3 class="anchored" data-anchor-id="biocasia">BiocAsia</h3>
+<p>I first joined the CAB about 18 months ago after being involved with organising the BiocAsia conference fairly regularly since 2016. For me, joining the CAB was an opportunity to get more deeply involved with supporting other members of the Bioconductor community, and in particular, how we can improve our connection with both users and developers across the Asia Pacific region. We’ve since set up an official <a href="https://workinggroups.bioconductor.org/currently-active-working-groups-committees.html#biocasia">BiocAsia working group</a> to organise the conference and to try find our way given the many challenges and barriers within the region. New members for the BiocAsia Working Group are always welcome too!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="biocasia_2024.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Some of the in-person attendees at BiocAsia 2024, Sydney, Australia"><img src="https://blog.bioconductor.org/posts/2025-03-05-CAB/biocasia_2024.jpg" class="img-fluid figure-img" alt="Some of the in-person attendees at BiocAsia 2024, Sydney, Australia"></a></p>
+<figcaption>Some of the in-person attendees at BiocAsia 2024, Sydney, Australia</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="the-community-advisory-board" class="level2">
+<h2 class="anchored" data-anchor-id="the-community-advisory-board">The Community Advisory Board</h2>
+<p>The CAB itself has members spread across Asia, Oceania, Europe, Africa and America giving us truly global representation, where each member can bring their own unique perspectives relevant to their region, along with those of the diverse communities they’re involved with, both professionally and personally.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="CAB-map-2025.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="The CAB in 2025"><img src="https://blog.bioconductor.org/posts/2025-03-05-CAB/CAB-map-2025.png" class="img-fluid figure-img" alt="The CAB in 2025"></a></p>
+<figcaption>The CAB in 2025</figcaption>
+</figure>
+</div>
+<p>Everyone on the CAB has a genuine interest in supporting and building the Bioconductor community across the areas we’re all focussed on and beyond. The overall aim is to provide our community with the resources we can to enable their research and develop their skills, no matter where people are based, or what resources they have access to. Much of our hands-on contribution is made through getting involved in <a href="https://workinggroups.bioconductor.org">working groups</a> and staying in touch with as many of these as we can. There is a wide variety of working groups, developing programs and initiatives across educational resources, social media engagement, R-Ladies collaboration, language translation of Bioconductor resources and multiple other areas where we can grow and support the Bioconductor community. If you’d like to get involved with one, please contact the group leads who are usually easy to find on the <a href="https://slack.bioconductor.org">Bioconductor Slack</a>.</p>
+<section id="get-involved" class="level3">
+<h3 class="anchored" data-anchor-id="get-involved">Get Involved</h3>
+<p>If you’ve got ideas, questions or suggestions for the CAB, there’s a channel (#community-advisory-board) where you can easily find us. We’d love to hear from you.</p>
+<p>If you think you might even like to join the CAB and get involved yourself, members serve 3-year terms, with an annual call for new members around August. We gladly welcome individuals who are passionate about Bioconductor and who are eager to contribute to its mission of fostering a diverse, collaborative, and welcoming community of developers and data scientists. We’re all involved across a range of working groups too, so finding one, or even starting one, that fits with your area of interest that can be a really good entry point. For more information about the CAB and how to get involved, please have a look at our <a href="https://bioconductor.org/about/community-advisory-board/">CAB page</a>.</p>
+
+
+</section>
+</section>
+
+<p>
+© 2025 Bioconductor. Content is published under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons CC-BY-4.0 License</a> for the text and <a href="https://opensource.org/licenses/BSD-3-Clause">BSD 3-Clause License</a> for any code. | <a href="https://www.r-bloggers.com">R-Bloggers</a>
+</p> ]]></description>
+  <category>Bioconductor</category>
+  <category>CAB</category>
+  <guid>https://blog.bioconductor.org/posts/2025-03-05-CAB/</guid>
+  <pubDate>Wed, 05 Mar 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://blog.bioconductor.org/posts/2025-03-05-CAB/CAB-map-2025.png" medium="image" type="image/png" height="81" width="144"/>
+</item>
+<item>
+  <title>Bioconductor Carpentry: Celebrating Two Years of Global Training</title>
+  <dc:creator>Maria Doyle</dc:creator>
+  <link>https://blog.bioconductor.org/posts/2025-02-28-carpentries-update/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="two-years-of-bioconductor-carpentry-training" class="level2">
+<h2 class="anchored" data-anchor-id="two-years-of-bioconductor-carpentry-training">Two Years of Bioconductor Carpentry Training</h2>
+<p>As we complete two years of Instructor training, we reflect on our journey since becoming a member of <a href="https://carpentries.org/">The Carpentries</a> in August 2022 (<a href="https://blog.bioconductor.org/posts/2022-07-12-carpentries-membership/">announcement</a>). Our goal was to train 30 Instructors globally - 15 in year 1 and 15 in year 2. We began onboarding the first cohort in January 2023 (<a href="https://blog.bioconductor.org/posts/2023-02-24-carpentries-update/">year 1 update</a>), and our final Instructor from the second cohort was certified in January 2025.</p>
+<p>Since launching, 33 trainees have participated, with <strong>31 successfully completing</strong> their training - exceeding our original goal. This 94% completion rate is well above the typical rate. To earn <a href="https://carpentries.org/instructor-training/">Carpentries Certification</a>, trainees completed: an Instructor Training event (2 full days or 4 half days), a welcome session, a teaching demonstration, and a Get Involved task.</p>
+<p>Our certified Instructors include 7 from Lower-Middle Income countries and 3 from Upper-Middle Income countries, further strengthening our global impact. They are now leading workshops, expanding Bioconductor’s reach, and contributing to the global bioinformatics community.</p>
+<p>Interested in joining our training community? Find out how in the Get Involved section.</p>
+</section>
+<section id="global-impact-and-achievements" class="level2">
+<h2 class="anchored" data-anchor-id="global-impact-and-achievements">Global Impact and Achievements</h2>
+<ul>
+<li><strong>Workshops held worldwide</strong>, including North Africa, Brazil, India, and Europe.</li>
+<li><strong>Training materials</strong> developed for <a href="https://training.bioconductor.org/#modules">four Bioconductor Carpentry modules</a> have been widely adopted, contributing to the delivery of 28 <a href="https://training.bioconductor.org/carpentry/workshops.html">pre-conference and independent workshops</a> with strong participant engagement.</li>
+<li><strong>Instructor-led sessions</strong> at major Bioconductor conferences: <a href="https://blog.bioconductor.org/posts/2024-08-12-bioc2024-recap/#pre-conference">BioC2024</a>, <a href="https://blog.bioconductor.org/posts/2024-09-20-eurobioc2024-recap/#pre-conference">EuroBioC2024</a>, <a href="https://bioc2023.bioconductor.org/">BioC2023</a>, <a href="https://eurobioc2023.bioconductor.org/">EuroBioC2023</a> and <a href="https://biocasia2023.bioconductor.org/">BioCAsia2023</a>.</li>
+<li><strong>First Bioconductor Carpentry workshop in Africa</strong>, led by the Tunis R User Group. <a href="https://www.linkedin.com/feed/update/urn:li:activity:7259123374927278080/">This event</a> was an important step in strengthening the R and Bioconductor community in Tunisia.</li>
+<li><strong>Upcoming workshops</strong> in <a href="https://training.bioconductor.org/workshops/2025-03-Nairobi/index.html">Nairobi, Kenya (March 2025)</a>, <a href="https://iza-mcac.github.io/2025-04-21-biocrnaseq-cfbioinfo/">Belo Horizonte, Brazil (March 2025)</a>, at the Joint Statistical Meetings, Tennessee, USA (August 2025) and <a href="https://eurobioc2025.bioconductor.org/">EuroBioC2025, Barcelona, (September 2025)</a>, further expanding our global footprint.</li>
+<li><strong>Increased engagement</strong> with researchers and educators in underrepresented regions, helping to bridge bioinformatics training gaps.</li>
+</ul>
+<p>See where our certified Instructors are making an impact! Explore the interactive map below to view the global distribution of those trained through this two-year program.</p>
+<iframe src="map.html" width="100%" height="500">
+</iframe>
+</section>
+<section id="instructor-highlights" class="level2">
+<h2 class="anchored" data-anchor-id="instructor-highlights">Instructor Highlights</h2>
+<p>Many of these certified Instructors have already begun sharing their expertise. So far, thirteen have led <a href="https://training.bioconductor.org/carpentry/workshops.html">workshops using Bioconductor Carpentry material</a>, with four leading multiple sessions. An additional five Instructors have workshops planned for 2025, and we are looking forward to seeing even more apply their training in the future.</p>
+<p>Here are some highlights of Instructors making a tangible impact:</p>
+<ul>
+<li><strong>Ziru Chen</strong> became the first Instructor in mainland China to be Carpentries-certified, giving her teaching demo in Mandarin, a milestone in supporting Mandarin-speaking learners.</li>
+<li><strong>Rodrigo Arcoverde Cerveira da Silva</strong> led a workshop in Brazil, bringing bioinformatics training to researchers at the Evandro Chagas Institute in the Amazon region.</li>
+<li><strong>Leo Lahti</strong> incorporated Bioconductor Carpentry sessions into microbiome courses in India, Norway, and Finland, expanding Bioconductor education in microbial research.</li>
+<li><strong>Chia Sin Liew</strong> integrated Bioconductor Carpentry modules, particularly the RNA-Seq lessons, into university courses at the University of Nebraska-Lincoln to enrich teaching and foster more effective student learning experiences.</li>
+</ul>
+</section>
+<section id="what-instructors-say" class="level2">
+<h2 class="anchored" data-anchor-id="what-instructors-say">What Instructors Say</h2>
+<blockquote class="blockquote">
+<p><em>“Swapping the chilly embrace of Swedish winter for the familiar heat of my hometown in the Brazilian Amazon was a long warm hug. Teaching my first workshop here was incredibly rewarding.”</em> – Rodrigo Arcoverde Cerveira da Silva</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><em>“Teaching in India, Oulu, and Norway helped us integrate Bioconductor Carpentry into microbiome courses. We are now planning to expand these efforts in more regions.”</em> – Leo Lahti</p>
+</blockquote>
+</section>
+<section id="expanding-the-impact" class="level2">
+<h2 class="anchored" data-anchor-id="expanding-the-impact">Expanding the Impact</h2>
+<p>While this program directly funded the certification of 31 Instructors, it also had a wider impact, inspiring others in the Bioconductor community to pursue Carpentries Instructor Certification and contribute to global bioinformatics training.</p>
+<p>Jenny Drnevich, for example, taught alongside our program’s Instructors at BioC2023 and BioC2024. Inspired by the experience, she completed her own Carpentries Instructor Certification during this time. Reflecting on her journey, she shared:</p>
+<blockquote class="blockquote">
+<p>“Before the BioC2023 conference in Boston, I helped teach the inaugural ‘RNA-Seq analysis with Bioconductor’ workshop, a 2-day Carpentries-style lesson I helped develop with others on the Training Committee. It was so wonderful to teach it in person, and we had several good discussions that are difficult to have during remote teaching. We got some excellent feedback about the lesson, what worked and what needed to be improved. Because of this experience, I finally got motivated to get my Carpentries Instructor Certification, which I finished in Jan 2024. The certification and the improvements to the lesson really increased the quality of the workshop I co-taught again before the BioC2024 conference in Grand Rapids. I look forward to helping to teach our workshops in the future for the Bioconductor Community!”</p>
+</blockquote>
+<p>Jenny’s story reflects how Bioconductor’s Carpentry training program has inspired and strengthened a wider teaching network, beyond the funded group.</p>
+</section>
+<section id="participant-feedback" class="level2">
+<h2 class="anchored" data-anchor-id="participant-feedback">Participant Feedback</h2>
+<p>The impact of our training is reflected in participant feedback:</p>
+<ul>
+<li><em>“Coding alongside the course, being able to fix problems as they came up, was incredibly helpful.”</em></li>
+<li><em>“The structure of the course, the pace, and the instructors’ enthusiasm made the learning experience exceptional.”</em></li>
+<li><em>“Engaging teachers, available to help, and very useful to have the online resources if needed.”</em></li>
+<li><em>“I liked the discussion that allowed for the thought behind the process.”</em></li>
+</ul>
+</section>
+<section id="looking-ahead" class="level2">
+<h2 class="anchored" data-anchor-id="looking-ahead">Looking Ahead</h2>
+<p>Looking ahead, we plan to:</p>
+<ul>
+<li>Expand training opportunities, particularly in underrepresented regions.</li>
+<li>Strengthen mentorship and support for new instructors.</li>
+<li>Continue enhancing lesson materials and community engagement.</li>
+<li>Build stronger collaborations with local bioinformatics groups to improve accessibility.</li>
+</ul>
+<p>We look forward to growing Bioconductor’s training efforts and welcoming even more instructors and participants into our global community.</p>
+</section>
+<section id="get-involved" class="level2">
+<h2 class="anchored" data-anchor-id="get-involved">Get Involved!</h2>
+<p>Interested in joining our growing training community? Explore our <a href="https://training.bioconductor.org/">Training site</a> to learn more about our training initiatives.</p>
+<ul>
+<li>Browse upcoming and past workshops: <a href="https://training.bioconductor.org/carpentry/workshops.html">See schedule.</a></li>
+<li>Meet our certified Instructors: <a href="https://training.bioconductor.org/carpentry/instructors.html">View list.</a></li>
+<li>Find out more about Bioconductor Carpentry and instructor certification: <a href="https://training.bioconductor.org/carpentry/index.html">Details here.</a></li>
+</ul>
+</section>
+<section id="acknowledgements" class="level2">
+<h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
+<p>We thank everyone who participated in this program and earned certification. The certified Instructors are listed in the table below.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-db2dd253774d48aaf986" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-db2dd253774d48aaf986">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"name":["Javier Carpinteyro-Ponce","Fabricio Almeida-Silva","Anand Ruban Agarvas","Oliver Crook","Almut Lütge","Leo Lahti","Sehyun Oh","Umar Ahmad","Chia Sin Liew","Charlotte Hutchings","David Shih","Rodrigo Arcoverde Cerveira da Silva","Zuguang Gu","Givanna Putri","Zedias Chikwambi","Pageneck Chikondowa","Marie Hidjo","Kevin Stachelek","Erick Isaac Navarro Delgado","Pedro Baldoni","Princess Rodriguez","Tim Triche","Izabela Mamede","Jacques Serizay","Robert Ivanek","Hamdi Furkan Kepenek","Ziru Chen","Amal Boukteb","Arnab Mukherjee","Harvinder Singh","Janani Ravi"],"institution":["Carnegie Institution for Science","VIB-UGent Center for Plant Systems Biology","University Hospital Heidelberg","University of Oxford","University of Zürich","University of Turku","City University of New York","Bauchi State University","University of Nebraska-Lincoln","University of Cambridge","University of Hong Kong","Karolinska Institute","German Cancer Research Center","Walter and Eliza Hall Institute of Medical Research","Chinhoyi University of Technology","African Institute of Biomedical Science and Technology","African Institute of Biomedical Science and Technology","University of Southern California","University of British Columbia","University of Pittsburgh","University of Vermont","Van Andel Institute","Universidade Federal de Minas Gerais","Institut Pasteur","University of Basel, Swiss Institute of Bioinformatics","Abdullah Gül University","GuangZhou Lab","National Institute for Agricultural Research of Tunisia (INRAT)","Manipal Institute of Technology","Department of Translational and Regenerative Medicine, PGIMER","University of Colorado Anschutz Medical Campus"],"city":["Maryland","Ghent","Heidelberg","Oxford","Zurich","Turku","New York","Gadau","Nebraska","Cambridge","Hong Kong","Stockholm","Heidelberg","Melbourne","Chinhoyi","Harare","Harare","Los Angeles","Vancouver","Pittsburgh","Burlington","Grand Rapids","Belo Horizonte","Paris","Basel","Kayseri","Guangzhou","Tunis","Manipal","Chandigarh","Aurora"],"country":["United States","Belgium","Germany","United Kingdom","Switzerland","Finland","United States","Nigeria","United States","United Kingdom","China","Sweden","Germany","Australia","Zimbabwe","Zimbabwe","Zimbabwe","United States","Canada","United States","United States","United States","Brazil","France","Switzerland","Turkey","China","Tunisia","India","India","United States"],"region":["North America","Europe & Central Asia","Europe & Central Asia","Europe & Central Asia","Europe & Central Asia","Europe & Central Asia","North America","Sub-Saharan Africa","North America","Europe & Central Asia","East Asia & Pacific","Europe & Central Asia","Europe & Central Asia","East Asia & Pacific","Sub-Saharan Africa","Sub-Saharan Africa","Sub-Saharan Africa","North America","North America","North America","North America","North America","Latin America & Caribbean","Europe & Central Asia","Europe & Central Asia","Europe & Central Asia","East Asia & Pacific","Middle East & North Africa","South Asia","South Asia","North America"],"year":["Year 1","Year 1","Year 1","Year 1","Year 1","Year 1","Year 1","Year 1","Year 1","Year 1","Year 1","Year 1","Year 1","Year 1","Year 1","Year 1","Year 1","Year 2","Year 2","Year 2","Year 2","Year 2","Year 2","Year 2","Year 2","Year 2","Year 2","Year 2","Year 2","Year 2","Year 2"]},"columns":[{"id":"name","name":"Name","type":"character","cell":[{"name":"a","attribs":{"href":"https://bse.carnegiescience.edu/javier-carpinteyro-ponce","target":"_blank"},"children":["Javier Carpinteyro-Ponce"]},"Fabricio Almeida-Silva","Anand Ruban Agarvas","Oliver Crook","Almut Lütge","Leo Lahti","Sehyun Oh","Umar Ahmad","Chia Sin Liew","Charlotte Hutchings","David Shih","Rodrigo Arcoverde Cerveira da Silva","Zuguang Gu","Givanna Putri","Zedias Chikwambi","Pageneck Chikondowa","Marie Hidjo","Kevin Stachelek",{"name":"a","attribs":{"href":"https://erick-navarrodelgado.netlify.app","target":"_blank"},"children":["Erick Isaac Navarro Delgado"]},{"name":"a","attribs":{"href":"https://plbaldoni.rbind.io/","target":"_blank"},"children":["Pedro Baldoni"]},"Princess Rodriguez","Tim Triche","Izabela Mamede","Jacques Serizay","Robert Ivanek","Hamdi Furkan Kepenek","Ziru Chen","Amal Boukteb","Arnab Mukherjee","Harvinder Singh",{"name":"a","attribs":{"href":"https://jravilab.github.io","target":"_blank"},"children":["Janani Ravi"]}]},{"id":"institution","name":"Institution","type":"character"},{"id":"city","name":"City","type":"character"},{"id":"country","name":"Country","type":"character"},{"id":"region","name":"Region","type":"character"},{"id":"year","name":"Year","type":"factor"}],"filterable":true,"searchable":true,"defaultSorted":[{"id":"name","desc":false}],"defaultPageSize":100,"bordered":true,"striped":true,"compact":true,"style":{"border":"1px solid #ccc","stripedColor":"#f0f0f0","fontSize":"0.6rem"},"dataKey":"e0ff90aeb6da83b5004974c2befc3224"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>We are grateful to the <a href="https://chanzuckerberg.com/eoss/proposals/bioconductor-high-quality-training-and-support-for-a-worldwide-community/">Chan Zuckerberg Initiative’s EOSS program</a> for their support. Their funding has been instrumental in making this program a success.</p>
+
+
+</section>
+
+<p>
+© 2025 Bioconductor. Content is published under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons CC-BY-4.0 License</a> for the text and <a href="https://opensource.org/licenses/BSD-3-Clause">BSD 3-Clause License</a> for any code. | <a href="https://www.r-bloggers.com">R-Bloggers</a>
+</p> ]]></description>
+  <category>education</category>
+  <category>Carpentries</category>
+  <guid>https://blog.bioconductor.org/posts/2025-02-28-carpentries-update/</guid>
+  <pubDate>Fri, 28 Feb 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://blog.bioconductor.org/posts/2025-02-28-carpentries-update/map.png" medium="image" type="image/png" height="103" width="144"/>
+</item>
+<item>
+  <title>Open Science Mentoring: My Journey with Outreachy Mentees</title>
+  <dc:creator>Svetlana Ugarcina Perovic</dc:creator>
+  <link>https://blog.bioconductor.org/posts/2025-02-26-outreachy-mentoring/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Bioconductor has been participating in the Outreachy Internship program since 2022. In this post, I, Svetlana Ugarcina Perovic, a senior researcher in microbiome science, share my journey of Outreachy mentoring, detailing my experience with the Microbiome Study Curation project and open science projects.</p>
+<p>The recent <a href="https://www.youtube.com/watch?v=PiOm6nqzTVQ">Outreachy coffee chat</a> made me think about my mentoring journey and all the bright minds I’ve had the privilege to work with and learn from. What started in 2020 as a simple involvement in open science initiatives (<a href="https://microbiomedigest.com/">Microbiome Digest</a> and the <a href="https://nsurp.org/">National Summer Undergraduate Research Project</a>) has blossomed into something far more meaningful than I could have imagined.</p>
+<p><strong>How to become a (good) mentor?</strong> Despite spending years in academia, through a PhD and multiple postdoc positions, there was never a class or workshop called “How to Be a Good Mentor.” Like many scientists, I learned the art of mentoring through experience–watching my own mentors closely, noting what worked and what didn’t as I moved through five different labs across various countries. Some approaches inspired me, others showed me exactly what not to do. It’s a bit surprising when you think about it–in Life Sciences, we’re trained meticulously in experimental techniques and data analysis, but this crucial skill of guiding and supporting others? That’s something we’re largely expected to figure out on our own.</p>
+<p><strong>My path to mentoring with <a href="https://www.outreachy.org/">Outreachy</a></strong> began thanks to my wonderful colleagues at the <a href="https://www.microbiome-vif.org/en-US">Microbiome Virtual International Forum</a>, <a href="https://waldronlab.io/">Levi Waldron</a> and <a href="https://cunyisph.org/team/chloe-mirzayi/">Chloe Mirzayi</a>. They introduced me to this incredible open science community called <a href="https://www.bioconductor.org/">Bioconductor</a> and a project called <a href="https://bugsigdb.org/Main_Page">BugSigDB</a>. At its heart, BugSigDB is like a Wikipedia for microbiome science. We’re building a free, searchable database that maps out which microbes (the tiny organisms living in and on humans and other hosts) are linked to different health conditions. Scientists worldwide can contribute their findings (significant differential abundance results), making it easier to spot patterns–like which bacteria might be important in diseases or health. It is a community library where researchers share and standardize their discoveries about the microbiome, making this <strong>knowledge accessible to everyone</strong>. Whether you’re studying gut health or skin conditions, you can find and add information through BugSigDB platform. The best part? It’s truly global, with contributors from different parts of the world, all working together to better understand our microbiome companions.</p>
+<div style="text-align: center;">
+<p><a href="BugSigDB_team_meeting.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://blog.bioconductor.org/posts/2025-02-26-outreachy-mentoring/BugSigDB_team_meeting.png" class="img-fluid" style="width:70.0%" alt="BugSigDB team meeting"></a></p>
+<p style="text-align: center;">
+<em>BugSigDB team meeting</em>
+</p>
+</div>
+<p>Twice a year, we welcome Outreachy applicants and select interns for paid 3-month internships. As an Outreachy mentor, nothing has been more gratifying than watching our community growth. Since 2022, our project has attracted more than hundred applicants each round, representing ten different countries across Africa, Asia, and South America, and we’ve welcomed nine interns (<a href="https://blog.bioconductor.org/#category=Outreachy">read their blog posts here</a>). Each contributor enriches our community with their distinct perspectives and enthusiasm. It’s always thrilling to see familiar faces return for another round of applications.</p>
+<p>But let me be honest–mentoring isn’t all sunshine and rainbows. The biggest challenge I’ve faced is <strong>navigating different communication styles and learning paces</strong>. I’ve learned that regular check-ins are crucial, not just for tracking progress but for building trust and understanding. Often, in my mentoring experience, the best solutions come from pairing contributors together–and watching them support and learn from each other brings me immense joy.</p>
+<div style="text-align: center;">
+<p><a href="Svetlanas_mentees_and_their_projects.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="https://blog.bioconductor.org/posts/2025-02-26-outreachy-mentoring/Svetlanas_mentees_and_their_projects.png" class="img-fluid" style="width:80.0%" alt="Svetlana’s_mentees_and_their_projects"></a></p>
+<p style="text-align: center;">
+<em>Svetlana’s mentees and their projects</em>
+</p>
+</div>
+<p>Recently, I was deeply moved when one of my mentees, <a href="https://www.linkedin.com/in/scholastica-urua-898659235/">Scholastica Urua</a>, presented her research on African microbiome data at the <a href="https://www.youtube.com/watch?v=tGwTAxmvEYc&amp;list=PLLOHGJKpTq6pG03Az_I80ZUReMYVmwqB9&amp;index=6">MVIF conference</a>. Scholastica’s talk exemplified the kind of collaborative science we aspire to–carefully documenting microbiome studies from regions that have historically been underrepresented in microbiome science databases. The community recognized Scholastica’s excellent work with the best microtalk award, but what truly mattered was how her contribution helped make our database more globally representative. Scholastica together with BugSigDB community demonstrated through their work that <strong>when we open doors to diverse perspectives in science, everyone benefits</strong>.</p>
+<p>Every day as an Outreachy mentor brings new challenges and victories. When I see our contributors challenging ideas thoughtfully, providing constructive feedback, and supporting each other, I know we’re doing something right. But perhaps the most fulfilling aspect is watching my mentees grow into mentors themselves. Or into moderators of the conference session:</p>
+<div style="text-align: center;">
+<img src="https://blog.bioconductor.org/posts/2025-02-26-outreachy-mentoring/x_post_screenshot.png" class="img-fluid" style="width:70.0%" alt="A proud-mentor moment when Victoria Poromon masterfully ran the Q&amp;A at MVIF 34">
+<p style="text-align: center;">
+<em>A proud-mentor moment when <a href="https://www.linkedin.com/in/victoria-poromon-1a37491bb/">Victoria Poromon</a> masterfully ran the Q&amp;A at MVIF 34</em>
+</p>
+</div>
+<p>To anyone considering mentoring in open science: yes, it requires time, patience, and dedication. But the rewards–the connections you make, the growth you witness, and the knowledge you gain–make it all worthwhile. After all, isn’t that what science is about? <strong>Learning together, growing together, and making the world a little bit better through shared knowledge and understanding.</strong></p>
+<p>So here’s to all the mentees who’ve taught me as much as I’ve taught them, to the global community that makes this possible, and to the future of open science. The journey continues, and I couldn’t be more excited about what lies ahead.</p>
+<section id="join-our-outreachy-community" class="level2">
+<h2 class="anchored" data-anchor-id="join-our-outreachy-community">Join Our Outreachy Community</h2>
+<p>As we reflect on the success of our current mentorship program, we’re excited to announce that Bioconductor will be participating in the next Outreachy internship round – from June to August 2025. Anyone within our community can propose an open source project to mentor an Outreachy intern. The <strong>deadline to submit a project is March 7, 2025 at 4 pm UTC</strong> at <a href="https://www.outreachy.org/communities/cfp/bioconductor/">Outreachy</a>.</p>
+<p>If you’re interested in getting involved:</p>
+<ul>
+<li><p>Join our #outreachy channel on <a href="https://slack.bioconductor.org/">Bioconductor Slack</a> to connect with current and past participants;</p></li>
+<li><p>Follow us on social media for regular updates: <a href="https://genomic.social/@bioconductor">Mastodon</a>, <a href="https://www.linkedin.com/company/bioconductor">LinkedIn</a> and <a href="https://bsky.app/profile/bioconductor.bsky.social">Bluesky</a>;</p></li>
+<li><p>Contact me directly on <a href="https://www.linkedin.com/in/svetlana-ugarcina-perovic">LinkedIn</a> with any questions or to express interest.</p></li>
+</ul>
+<p>Whether you’re looking to expand your skills as a mentee or share your expertise as a mentor, Outreachy offers a structured pathway to meaningful contribution in our community. We look forward to welcoming new voices and perspectives in our continued commitment to diversity and inclusion in bioinformatics.</p>
+
+
+</section>
+
+<p>
+© 2025 Bioconductor. Content is published under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons CC-BY-4.0 License</a> for the text and <a href="https://opensource.org/licenses/BSD-3-Clause">BSD 3-Clause License</a> for any code. | <a href="https://www.r-bloggers.com">R-Bloggers</a>
+</p> ]]></description>
+  <category>Outreachy</category>
+  <category>open science</category>
+  <guid>https://blog.bioconductor.org/posts/2025-02-26-outreachy-mentoring/</guid>
+  <pubDate>Wed, 26 Feb 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://blog.bioconductor.org/posts/2025-02-26-outreachy-mentoring/Svetlanas_mentees_and_their_projects.png" medium="image" type="image/png" height="76" width="144"/>
+</item>
+</channel>
+</rss>
