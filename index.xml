@@ -13,7 +13,7 @@
 <lastBuildDate>Wed, 09 Jul 2025 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Exploring R and Rust in Bioinformatics – Online Developer Forum, 28 July 2025</title>
-  <dc:creator>Lluís Revilla</dc:creator>
+  <dc:creator>Lluís Revilla Sancho</dc:creator>
   <link>https://blog.bioconductor.org/posts/2025-07-09-developers-forum-july28/</link>
   <description><![CDATA[ 
 
@@ -21,6 +21,7 @@
 
 
 
+<p><img src="https://blog.bioconductor.org/posts/2025-07-09-developers-forum-july28/feRris.png" class="img-fluid"></p>
 <p>Join us for an open developer forum exploring how R and Rust can work together in bioinformatics and Bioconductor development. Organised and hosted by Lluís Revilla (<a href="https://bioconductor.org/about/community-advisory-board/">Bioconductor Community Advisory Board</a>), this online session will discuss technical and practical aspects of using Rust alongside R - discussing extendr, Rust-based package development, and real-world use cases. Whether you’re Rust-curious or already experimenting, all are welcome.</p>
 <section id="event-details" class="level3">
 <h3 class="anchored" data-anchor-id="event-details">🗓 Event Details</h3>
@@ -52,7 +53,7 @@
 <p>This session is open to all developers interested in bridging R and Rust, especially those working on packages for <strong>Bioconductor</strong> and <strong>CRAN</strong>. We’ll post the joining link and updates here and in the #events channel on <a href="https://chat.bioconductor.org">Bioconductor Zulip</a>.</p>
 <p>☑️ <strong>Please note:</strong> By attending, you agree to abide by the <a href="https://bioconductor.org/about/code-of-conduct/">Bioconductor Code of Conduct</a>.<br>
 📹 The session will be recorded and may be shared on the <a href="https://www.youtube.com/playlist?list=PLdl4u5ZRDMQQLMupAtEzm2y4gUIUm_1n6">Bioconductor YouTube channel</a>.</p>
-<p>💬 <strong>Questions or suggestions?</strong> Reach out in the Bioconductor Zulip.</p>
+<p>💬 <strong>Questions or suggestions?</strong> Reach out in the <a href="https://chat.bioconductor.org">Bioconductor Zulip</a>.</p>
 
 
 </section>
@@ -63,6 +64,7 @@
   <category>events</category>
   <guid>https://blog.bioconductor.org/posts/2025-07-09-developers-forum-july28/</guid>
   <pubDate>Wed, 09 Jul 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://blog.bioconductor.org/posts/2025-07-09-developers-forum-july28/feRris.png" medium="image" type="image/png" height="108" width="144"/>
 </item>
 <item>
   <title>Bioconductor and ggplot2 4.0.0: What’s Changing and How to Prepare</title>
