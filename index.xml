@@ -10,7 +10,7 @@
 <atom:link href="https://blog.bioconductor.org/index.xml" rel="self" type="application/rss+xml"/>
 <description>A blog for the Bioconductor community!</description>
 <generator>quarto-1.7.32</generator>
-<lastBuildDate>Wed, 09 Jul 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 11 Jul 2025 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Exploring R and Rust in Bioinformatics – Online Developer Forum, 28 July 2025</title>
   <dc:creator>Lluís Revilla Sancho</dc:creator>
@@ -63,7 +63,7 @@
 </p> ]]></description>
   <category>events</category>
   <guid>https://blog.bioconductor.org/posts/2025-07-09-developers-forum-july28/</guid>
-  <pubDate>Wed, 09 Jul 2025 00:00:00 GMT</pubDate>
+  <pubDate>Fri, 11 Jul 2025 00:00:00 GMT</pubDate>
   <media:content url="https://blog.bioconductor.org/posts/2025-07-09-developers-forum-july28/feRris.png" medium="image" type="image/png" height="108" width="144"/>
 </item>
 <item>
