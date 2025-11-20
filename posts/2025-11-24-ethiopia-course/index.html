@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Lluís Revilla Sancho">
-<meta name="dcterms.date" content="2025-07-11">
+<meta name="author" content="Maria Doyle">
+<meta name="dcterms.date" content="2025-11-24">
 
-<title>Exploring R and Rust in Bioinformatics – Online Developer Forum, 28 July 2025 – Bioconductor community blog</title>
+<title>Bioconductor in Africa: Ethiopia’s First In-Person Course – Bioconductor community blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -43,6 +43,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-4bc2b4e356910e472f7d50d601e09124.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -74,15 +77,13 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Exploring R and Rust in Bioinformatics – Online Developer Forum, 28 July 2025 – Bioconductor community blog">
+<meta property="og:title" content="Bioconductor in Africa: Ethiopia’s First In-Person Course – Bioconductor community blog">
 <meta property="og:description" content="A blog for the Bioconductor community!">
-<meta property="og:image" content="https://blog.bioconductor.org/posts/2025-07-09-developers-forum-july28/feRris.png">
+<meta property="og:image" content="https://blog.bioconductor.org/posts/2025-11-24-ethiopia-course/group_photo.jpeg">
 <meta property="og:site_name" content="Bioconductor community blog">
-<meta property="og:image:height" content="1784">
-<meta property="og:image:width" content="2378">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
@@ -153,9 +154,12 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Exploring R and Rust in Bioinformatics – Online Developer Forum, 28 July 2025</h1>
+      <h1 class="title">Bioconductor in Africa: Ethiopia’s First In-Person Course</h1>
                                 <div class="quarto-categories">
+                <div class="quarto-category">education</div>
                 <div class="quarto-category">events</div>
+                <div class="quarto-category">Carpentries</div>
+                <div class="quarto-category">CZI</div>
               </div>
                   </div>
   </div>
@@ -166,14 +170,14 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Author</div>
       <div class="quarto-title-meta-contents">
-               <p><a href="https://llrs.dev">Lluís Revilla Sancho</a> </p>
+               <p>Maria Doyle </p>
             </div>
     </div>
       
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">July 11, 2025</p>
+        <p class="date">November 24, 2025</p>
       </div>
     </div>
     
@@ -184,7 +188,23 @@ ul.task-list li input[type="checkbox"] {
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#what-we-taught" id="toc-what-we-taught" class="nav-link" data-scroll-target="#what-we-taught">What we taught</a></li>
+  <li><a href="#learning-community" id="toc-learning-community" class="nav-link" data-scroll-target="#learning-community">Learning &amp; Community</a></li>
+  <li><a href="#participant-voices" id="toc-participant-voices" class="nav-link" data-scroll-target="#participant-voices">Participant voices</a></li>
+  <li><a href="#lessons-learned" id="toc-lessons-learned" class="nav-link" data-scroll-target="#lessons-learned">Lessons learned</a></li>
+  <li><a href="#highlights" id="toc-highlights" class="nav-link" data-scroll-target="#highlights">Highlights</a></li>
+  <li><a href="#collaborators-acknowledgements" id="toc-collaborators-acknowledgements" class="nav-link" data-scroll-target="#collaborators-acknowledgements">Collaborators &amp; Acknowledgements</a></li>
+  <li><a href="#whats-next" id="toc-whats-next" class="nav-link" data-scroll-target="#whats-next">What’s next?</a></li>
+  <li><a href="#get-involved" id="toc-get-involved" class="nav-link" data-scroll-target="#get-involved">Get involved</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
 
@@ -192,51 +212,132 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p><img src="feRris.png" class="img-fluid"></p>
-<p>Join us for an open developer forum exploring how R and Rust can work together in bioinformatics and Bioconductor development. Organised and hosted by Lluís Revilla (<a href="https://bioconductor.org/about/community-advisory-board/">Bioconductor Community Advisory Board</a>), this online session will discuss technical and practical aspects of using Rust alongside R - discussing extendr, Rust-based package development, and real-world use cases. Whether you’re Rust-curious or already experimenting, all are welcome.</p>
-<section id="event-details" class="level3">
-<h3 class="anchored" data-anchor-id="event-details">🗓 Event Details</h3>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Following the success of our first in-person <a href="https://blog.bioconductor.org/posts/2025-05-21-kenya-course/">Bioconductor course in Nairobi</a> earlier this year, we continued building momentum across the continent with Ethiopia’s first Bioconductor workshop, held in Addis Ababa from 25–29 August 2025. Hosted by the <a href="https://www.betin.gov.et/"><strong>Bio and Emerging Technology Institute (BETin)</strong></a> in partnership with the <a href="https://www.iita.org/"><strong>International Institute of Tropical Agriculture (IITA)</strong></a> and the <a href="https://www.ul.ie/"><strong>University of Limerick</strong></a>, the event brought together researchers, students, and educators to support and grow bioinformatics capacity in Ethiopia.</p>
+</section>
+<section id="what-we-taught" class="level2">
+<h2 class="anchored" data-anchor-id="what-we-taught">What we taught</h2>
+<p>A five-day, hands-on programme covering:</p>
 <ul>
-<li><strong>Date:</strong> Monday, 28 July 2025<br>
+<li>R for data management, manipulation, visualisation, and reproducible analysis<br>
 </li>
-<li><strong>Time:</strong> 17:00–18:00 CEST<br>
+<li>Bioconductor core data structures (e.g.&nbsp;<code>SummarizedExperiment</code>)<br>
 </li>
-<li><strong>Location:</strong> Online – see details below.</li>
-<li><strong>Add to calendar:</strong> <a href="bioc_forum_r_rust.ics.zip" download="">Download .ics file</a></li>
+<li>Exploratory data analysis and quality control<br>
+</li>
+<li>Differential expression with DESeq2<br>
+</li>
+<li>Gene set enrichment analysis</li>
+</ul>
+<p>Agenda and instructor list are on the <a href="https://training.bioconductor.org/workshops/2025-08-Addis-Ababa/index.html">workshop page</a>.</p>
+<p>We welcomed 26 participants from universities, national research institutes, and biotech groups across Ethiopia, reflecting a strong mix of MSc/PhD students, lecturers, and researchers working in agriculture, public health, genomics, and AI-driven biomedical research. The cohort was selected from more than 170 applicants - a clear sign of the growing demand for hands-on bioinformatics training.</p>
+</section>
+<section id="learning-community" class="level2">
+<h2 class="anchored" data-anchor-id="learning-community">Learning &amp; Community</h2>
+<p>The workshop opened with a warm welcome from BETin leadership, including Dr Zewdu Edea and Dr Hailu Dadi, with strong support from Prof Kassahun Tesfaye and Dr Helen Nigussie. Sessions were interactive and collaborative as participants worked through exercises together.</p>
+<div id="gallery-instructors" class="columns">
+<div class="column" style="width:20%;">
+<p><a href="yohannes.jpeg" class="lightbox" data-gallery="gallery-instructors"><img src="yohannes.jpeg" class="img-fluid" alt="Dr. Yohannes Gedamu Gebre teaching"></a></p>
+</div><div class="column" style="width:20%;">
+<p><a href="niguse.jpeg" class="lightbox" data-gallery="gallery-instructors"><img src="niguse.jpeg" class="img-fluid" alt="Niguse Kelile Lema teaching"></a></p>
+</div><div class="column" style="width:20%;">
+<p><a href="helen.jpeg" class="lightbox" data-gallery="gallery-instructors"><img src="helen.jpeg" class="img-fluid" alt="Dr. Helen Nigussie teaching"></a></p>
+</div><div class="column" style="width:20%;">
+<p><a href="trushar.jpeg" class="lightbox" data-gallery="gallery-instructors"><img src="trushar.jpeg" class="img-fluid" alt="Trushar Shah teaching"></a></p>
+</div><div class="column" style="width:20%;">
+<p><a href="maria.jpeg" class="lightbox" data-gallery="gallery-instructors"><img src="maria.jpeg" class="img-fluid" alt="Dr. Maria Doyle teaching"></a></p>
+</div><div class="figure-caption" style="text-align: left; font-size: 90%;">
+<p>From left to right: Dr Yohannes Gedamu Gebre, Niguse Kelile Lema, Dr Helen Nigussie, Trushar Shah, and Dr Maria Doyle teaching at the Ethiopia course.</p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="group_photo.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Participants at the Bioconductor Ethiopia course"><img src="group_photo.jpeg" class="img-fluid figure-img" alt="Participants at the Bioconductor Ethiopia course"></a></p>
+<figcaption>Participants at the Bioconductor Ethiopia course</figcaption>
+</figure>
+</div>
+</section>
+<section id="participant-voices" class="level2">
+<h2 class="anchored" data-anchor-id="participant-voices">Participant voices</h2>
+<p><strong>Impact snapshot</strong>:<br>
+From the post-course survey (n=24):</p>
+<ul>
+<li>100% would recommend the workshop<br>
+</li>
+<li>92% rated the course “Excellent” or “Very good”</li>
+<li>Average self-reported improvement in R skills: 4.3/5</li>
+<li>23 out of 24 respondents expressed interest in helping grow the Bioconductor Africa community</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="feedback-summary.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Participant feedback summary"><img src="feedback-summary.png" class="img-fluid figure-img" alt="Participant feedback summary"></a></p>
+<figcaption>Participant feedback summary</figcaption>
+</figure>
+</div>
+<blockquote class="blockquote">
+<p>“It’s very hands-on and engaging… The instructors were very experienced, knowledgeable, and approachable. It was a great learning experience!”</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>“There were enough supporters for the trainees; those who were rounding and supporting when we got stuck were a wonderful approach. The training shoots the target from my side.”</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>“I would appreciate it if the time for the training were increased.”</p>
+</blockquote>
+<p>These sentiments echoed the hosts’ reflections:</p>
+<blockquote class="blockquote">
+<p>“Participants were thrilled to have been given the chance and vowed to utilise the new skills they gained in their research and future careers.” — <strong>Dr Zewdu Edea</strong> (BETin), LinkedIn</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>“The workshop highlights the importance of international collaboration and knowledge exchange in advancing research and training, particularly in the African context.” — <strong>Niguse Kelile Lema</strong> (BETin), LinkedIn</p>
+</blockquote>
+<p>Encouragingly, many respondents expressed interest in helping grow the Bioconductor Africa community through teaching, webinars, or community sessions - a strong signal for sustainable, local leadership.</p>
+</section>
+<section id="lessons-learned" class="level2">
+<h2 class="anchored" data-anchor-id="lessons-learned">Lessons learned</h2>
+<p>A key part of building a sustainable training programme is listening to feedback. A few themes stood out:</p>
+<ul>
+<li><p><strong>More time for deeper dives:</strong><br>
+Participants were keen for extra time to practise and explore. While extending the main workshop isn’t always possible, we’re exploring optional drop-in coding sessions or “hacky hours” after future events so participants can spend more time working through exercises with instructor support.</p></li>
+<li><p><strong>Clearer signposting of pre-workshop reading:</strong> Although we shared pre-reading and background material, some participants noted they would have benefited from more emphasis on the publication describing the experimental dataset. We’ll highlight these resources more clearly in future courses.</p></li>
+<li><p><strong>Mapping Future Topics:</strong> Feedback included a range of topics people would like to see next - including GWAS, single-cell analysis, and multi-omics integration. This helps us map out future workshops and tailor training to local research priorities.</p></li>
 </ul>
 </section>
-<section id="agenda" class="level3">
-<h3 class="anchored" data-anchor-id="agenda">📋 Agenda</h3>
-<ul>
-<li>40 minutes – R + Rust: extendr<br>
-</li>
-<li>20 minutes – Rust in bioinformatics</li>
-</ul>
+<section id="highlights" class="level2">
+<h2 class="anchored" data-anchor-id="highlights">Highlights</h2>
+<p>A short certificate ceremony on the final day was a lovely way to wrap up the week. BETin presented each participant with a certificate recognising their effort and commitment throughout the course. Participants were delighted to receive them, as reflected in the smiles during the ceremony.</p>
+<div id="gallery-cert_ceremony" class="columns">
+<div class="column" style="width:50%;">
+<p><a href="cert-ceremony1.jpeg" class="lightbox" data-gallery="gallery-cert_ceremony"><img src="cert-ceremony1.jpeg" class="img-fluid" alt="Participant receiving course certificate"></a></p>
+</div><div class="column" style="width:50%;">
+<p><a href="cert-ceremony2.jpeg" class="lightbox" data-gallery="gallery-cert_ceremony"><img src="cert-ceremony2.jpeg" class="img-fluid" alt="Another participant receiving course certificate"></a></p>
+</div>
+</div>
+<p>Another note from the week is that two of the local instructors, Yohannes and Niguse, were completing their Carpentries Instructor Certification, and this workshop served as their final teaching checkout.</p>
+<div id="gallery-instructor-certification.columns">
+<div class="column" style="width:100%;">
+<p><a href="yohannes-certified.png" class="lightbox" data-gallery="gallery-cert_instructors"><img src="yohannes-certified.png" class="img-fluid" alt="Yohannes Carpentries certification"></a></p>
+</div>
+</div>
 </section>
-<section id="speakers" class="level3">
-<h3 class="anchored" data-anchor-id="speakers">🎤 Speakers</h3>
-<ul>
-<li>Sun Wenjie <a href="https://sun-wenjie.site">Website</a><br>
-</li>
-<li>Mossa Merhi Reimert: <a href="https://github.com/CGMossa">GitHub</a><br>
-</li>
-<li>Josiah Parry: <a href="https://www.linkedin.com/in/josiahparry/">LinkedIn</a> | <a href="https://josiahparry.com/">Website</a> | <a href="https://github.com/JosiahParry">GitHub</a></li>
-</ul>
-<p>This session is open to all developers interested in bridging R and Rust, especially those working on packages for <strong>Bioconductor</strong> and <strong>CRAN</strong>.</p>
+<section id="collaborators-acknowledgements" class="level2">
+<h2 class="anchored" data-anchor-id="collaborators-acknowledgements">Collaborators &amp; Acknowledgements</h2>
+<p>This workshop was hosted and funded by the Bio and Emerging Technology Institute (BETin). We are deeply grateful for their leadership and commitment to strengthening bioinformatics capacity in Ethiopia.</p>
+<p>The event was co-organised with the International Institute of Tropical Agriculture (IITA) and the University of Limerick, with additional support from Bioconductor (CZI EOSS) and UL Global/Erasmus+.</p>
+<p>Our instructor team: Dr Yohannes Gedamu Gebre (BETin), Niguse Kelile Lema (BETin), Dr Helen Nigussie (AAU), Trushar Shah (IITA), Dr Maria Doyle (UL).</p>
 </section>
-<section id="location" class="level3">
-<h3 class="anchored" data-anchor-id="location">📍 Location</h3>
+<section id="whats-next" class="level2">
+<h2 class="anchored" data-anchor-id="whats-next">What’s next?</h2>
+<p>Our next workshop took place in West Africa, in Benin, from 17–21 November 2025. If your institute is interested in co‑hosting or contributing to future workshops, we’d love to hear from you.</p>
+</section>
+<section id="get-involved" class="level2">
+<h2 class="anchored" data-anchor-id="get-involved">Get involved</h2>
 <ul>
-<li><strong>Zoom link:</strong> <a href="https://us06web.zoom.us/j/83712090308?pwd=DuNbDvPaLkJAHC7a2HebwLWyl8U9Qw.1">https://us06web.zoom.us/j/83712090308?pwd=DuNbDvPaLkJAHC7a2HebwLWyl8U9Qw.1</a><br>
-</li>
-<li><strong>Meeting ID:</strong> 837 1209 0308<br>
-</li>
-<li><strong>Passcode:</strong> 877331</li>
+<li><a href="https://training.bioconductor.org/workshops/2025-08-Addis-Ababa/index.html">Workshop page</a></li>
+<li><a href="https://github.com/mblue9/202508-Bioconductor-Ethiopia/blob/main/README.md">Materials</a></li>
+<li><a href="https://training.bioconductor.org">About Bioconductor training</a></li>
+<li><a href="https://training.bioconductor.org/workshops/2025-08-Addis-Ababa/index.html#%F0%9F%8C%8D-join-the-bioconductor-africa-community">Join the Bioconductor Africa mailing list</a> or #bioc_africa channel in <a href="https://chat.bioconductor.org">Bioconductor Chat</a></li>
 </ul>
-<p>The joining link is now available above. We’ll also share updates in the #events channel on <a href="https://chat.bioconductor.org">Bioconductor Zulip</a>.</p>
-<p>☑️ <strong>Please note:</strong> By attending, you agree to abide by the <a href="https://bioconductor.org/about/code-of-conduct/">Bioconductor Code of Conduct</a>.<br>
-📹 The session will be recorded and may be shared on the <a href="https://www.youtube.com/playlist?list=PLdl4u5ZRDMQQLMupAtEzm2y4gUIUm_1n6">Bioconductor YouTube channel</a>.</p>
-<p>💬 <strong>Questions or suggestions?</strong> Reach out in the <a href="https://chat.bioconductor.org">Bioconductor Zulip</a>.</p>
 
 
 </section>
@@ -645,6 +746,38 @@ ul.task-list li input[type="checkbox"] {
   });
   </script>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
