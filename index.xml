@@ -44,7 +44,7 @@
 </section>
 <section id="learning-community" class="level2">
 <h2 class="anchored" data-anchor-id="learning-community">Learning &amp; Community</h2>
-<p>The workshop opened with a warm welcome from BETin leadership, including Dr Zewdu Edea and Dr Hailu Dadi, with strong support from Prof Kassahun Tesfaye and Dr Helen Nigussie. Sessions were interactive and collaborative as participants worked through exercises together.</p>
+<p>The workshop opened with a warm welcome from BETin leadership, including Dr Zewdu Edea and Dr Hailu Dadi with strong support from Prof Kassahun Tesfaye, and Dr Helen Nigussie from <a href="https://aau.edu.et/">Addis Ababa University</a>. Sessions were interactive and collaborative as participants worked through exercises together.</p>
 <div id="gallery-instructors" class="columns">
 <div class="column" style="width:20%;">
 <p><a href="yohannes.jpeg" class="lightbox" data-gallery="gallery-instructors"><img src="https://blog.bioconductor.org/posts/2025-11-24-ethiopia-course/yohannes.jpeg" class="img-fluid" alt="Dr. Yohannes Gedamu Gebre teaching"></a></p>
@@ -60,11 +60,9 @@
 <p>From left to right: Dr Yohannes Gedamu Gebre, Niguse Kelile Lema, Dr Helen Nigussie, Trushar Shah, and Dr Maria Doyle teaching at the Ethiopia course.</p>
 </div>
 </div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="group_photo.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Participants at the Bioconductor Ethiopia course"><img src="https://blog.bioconductor.org/posts/2025-11-24-ethiopia-course/group_photo.jpeg" class="img-fluid figure-img" alt="Participants at the Bioconductor Ethiopia course"></a></p>
-<figcaption>Participants at the Bioconductor Ethiopia course</figcaption>
-</figure>
+<p><a href="group_photo.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="https://blog.bioconductor.org/posts/2025-11-24-ethiopia-course/group_photo.jpeg" class="img-fluid" alt="Participants at the Bioconductor Ethiopia course"></a></p>
+<div class="figure-caption" style="text-align: center; font-size: 90%;">
+<p>Participants at the Bioconductor Ethiopia course</p>
 </div>
 </section>
 <section id="participant-voices" class="level2">
@@ -78,11 +76,9 @@ From the post-course survey (n=24):</p>
 <li>Average self-reported improvement in R skills: 4.3/5</li>
 <li>23 out of 24 respondents expressed interest in helping grow the Bioconductor Africa community</li>
 </ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="feedback-summary.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Participant feedback summary"><img src="https://blog.bioconductor.org/posts/2025-11-24-ethiopia-course/feedback-summary.png" class="img-fluid figure-img" alt="Participant feedback summary"></a></p>
-<figcaption>Participant feedback summary</figcaption>
-</figure>
+<img src="https://blog.bioconductor.org/posts/2025-11-24-ethiopia-course/feedback-summary.png" class="img-fluid">
+<div class="figure-caption" style="text-align: center; font-size: 90%;">
+<p>Participant feedback summary.</p>
 </div>
 <blockquote class="blockquote">
 <p>“It’s very hands-on and engaging… The instructors were very experienced, knowledgeable, and approachable. It was a great learning experience!”</p>
@@ -95,7 +91,7 @@ From the post-course survey (n=24):</p>
 </blockquote>
 <p>These sentiments echoed the hosts’ reflections:</p>
 <blockquote class="blockquote">
-<p>“Participants were thrilled to have been given the chance and vowed to utilise the new skills they gained in their research and future careers.” — <strong>Dr Zewdu Edea</strong> (BETin), LinkedIn</p>
+<p>“Participants were thrilled to have been given the chance and vowed to utilise the new skills they gained in their research and future careers.” — <strong>Dr Zewdu Edea</strong> (BETin), <a href="https://www.linkedin.com/posts/zewdu-edea-b7b051234_the-bio-and-emerging-technology-institute-activity-7368291732393730051-hAPs">LinkedIn</a></p>
 </blockquote>
 <blockquote class="blockquote">
 <p>“The workshop highlights the importance of international collaboration and knowledge exchange in advancing research and training, particularly in the African context.” — <strong>Niguse Kelile Lema</strong> (BETin), LinkedIn</p>
@@ -120,12 +116,17 @@ Participants were keen for extra time to practise and explore. While extending t
 <p><a href="cert-ceremony1.jpeg" class="lightbox" data-gallery="gallery-cert_ceremony"><img src="https://blog.bioconductor.org/posts/2025-11-24-ethiopia-course/cert-ceremony1.jpeg" class="img-fluid" alt="Participant receiving course certificate"></a></p>
 </div><div class="column" style="width:50%;">
 <p><a href="cert-ceremony2.jpeg" class="lightbox" data-gallery="gallery-cert_ceremony"><img src="https://blog.bioconductor.org/posts/2025-11-24-ethiopia-course/cert-ceremony2.jpeg" class="img-fluid" alt="Another participant receiving course certificate"></a></p>
+</div><div class="figure-caption" style="text-align: center; font-size: 90%;">
+<p>Participants receiving their course certificates.</p>
 </div>
 </div>
 <p>Another note from the week is that two of the local instructors, Yohannes and Niguse, were completing their Carpentries Instructor Certification, and this workshop served as their final teaching checkout.</p>
 <div id="gallery-instructor-certification.columns">
 <div class="column" style="width:100%;">
 <p><a href="yohannes-certified.png" class="lightbox" data-gallery="gallery-cert_instructors"><img src="https://blog.bioconductor.org/posts/2025-11-24-ethiopia-course/yohannes-certified.png" class="img-fluid" alt="Yohannes Carpentries certification"></a></p>
+</div>
+<div class="figure-caption" style="text-align: center; font-size: 90%;">
+<p>Yohannes’ story of how he and Niguse became certified Carpentry instructors. <a href="https://www.linkedin.com/pulse/how-i-became-certified-instructor-carpentries-courses-gebre-vqzdf/">LinkedIn</a></p>
 </div>
 </div>
 </section>
