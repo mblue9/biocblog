@@ -10,7 +10,63 @@
 <atom:link href="https://blog.bioconductor.org/index.xml" rel="self" type="application/rss+xml"/>
 <description>A blog for the Bioconductor community!</description>
 <generator>quarto-1.10.19</generator>
-<lastBuildDate>Mon, 12 Oct 2026 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 15 Oct 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Cytometry in R and opportunities to contribute to Bioconductor</title>
+  <dc:creator>Maria Doyle</dc:creator>
+  <dc:creator>David Rach</dc:creator>
+  <link>https://blog.bioconductor.org/posts/2026-10-15-cytometry-in-r/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p><img src="https://blog.bioconductor.org/posts/2026-10-15-cytometry-in-r/WebsiteBanner.jpg" class="img-fluid"></p>
+<p>Flow cytometry researchers have a growing collection of R and Bioconductor tools available to them. But for someone who is comfortable working with cytometry data and has little programming experience, knowing where to begin can be difficult. That is the gap the free Cytometry in R course aims to fill.</p>
+<section id="a-starting-point-for-cytometry-researchers" class="level2">
+<h2 class="anchored" data-anchor-id="a-starting-point-for-cytometry-researchers">A starting point for cytometry researchers</h2>
+<p>Developed by David Rach and colleagues at the Flow Cytometry Shared Resource of the University of Maryland Greenebaum Comprehensive Cancer Center, Cytometry in R began in February 2026 as a free weekly course for people with cytometry experience but little or no coding background.</p>
+<p>The course starts with practical foundations, including setting up R, working with GitHub and installing packages, before moving into data handling, visualisation and cytometry analysis workflows. Sessions are offered online and in person, with recordings, code and teaching materials openly available. Learners can work through the materials at their own pace and ask questions through GitHub Discussions.</p>
+<p>The response has been encouraging. In his <a href="https://youtu.be/krVI-HXm4_w?si=E3fzttBKJr2zFHfI&amp;t=1475">BioC2026 presentation</a>, David reported close to 2,000 expressions of interest worldwide and several hundred viewers for individual weekly topics.</p>
+<p><a href="https://umgcccfcsr.github.io/CytometryInR/Schedule.html">Explore the course materials and schedule</a> | <a href="https://youtube.com/playlist?list=PL7tGF31b_cVqEkSLFvAX3kbtzUVpMe-VB&amp;si=nsC9Wmg_Jvc5uVG3">Watch course recordings</a></p>
+</section>
+<section id="what-comes-after-the-introductory-course" class="level2">
+<h2 class="anchored" data-anchor-id="what-comes-after-the-introductory-course">What comes after the introductory course?</h2>
+<p>At the October 2026 <a href="https://training.bioconductor.org">Bioconductor Training Committee</a> meeting, David described an opportunity to build on the course. It introduces many cytometry packages, but a gap remains between the introductory training and the knowledge needed to work through some individual package vignettes.</p>
+<p>Additional materials addressing these gaps could help. Package authors, experienced users and instructors might contribute worked examples, reproducible case studies or step-by-step tutorials. These could help learners explore packages beyond those covered by the course and apply them to their own research questions.</p>
+</section>
+<section id="connecting-course-participants-and-package-developers" class="level2">
+<h2 class="anchored" data-anchor-id="connecting-course-participants-and-package-developers">Connecting course participants and package developers</h2>
+<p>David, who recently joined Bioconductor’s <a href="https://bioconductor.org/about/community-advisory-board/">Community Advisory Board</a>, now coordinates the newly established <a href="https://workinggroups.bioconductor.org/currently-active-working-groups-committees.html#cytometry">Bioconductor Cytometry Working Group</a>, which aims to support community efforts around documentation and longer-term maintenance of packages for conventional, spectral, imaging and mass cytometry.</p>
+<p>His plan is to reconnect with package developers, understand their priorities and identify where additional documentation or support would be welcome. One possibility is a focused writing or documentation sprint, bringing interested Cytometry in R participants together with package maintainers to work on specific, manageable tasks.</p>
+<p>This could give learners a supported route into contributing: learning to use a package, gaining confidence with its documentation and examples, and helping improve the experience for the next person.</p>
+</section>
+<section id="get-involved" class="level2">
+<h2 class="anchored" data-anchor-id="get-involved">Get involved</h2>
+<p>There are several ways to contribute, depending on your experience and interests:</p>
+<ul>
+<li>Package developers could identify documentation gaps and suggest tasks where community input would be welcome.</li>
+<li>Experienced users and instructors could develop tutorials, examples or bridging materials for learners ready to explore further.</li>
+<li>Course participants could test instructions, point out confusing steps and take part in supported documentation activities as these develop.</li>
+</ul>
+<p>Interested in joining or following the discussions? <a href="https://community-bioc.zulipchat.com/join/5pgmjejclfuvidu5dbu46xqw/">Join Bioconductor Zulip</a> and subscribe to the <strong>cytometry</strong> channel to introduce yourself, share ideas and help shape the group’s first activities. Users, learners, instructors and package developers are all welcome.</p>
+<p>For questions about the course itself, the <a href="https://github.com/UMGCCCFCSR/CytometryInR/discussions">Cytometry in R GitHub Discussions</a> remain a place to connect with instructors and fellow learners.</p>
+<p>The course offers an accessible starting point for cytometry researchers new to R. The working group provides a way to build on that learning and contribute to the tools and resources the community relies on.</p>
+
+
+</section>
+
+<p>
+© 2026 Bioconductor. Content is published under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons CC-BY-4.0 License</a> for the text and <a href="https://opensource.org/licenses/BSD-3-Clause">BSD 3-Clause License</a> for any code. | <a href="https://www.r-bloggers.com">R-Bloggers</a>
+</p> ]]></description>
+  <category>Training</category>
+  <category>Community</category>
+  <category>Cytometry</category>
+  <guid>https://blog.bioconductor.org/posts/2026-10-15-cytometry-in-r/</guid>
+  <pubDate>Thu, 15 Oct 2026 00:00:00 GMT</pubDate>
+  <media:content url="https://blog.bioconductor.org/posts/2026-10-15-cytometry-in-r/WebsiteBanner.jpg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>Beyond the course: Reflections from the Bioconductor–Physalia sponsorship programme</title>
   <dc:creator>Carlo Pecoraro</dc:creator>
@@ -1393,107 +1449,6 @@ font-style: inherit;">--alpha</span> 0.05</span></code></pre></div></div>
   <guid>https://blog.bioconductor.org/posts/2026-04-09-developer-engagement/</guid>
   <pubDate>Thu, 09 Apr 2026 00:00:00 GMT</pubDate>
   <media:content url="https://blog.bioconductor.org/posts/2026-04-09-developer-engagement/featured-image.jpeg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title>Collaborating between Bioconductor and R-universe on Development of Common Infrastructure</title>
-  <dc:creator>The rOpenSci Team</dc:creator>
-  <dc:creator>The Bioconductor Team</dc:creator>
-  <link>https://blog.bioconductor.org/posts/2026-04-08-r-universe-collaboration/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p><small><i>This article is cross-posted on <a href="https://ropensci.org/blog/">rOpenSci</a> and <a href="https://r-consortium.org/blog/">R-Consortium</a> blogs.</i></small></p>
-<p>For more than two decades, the <a href="https://www.bioconductor.org/">Bioconductor project</a> has been a cornerstone of the R ecosystem, providing high-quality, peer-reviewed tools for bioinformatics and computational biology. Its curated repository model, rigorous review standards, and tightly coordinated release process have helped establish Bioconductor as one of the most trusted distribution channels in scientific computing.</p>
-<p>However, the infrastructure that supports such a long-standing and large-scale project inevitably accumulates technical debt. Legacy build systems, bespoke tooling, and historically grown workflows add up to costly and unsustainable maintenance work. For this reason, Bioconductor is collaborating with <a href="https://r-universe.dev/">R-universe</a> to gradually modernize parts of its infrastructure, while accommodating the project’s scale, governance, and established processes. In turn, Bioconductor is helping R-universe expand and refine its features as we learn to serve the complex needs of the Bioconductor community.</p>
-<p>This collaboration reflects a core principle of R-universe as an R Consortium <a href="https://r-consortium.org/all-projects/">Infrastructure Steering Committee (ISC)</a> top-level project: supporting reviewed package repositories such as rOpenSci and Bioconductor, and providing modern, open, and reusable infrastructure that strengthens the broader R ecosystem.</p>
-<section id="a-shared-mission-tooling-for-managed-repositories" class="level2">
-<h2 class="anchored" data-anchor-id="a-shared-mission-tooling-for-managed-repositories">A Shared Mission: Tooling for Managed Repositories</h2>
-<p>R-universe was designed as a next-generation package distribution and build system for R. It provides:</p>
-<ul>
-<li>Continuous building and checking of R packages across platforms<br>
-</li>
-<li>Binary packages for Windows, macOS, Linux, and WebAssembly<br>
-</li>
-<li>Transparent and reproducible build environments managed via GitHub actions<br>
-</li>
-<li>Dashboards and metadata APIs for monitoring ecosystem health and activity<br>
-</li>
-<li>CRAN-like package repositories with discoverable metrics and documentation</li>
-</ul>
-<p>From the outset, a key objective has been to support curated and reviewed communities — such as rOpenSci and Bioconductor — by offering modern infrastructure without requiring them to redesign their governance model or review processes.</p>
-<p>For Bioconductor, this means incrementally introducing piece-wise functionality, with consideration for established release cycles and quality control mechanisms:</p>
-<ol type="1">
-<li>Setting up independent build and dashboard tooling, replicating processes from the current Bioconductor build systems on R-universe infrastructure</li>
-<li>Mirroring Windows and macOS binaries produced on R-universe to Bioconductor</li>
-<li>Exploring further integration of results and metadata produced by R-universe for Bioconductor health/activity monitoring and aiding the curation processes</li>
-<li>Potential future steps toward deeper automation and harmonization</li>
-</ol>
-<p>By taking small gradual steps towards adopting R-universe components, everyone gets the opportunity to experiment with new tooling and evaluate where adjustments may be needed in order to minimize disruption to existing practices.</p>
-<p>An important milestone in this venture is that Bioconductor now uses R-universe to build the Windows and macOS binaries, which significantly reduces costs and the maintenance load on the Bioconductor team. Beyond binary distribution, we are currently exploring deeper integration of R-universe’s continuous check results into Bioconductor’s quality control and release processes.</p>
-</section>
-<section id="two-universes-release-and-development" class="level2">
-<h2 class="anchored" data-anchor-id="two-universes-release-and-development">Two Universes: Release and Development</h2>
-<p>Bioconductor maintains two distinct repositories:</p>
-<ul>
-<li>A <strong>release</strong> branch for stable packages<br>
-</li>
-<li>A <strong>devel</strong> branch for ongoing development and the next release cycle</li>
-</ul>
-<p>To mirror this structure, we currently operate two dedicated R-universe instances:</p>
-<ul>
-<li><strong>Development branch:</strong> <a href="https://bioc.r-universe.dev">https://bioc.r-universe.dev</a><br>
-</li>
-<li><strong>Release branch:</strong> <a href="https://bioc-release.r-universe.dev">https://bioc-release.r-universe.dev</a></li>
-</ul>
-<p>These universes integrate directly with Bioconductor’s existing Git infrastructure and provide continuous builds for packages in both branches.</p>
-<p>Through the R-universe dashboard, package maintainers and users can:</p>
-<ul>
-<li>Inspect cross-platform check results<br>
-</li>
-<li>Review extended BiocCheck diagnostics<br>
-</li>
-<li>Monitor build logs and dependency graphs<br>
-</li>
-<li>Explore rich package metadata and metrics<br>
-</li>
-<li>Publish binary packages for Windows, macOS, and Linux</li>
-</ul>
-<p>This provides a familiar yet modern interface for Bioconductor contributors, aligned with what users increasingly expect from contemporary R package infrastructure.</p>
-<p>Information about each package is available on <code>https://bioc.r-universe.dev/{pkgname}</code>. For example, <a href="https://bioc.r-universe.dev/DESeq2">https://bioc.r-universe.dev/DESeq2</a> provides details on the DESeq2 package as shown below:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="https://docs.r-universe.dev/img/bioc-pkg.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="screenshot of r-universe"><img src="https://docs.r-universe.dev/img/bioc-pkg.png" class="img-fluid figure-img" alt="screenshot of r-universe"></a></p>
-<figcaption>screenshot of r-universe</figcaption>
-</figure>
-</div>
-<p>If this is your first time visiting R-universe, we recommend clicking the “Website Tour” button which will walk you through the most important information in 1 or 2 minutes.</p>
-</section>
-<section id="technical-documentation-for-bioconductor-maintainers" class="level2">
-<h2 class="anchored" data-anchor-id="technical-documentation-for-bioconductor-maintainers">Technical Documentation for Bioconductor Maintainers</h2>
-<p>The R-universe project maintains comprehensive technical documentation at <a href="https://docs.r-universe.dev">https://docs.r-universe.dev</a>. For Bioconductor specifically, we created a dedicated section summarizing the most relevant topics for developers to get started with R-universe: <a href="https://docs.r-universe.dev/bioconductor/">https://docs.r-universe.dev/bioconductor/</a></p>
-<p>As the collaboration evolves and new components get introduced, the documentation will continue to be expanded. The goal is to provide Bioconductor maintainers with a clear reference point for understanding how R-universe fits into their development workflow, while maintaining compatibility with the established practices that have made Bioconductor a successful project within the R community.</p>
-</section>
-<section id="looking-ahead" class="level2">
-<h2 class="anchored" data-anchor-id="looking-ahead">Looking Ahead</h2>
-<p>Adopting new infrastructure inevitably involves adjustments. For Bioconductor developers, integrating with a new build and distribution system will likely require some changes to workflows, and time to become familiar with new or different package checks, build diagnostics, and binary distribution.</p>
-<p>However, by gradually moving toward common infrastructure, the Bioconductor project will benefit from improvements that are being continuously developed and maintained for the broader R ecosystem. A system based on modern continuous integration (CI) will provide developers with improved tooling, and will give the core team more time to focus on community coordination and quality control, rather than on maintaining costly infrastructure. At the same time, the shared platform provided by R-universe can help to increase the visibility and accessibility of Bioconductor software to the greater R community.</p>
-<p>We look forward to continuing this alliance and to working with the Bioconductor community to ensure that the next generation of infrastructure supports the project for many years to come.</p>
-
-
-</section>
-
-<p>
-© 2026 Bioconductor. Content is published under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons CC-BY-4.0 License</a> for the text and <a href="https://opensource.org/licenses/BSD-3-Clause">BSD 3-Clause License</a> for any code. | <a href="https://www.r-bloggers.com">R-Bloggers</a>
-</p> ]]></description>
-  <category>Bioconductor</category>
-  <category>R-universe</category>
-  <category>Infrastructure</category>
-  <guid>https://blog.bioconductor.org/posts/2026-04-08-r-universe-collaboration/</guid>
-  <pubDate>Wed, 08 Apr 2026 00:00:00 GMT</pubDate>
-  <media:content url="https://docs.r-universe.dev/img/bioc-pkg.png" medium="image" type="image/png"/>
 </item>
 </channel>
 </rss>
